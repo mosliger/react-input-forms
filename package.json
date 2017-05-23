@@ -1,8 +1,8 @@
 {
   "name": "react-input-forms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
-  "main": "./app/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "mocha ./tests/**/*.js",
     "dev": "webpack-dev-server --hot --config ./configs/webpack.config.js",
@@ -40,8 +40,10 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
+    "npm": "^4.6.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-input-forms": "^1.0.0",
     "redux": "^3.6.0"
   }
 }
