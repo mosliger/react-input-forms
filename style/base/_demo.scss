@@ -1,0 +1,102 @@
+.demo-input-fields {
+  display: flex;
+  // flex-direction: column;
+  
+  height: 100vh;
+  .main-menu {
+    flex: 0 0 200px;
+    background: #333;
+    padding: 10px;
+    color: #eee;    
+  }
+  .main-page {
+    flex: 1 1 auto;
+    display: block;
+    height: 100vh;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .main-menu ul.menu-list {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.demo-input-fields .main-menu ul.menu-list li {
+  list-style: none;
+  &.active {
+    background: #ccc;
+  }
+  &.item a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+    color: #eee;
+  }
+  &.item.active a {
+    color: #333;
+    font-weight: bold;
+  }
+}
+
+.demo-input-fields .main-page ul.page-list {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  li {
+    list-style: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform: translateX(100%);
+    z-index: 1;
+    transition: all .7s ease-out .7s;
+    background: #fff;
+    overflow-Y: auto;
+    overflow-X: hidden;
+  }
+  li.active {
+    transform: translateX(0);
+    transition: all .7s ease-in;
+    z-index: 2;
+  }
+}
+
+.new-line {
+  margin: 10px 0;
+}
+
+// .tab-1 {
+//     text-indent: 15px;
+//     display: block;
+// }
+
+// .tab-2 {
+//     text-indent: 30px;
+//     display: block;
+// }
+
+// .tab-3 {
+//     text-indent: 45px;
+//     display: block;
+// }
+
+// .tab-4 {
+//     text-indent: 60px;
+//     display: block;
+// }
+
+// .tab-5 {
+//     text-indent: 75px;
+//     display: block;
+// }
+
+// .tab-6 {
+//     text-indent: 90px;
+//     display: block;
+// }

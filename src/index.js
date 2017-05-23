@@ -1,0 +1,201 @@
+import React, { PropTypes } from 'react';
+import { isEmpey, verifyField, pick, remove } from './helpers/global';
+import {
+  NumberInput,
+  SelectInput,
+  TextareaInput,
+  TextInput,
+  CheckboxInput,
+  RadioInput,
+} from './components';
+
+export default class Index extends React.Component {
+  static propTypes = {
+    value: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.object,
+      PropTypes.bool,
+      PropTypes.array,
+    ]),
+    format: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string,
+    ]),
+
+    rows: PropTypes.number,
+    cols: PropTypes.number,
+    tabIndex: PropTypes.number,
+
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
+    type: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+
+    children: PropTypes.string,
+
+    options: PropTypes.array,
+
+    inputProps: PropTypes.object,
+    labelProps: PropTypes.object,
+    rules: PropTypes.object,
+    children: PropTypes.node,
+
+    disabled: PropTypes.bool,
+    focus: PropTypes.bool,
+
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func,
+    onKeyCode: PropTypes.func,
+    handleVerify: PropTypes.func,
+    renderComponent: PropTypes.func,
+
+  };
+
+  static defaultProps = {
+    name: 'input',
+    label: '',
+    value: '',
+    disabled: false,
+    focus: false,
+    placeholder: '',
+    tabIndex: 1,
+    type: 'text',
+  }
+
+  state = {
+    value: '',
+    errorMessage: '',
+  }
+
+  componentWillMount() {
+    const { value } = this.props;
+    const errorMessage = this.handleValidation(value);
+    this.setState({
+      value: value,
+      errorMessage: errorMessage,
+    });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const valueState = nextState.value;
+    const { value, name } = nextProps;
+    
+    const keys = ['value','rules'];
+    const checkProps = pick(keys, { ...this.props, value: valueState });
+    const checkNextProps = pick(keys, nextProps);
+    if (JSON.stringify(checkProps) !== JSON.stringify(checkNextProps)) {
+      const errorMessage = this.handleValidation(value);
+      this.setState({
+        value: value,
+        errorMessage: errorMessage,
+      });
+      if (this.props.onChange) {
+        this.props.onChange(value, name, errorMessage);
+      } else if (this.props.onBlue) {
+        this.props.onBlue(value, name, errorMessage);
+      }
+    }
+    return true;
+  }
+
+  handleValidation = (value) => {
+    const { rules } = this.props;
+    let validation = '';
+    if (this.props.handleVerify) {
+      validation = this.props.handleVerify(value, rules);
+    } else {
+      validation = verifyField(value, rules);
+    }
+    return validation;
+  }
+
+  handleUpdateValue = (value) => {
+    const { name, onChange } = this.props;
+    const errorMessage = this.handleValidation(value);
+    try {
+      this.setState({
+        value: value,
+        errorMessage: errorMessage,
+      });
+      if (onChange) onChange(value, name, errorMessage);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  handleChange = (value) => {
+    if (this.props.onChange) this.handleUpdateValue(value);
+    const errorMessage = this.handleValidation(value);
+    this.setState({
+      value: value,
+      errorMessage: errorMessage,
+    });
+  }
+
+  handleBlur = (value) => {
+    const { name, onBlur } = this.props;
+    const errorMessage = this.handleValidation(value);
+    try {
+      this.setState({
+        value: value,
+        errorMessage: errorMessage,
+      });
+      if (onBlur) onBlur(value, name, errorMessage);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  handleKeyCode = (e) => {
+    const { value } = this.state;
+    const { name } = this.props;
+    const keyCode = e.keyCode || e.which;
+    if (this.props.onKeyCode) this.props.onKeyCode(keyCode, value, name, e);
+  }
+
+  render() {
+    const { type } = this.props;
+    const { value, errorMessage } = this.state;
+    const propsForm = {
+      ...remove(['onChange', 'value', 'onBlur', 'onKeyCode', 'handleVerify', 'renderComponent', 'children'], this.props),
+      value,
+      errorMessage: errorMessage,
+      handleChange: this.handleChange,
+      handleBlur: this.handleBlur,
+      handleKeyCode: this.handleKeyCode,
+    };
+      switch (type) {
+        case 'text': {
+          if (this.props.children) return (<div className="text-input"><TextInput {...propsForm} >{this.props.children}</TextInput></div>);
+          return (<div className="text-input"><TextInput {...propsForm} /></div>);
+        }
+        case 'number': {
+          if (this.props.children) return (<div className="number-input"><NumberInput {...propsForm}>{this.props.children}</NumberInput></div>);
+          return (<div className="number-input"><NumberInput {...propsForm} /></div>);
+        }
+        case 'select': {
+          if (this.props.children) return (<div className="select-input"><SelectInput {...propsForm}>{this.props.children}</SelectInput></div>);
+          return (<div className="select-input"><SelectInput {...propsForm} /></div>);
+        }
+        case 'textarea': {
+          if (this.props.children) return (<div className="textarea-input"><TextareaInput {...propsForm}>{this.props.children}</TextareaInput></div>);
+          return (<div className="textarea-input"><TextareaInput {...propsForm} /></div>);
+        }
+        case 'radio': {
+          if (this.props.children) return (<div className="radio-input"><RadioInput {...propsForm}>{this.props.children}</RadioInput></div>);
+          return (<div className="radio-input"><RadioInput {...propsForm} /></div>);
+        }
+        case 'checkbox': {
+          if (this.props.children) return (<div className="checkbox-input"><CheckboxInput {...propsForm}>{this.props.children}</CheckboxInput></div>);
+          return (<div className="checkbox-input"><CheckboxInput {...propsForm} /></div>);
+        }
+        case 'custom': {
+          return this.props.renderComponent ? this.props.renderComponent(propsForm) : '';
+        }
+        default:
+          if (this.props.children) return (<div className="text-input"><TextInput {...propsForm}>{this.props.children}</TextInput></div>);
+          return (<div className="text-input"><TextInput {...propsForm} /></div>);
+      }
+    }
+}
