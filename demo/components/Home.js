@@ -13,14 +13,12 @@ export default class Home  extends Component {
     checkboxInputNotOption: false,
   }
 
-  handleUpdateValue = (value, name, error) => {    
-    console.log('handleUpdateValue >>', value, name, error)
+  handleUpdateValue = (value, name, error) => {
     this.setState({ [name]: value });
   }
 
   handleOnBlur = (value, name, error) => {
     this.setState({ [name]: value });
-    console.log('handleOnBlur >>', value, name, error)
   }
 
   clearForms = () => {
@@ -44,37 +42,31 @@ export default class Home  extends Component {
         <div className="row">
           <div className="D-6 M-12">
             <h2>Text Input</h2>
-            <InputField type="text" value={textInput} focus={textInput === ''} key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur}
-             />
+            <InputField type="text" value={textInput} focus={textInput === ''} key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
           </div>
           <div className="D-6 M-12">
             <h2>Number Input</h2>
-            <InputField type="number" value={numberInput} key="numberInput" format="0,000.00" name="numberInput" label="label Number Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur}
-             />
+            <InputField type="number" value={numberInput} key="numberInput" format="0,000.00" name="numberInput" label="label Number Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
           </div>          
         </div>
         <div className="row">
           <div className="D-6 M-12">
             <h2>Select</h2>
-            <InputField type="select" value={selectInput} key="selectInput" name="selectInput" label="label Select" options={opctionList} onChange={this.handleUpdateValue}
-             />
+            <InputField type="select" value={selectInput} key="selectInput" name="selectInput" label="label Select" options={opctionList} onChange={this.handleUpdateValue} />
           </div>
           <div className="D-6 M-12">
             <h2>Textarea</h2>
-            <InputField type="textarea" value={textarea} key="textarea" name="textarea" label="label Textarea" rows={3} cols={4} onBlur={this.handleOnBlur} onChange={this.handleUpdateValue}
-             />
+            <InputField type="textarea" value={textarea} key="textarea" name="textarea" label="label Textarea" rows={3} cols={4} onBlur={this.handleOnBlur} onChange={this.handleUpdateValue} />
           </div>
         </div>
         <div className="row">
           <div className="D-6 M-12">
             <h2>Checkbox</h2>
-            <InputField type="checkbox" value={checkboxInput} key="checkboxInput" name="checkboxInput" label="label Checkbox" options={opctionList} onChange={this.handleUpdateValue}
-             />
+            <InputField type="checkbox" value={checkboxInput} key="checkboxInput" name="checkboxInput" label="label Checkbox" options={opctionList} onChange={this.handleUpdateValue} />
           </div>
           <div className="D-6 M-12">
             <h2>Radio</h2>
-            <InputField type="radio" value={radioInput} key="radioInput" name="radioInput" label="label radio" options={opctionList} onChange={this.handleUpdateValue}
-             />
+            <InputField type="radio" value={radioInput} key="radioInput" name="radioInput" label="label radio" options={opctionList} onChange={this.handleUpdateValue} />
           </div>
         </div>
         <button onClick={() => this.clearForms()}>Clear Forms</button>
