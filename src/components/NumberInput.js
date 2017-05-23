@@ -70,30 +70,13 @@ export default class NumberInput extends React.Component {
   }
 
   render() {
-    const {
-      label,
-      value,
-      disabled,
-      focus,
-      placeholder,
-      name,
-      format,
-      tabIndex,
-      errorMessage,
-      inputProps,
-      handleChange,
-      handleKeyCode,
-    } = this.props;
-
+    const { label, value, disabled, focus, placeholder, name, format, tabIndex, errorMessage, inputProps, handleChange, handleKeyCode } = this.props;
     const { editValue } = this.state;
-
     let renderErrorMessage = '';
     let classInput = 'form-input';
     if (!isEmpey(errorMessage)) {
       classInput = 'form-input error';
-      renderErrorMessage = (
-        <div className="error-message">{errorMessage}</div>
-      );
+      renderErrorMessage = (<div className="error-message">{errorMessage}</div>);
     }
 
     return (

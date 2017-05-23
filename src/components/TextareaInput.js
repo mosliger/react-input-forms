@@ -46,30 +46,12 @@ export default class TextareaInput extends React.Component {
   }
 
   render() {
-    const {
-      label,
-      value,
-      disabled,
-      focus,
-      placeholder,
-      name,
-      rows,
-      cols,
-      tabIndex,
-      errorMessage,
-      inputProps,
-      handleChange,
-      handleKeyCode,
-      handleBlur,
-    } = this.props;
-
+    const { label, value, disabled, focus, placeholder, name, rows, cols, tabIndex, errorMessage, inputProps, handleChange, handleKeyCode, handleBlur } = this.props;
     let renderErrorMessage = '';
     let classInput = 'form-input';
     if (!isEmpey(errorMessage)) {
       classInput = 'form-input error';
-      renderErrorMessage = (
-        <div className="error-message">{errorMessage}</div>
-      );
+      renderErrorMessage = (<div className="error-message">{errorMessage}</div>);
     }
 
     return (

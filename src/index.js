@@ -81,7 +81,7 @@ export default class Index extends React.Component {
     const valueState = nextState.value;
     const { value, name } = nextProps;
     
-    const keys = ['value','rules'];
+    const keys = ['value', 'rules'];
     const checkProps = pick(keys, { ...this.props, value: valueState });
     const checkNextProps = pick(keys, nextProps);
     if (JSON.stringify(checkProps) !== JSON.stringify(checkNextProps)) {

@@ -19,6 +19,7 @@ export default class Home  extends Component {
   }
 
   handleOnBlur = (value, name, error) => {
+    this.setState({ [name]: value });
     console.log('handleOnBlur >>', value, name, error)
   }
 

@@ -36,7 +36,7 @@ export default class SelectInput extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const keys = ['name', 'value', 'type', 'label', 'options', 'focus', 'disabled', 'errorMessage', 'placeholder'];
+    const keys = ['name', 'value', 'type', 'label', 'options', 'focus', 'disabled', 'errorMessage', 'placeholder', 'inputProps', 'labelProps'];
     const checkProps = pick(keys, this.props);
     const checkNextProps = pick(keys, nextProps);
     return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
@@ -49,22 +49,8 @@ export default class SelectInput extends React.Component {
   }
 
   render() {
-    const {
-      label,
-      value,
-      disabled,
-      focus,
-      placeholder,
-      name,
-      format,
-      errorMessage,
-      options,
-      inputProps,
-      tabIndex,
-      handleBlur,
-    } = this.props;
+    const { label, value, disabled, focus, placeholder, name, format, errorMessage, options, inputProps, tabIndex, handleBlur } = this.props;
     const renderOptions = [];
-
     let renderErrorMessage = '';
     let classInput = 'form-input';
     let valueString = '';
@@ -76,15 +62,11 @@ export default class SelectInput extends React.Component {
     }
     if (!isEmpey(errorMessage)) {
       classInput = 'form-input error';
-      renderErrorMessage = (
-        <div className="error-message">{errorMessage}</div>
-      );
+      renderErrorMessage = (<div className="error-message">{errorMessage}</div>);
     }
 
     for (var key in options) {
-      renderOptions.push((
-        <option value={options[key].value} key={`${key}-${options[key].value}`}>{options[key].label}</option>
-      ))
+      renderOptions.push((<option value={options[key].value} key={`${key}-${options[key].value}`}>{options[key].label}</option>));
     }
 
     return (

@@ -33,7 +33,7 @@ export default class CheckboxInput extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const keys = ['name', 'value', 'type', 'label', 'focus', 'disabled', 'errorMessage', 'placeholder'];
+    const keys = ['name', 'value', 'type', 'label', 'focus', 'disabled', 'errorMessage'];
     const checkProps = pick(keys, this.props);
     const checkNextProps = pick(keys, nextProps);
     return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
@@ -69,26 +69,12 @@ export default class CheckboxInput extends React.Component {
   }
 
   render() {
-    const {
-      label,
-      value,
-      disabled,
-      focus,
-      options,
-      name,
-      errorMessage,
-      inputProps,
-      handleChange,
-      handleBlur,
-    } = this.props;
-
+    const { label, value, disabled, focus, options, name, errorMessage, inputProps, handleChange, handleBlur } = this.props;
     let renderErrorMessage = '';
     let classInput = 'form-input';
     if (!isEmpey(errorMessage)) {
       classInput = 'form-input error';
-      renderErrorMessage = (
-        <div className="error-message">{errorMessage}</div>
-      );
+      renderErrorMessage = (<div className="error-message">{errorMessage}</div>);
     }
 
     if (options.length > 0) {
