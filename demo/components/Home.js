@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputField from 'react-input-forms';
+import InputField from '../../src';
 
 export default class Home  extends Component {
   state = {
@@ -37,26 +37,27 @@ export default class Home  extends Component {
   render() {
     const { textInput, numberInput, selectInput, textarea, customInput, checkboxInput, radioInput, checkboxInputNotOption } = this.state;
     const opctionList = [ { label: 'select ...', value: '' }, { label: 'one', value: '1' }, { label: 'two', value: '2' }, { label: 'three', value: '3' }, { label: 'four', value: '4' }, { label: 'five', value: '5' }];
+    const rules = { required: 'input is require.' };
     return (
       <div className="container">
         <div className="row">
           <div className="D-6 M-12">
             <h2>Text Input</h2>
-            <InputField type="text" value={textInput} focus={textInput === ''} key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
+            <InputField type="text" value={textInput} rules={rules} focus={textInput === ''} key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
           </div>
           <div className="D-6 M-12">
             <h2>Number Input</h2>
-            <InputField type="number" value={numberInput} key="numberInput" format="0,000.00" name="numberInput" label="label Number Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
+            <InputField type="number" value={numberInput} rules={{...rules, number: 'กรุณากรอกตัวเลย'}} key="numberInput" format="0,000.00" name="numberInput" label="label Number Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
           </div>          
         </div>
         <div className="row">
           <div className="D-6 M-12">
             <h2>Select</h2>
-            <InputField type="select" value={selectInput} key="selectInput" name="selectInput" label="label Select" options={opctionList} onChange={this.handleUpdateValue} />
+            <InputField type="select" rules={rules} value={selectInput} key="selectInput" name="selectInput" label="label Select" options={opctionList} onChange={this.handleUpdateValue} />
           </div>
           <div className="D-6 M-12">
             <h2>Textarea</h2>
-            <InputField type="textarea" value={textarea} key="textarea" name="textarea" label="label Textarea" rows={3} cols={4} onBlur={this.handleOnBlur} onChange={this.handleUpdateValue} />
+            <InputField type="textarea" rules={rules} value={textarea} key="textarea" name="textarea" label="label Textarea" rows={3} cols={4} onBlur={this.handleOnBlur} onChange={this.handleUpdateValue} />
           </div>
         </div>
         <div className="row">

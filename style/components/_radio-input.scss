@@ -1,7 +1,7 @@
-.checkbox-input {
+.radio-input {
   display: inline-block;
   width: 100%;
-  .checkbox-list {
+  .radio-list {
     display: block;
     margin: 10px 0;
   }
@@ -12,7 +12,7 @@
   }
 }
 
-.checkbox-input .box-input {
+.radio-input .box-input {
   display: inline-block;
   width: 20px;
   position: relative;
@@ -22,24 +22,26 @@
     height: 20px;
     top: 0;
     left: 0;
-    border-radius: 2px;
+    border-radius: 100%;
     border: 1px solid $borderColor;
     transition: all .4s ease-in-out;
-    outline: transparent auto 5px;
     &:after {
-      content: '✔';
+      content: '';
       position: absolute;
-      width: 65%;
-      height: 80%;
+      width: 50%;
+      height: 50%;
       top: 50%;
       left: 50%;
-      color: $checkedCheckbox;
-      background: transparent;
+      background: $checkedRadio;
+      border-radius: 100%;
+      border: 1px solid $checkedRadio;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 1px 1px $checkedRadio;
       transition: all .3s ease-in-out;
       transform: translate(-50%, -50%) scale(0);
     }
   }
-  input[type="checkbox"] {
+  input[type="radio"] {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -52,8 +54,8 @@
       transform: translate(-50%, -50%) scale(1);
     }
     &:focus ~ label.icon, &:hover ~ label.icon {
-      outline: $outlineColor auto 5px;
       border: 1px solid $outlineColor;
-    }  
+      box-shadow: 0 0 1px 1px $outlineColor;
+    }   
   }
 }

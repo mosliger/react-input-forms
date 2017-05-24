@@ -53,7 +53,7 @@ export const getprosType = (language) => {
             description: 'ให้ focus input',
           },
           {
-            property: 'onUpdate',
+            property: 'onChange',
             type: 'function',
             default: '',
             description: 'function ที่ return value name errorMessage',

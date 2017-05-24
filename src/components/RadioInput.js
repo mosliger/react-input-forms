@@ -54,8 +54,9 @@ export default class RadioInput extends React.Component {
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
         {options.map((detail, index) => {
           const getValue = value.value ? value.value : value;
+          const checked = getValue === detail.value;
           return (
-            <div className="checkbox-list" key={`${name}-${index}`}>
+            <div className="radio-list" key={`${name}-${index}`}>
               <div className="box-input">
                 <input
                   className={classInput}
@@ -63,10 +64,11 @@ export default class RadioInput extends React.Component {
                   name={name}
                   value={detail.value}
                   disabled={detail.disabled}
-                  checked={getValue === detail.value}
+                  checked={checked}
                   onChange={() => handleChange(detail.value)}
                   onBlur={(e) => handleBlur(detail.value)}
                 />
+                <label className={`icon ${checked ? 'checked' : ''}`}></label>
               </div>
               <label htmlFor={label}>{detail.label}</label>
             </div>

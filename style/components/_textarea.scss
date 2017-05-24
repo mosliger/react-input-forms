@@ -1,4 +1,4 @@
-.text-input {
+.textarea-input {
   .field-group {
     margin: 10px 0;
     label {
@@ -9,7 +9,7 @@
     }
   }
 
-  input[type="text"].form-input {
+  textarea.form-input {
     width: 100%;
     padding: 5px;
     border: 1px solid $borderColor;
@@ -21,7 +21,7 @@
       border: 1px solid $outlineColor;
     }
   }
-  input[type="text"].form-input.error {
+  textarea.form-input.error {
     border: 1px solid $borderError;
     &:focus {
       outline: $borderError auto 5px;

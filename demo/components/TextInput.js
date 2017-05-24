@@ -26,7 +26,7 @@ export default class TextInput extends Component {
               value={textInput}
               name="textInput"
               label="label"
-              onUpdate={this.handleUpdateValue}
+              onChange={this.handleUpdateValue}
             />
           </div>
           <div className="D-4 M-12">
@@ -35,10 +35,11 @@ export default class TextInput extends Component {
               value={textInputRules}
               rules={{
                 required: 'value is require',
+                email: 'รูปแบบ email ไม่ถูกต้อง'
               }}
               name="textInputRules"
               label="label"
-              onUpdate={this.handleUpdateValue}
+              onChange={this.handleUpdateValue}
             />
           </div>
           <div className="D-4 M-12">
@@ -47,7 +48,7 @@ export default class TextInput extends Component {
               value={textInputChildren}
               name="textInputChildren"
               label="Text Input Children"
-              onUpdate={this.handleUpdateValue}
+              onChange={this.handleUpdateValue}
             >
             <button>search</button>
             </InputField>
@@ -66,10 +67,10 @@ export default class TextInput extends Component {
               prosType.detail.map((obj) => {
                 return (
                   <tr>
-                    <th>{obj.property}</th>
-                    <th>{obj.type}</th>
-                    <th>{obj.default}</th>
-                    <th>{obj.description}</th>
+                    <td>{obj.property}</td>
+                    <td>{obj.type}</td>
+                    <td>{obj.default}</td>
+                    <td>{obj.description}</td>
                   </tr>
                 )
               })
@@ -100,7 +101,7 @@ export default class Demo extends Component {
           value={value}
           name="input-text"
           label="label"
-          onUpdate={this.handleUpdateValue}
+          onChange={this.handleUpdateValue}
         />
       </div>
     )

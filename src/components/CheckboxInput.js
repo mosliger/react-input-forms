@@ -58,10 +58,11 @@ export default class CheckboxInput extends React.Component {
   handleChecked = (option, index) => {
     const  { value } = this.props;
     try {
-      if (value.find((optionDetail) => {
+      const filterValue = value.filter((optionDetail) => {
         const key = optionDetail.key ? optionDetail.key : index;
-      return  option.label === optionDetail.label && key === index;
-      })) return true;
+        return  option.label === optionDetail.label && key === index;
+      });
+      if (filterValue.length === 1) return true;
     } catch (e) {
       return false;
     }
@@ -93,8 +94,10 @@ export default class CheckboxInput extends React.Component {
                     disabled={detail.disabled}
                     checked={checked}
                     onChange={() => this.handleChangeOptions(detail, index, !checked)}
+                    onChange={() => this.handleChangeOptions(detail, index, !checked)}
                     onBlur={() => this.handleBlueOptions(detail, index, checked)}
                   />
+                  <label className={`icon ${checked ? 'checked' : ''}`}></label>
                 </div>
                 <label htmlFor={label}>{detail.label}</label>
               </div>
@@ -119,6 +122,7 @@ export default class CheckboxInput extends React.Component {
             onClick={() => handleChange(!value)}
             onBlur={() => this.handleBlur(value)}
           />
+          <label className={`icon ${value ? 'checked' : ''}`}></label>
         </div>
         <label htmlFor={label}>{label}</label>
         {this.props.children}
