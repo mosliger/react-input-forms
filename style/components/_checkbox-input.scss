@@ -27,7 +27,7 @@
     transition: all .4s ease-in-out;
     outline: transparent auto 5px;
     &:after {
-      content: '✔';
+      content: '\2714';
       position: absolute;
       width: 65%;
       height: 80%;
@@ -50,6 +50,14 @@
     cursor: pointer;
     &:checked ~ label.icon:after {
       transform: translate(-50%, -50%) scale(1);
+    }
+    &:disabled {
+      cursor: default;
+    }
+    &:disabled ~ label.icon {
+      background: $bgDisabled;
+      opacity: 0.9;
+      pointer-events: none;
     }
     &:focus ~ label.icon, &:hover ~ label.icon {
       outline: $outlineColor auto 5px;

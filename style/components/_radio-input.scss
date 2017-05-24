@@ -53,6 +53,14 @@
     &:checked ~ label.icon:after {
       transform: translate(-50%, -50%) scale(1);
     }
+    &:disabled {
+      cursor: default;
+    }
+    &:disabled ~ label.icon {
+      background: $bgDisabled;
+      opacity: 0.9;
+      pointer-events: none;
+    }
     &:focus ~ label.icon, &:hover ~ label.icon {
       border: 1px solid $outlineColor;
       box-shadow: 0 0 1px 1px $outlineColor;

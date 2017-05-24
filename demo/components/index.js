@@ -23,46 +23,8 @@ export default class Index extends React.Component {
     })
   }
 
-  handleUpdateValue = (value, name, errorMessage) => {
-    const { error } = this.state;
-    this.setState({
-      [name]: value,
-      error: {
-        ...error,
-        [name]: errorMessage,
-      }
-    });
-  }
-
-  clearInput = () => {
-    this.setState({
-      textInput: '',
-      numberInput: '',
-      selectInput: '',
-      textarea: '',
-      customInput: '',
-      checkboxInput: [],
-      radioInput: {},
-      customInput: '',
-      checkboxInputNotOption: false,
-      error: {},
-    })
-  }
-
   render() {
-    const {
-      textInput,
-      numberInput,
-      selectInput,
-      textarea,
-      checkboxInputNotOption,
-      checkboxInput,
-      radioInput,
-      customInput,
-      error,
-      currentMenu,
-      menuList,
-    } = this.state;
+    const { menuList, currentMenu } = this.state;
 
     return (
       <div className="demo-input-fields">
@@ -71,21 +33,21 @@ export default class Index extends React.Component {
           <ul className="menu-list">
             {menuList.map((item) => {
               return (<li key={item.key} className={`item ${currentMenu === item.key ? 'active' : ''}`}>
-              <a href="Javascript::" onClick={() => this.selectMenu(item.key)}> {item.name} </a>
+              <a href="Javascript:;" onClick={() => this.selectMenu(item.key)}> {item.name} </a>
               </li>);
             })}
           </ul>
         </div>
         <div className="main-page">
           <ul className="page-list">
-            <li key="page-home" className={currentMenu === 'home' ? 'active' : ''}><Home key="home" /></li>
-            <li key="page-text" className={currentMenu === 'text' ? 'active' : ''}><TextInput key="text" /></li>
-            <li key="page-number" className={currentMenu === 'number' ? 'active' : ''}>number</li>
-            <li key="page-select" className={currentMenu === 'select' ? 'active' : ''}>select</li>
-            <li key="page-textarea" className={currentMenu === 'textarea' ? 'active' : ''}>textarea</li>
-            <li key="page-radio" className={currentMenu === 'radio' ? 'active' : ''}>radio</li>
-            <li key="page-checkbox" className={currentMenu === 'checkbox' ? 'active' : ''}>checkbox</li>
-            <li key="page-custom" className={currentMenu === 'custom' ? 'active' : ''}>custom</li>
+            <li key="page-home" className={currentMenu === 'home' ? 'item active' : 'item'}><Home /></li>
+            <li key="page-text" className={currentMenu === 'text' ? 'item active' : 'item'}><TextInput /></li>
+            <li key="page-number" className={currentMenu === 'number' ? 'item active' : 'item'}>number</li>
+            <li key="page-select" className={currentMenu === 'select' ? 'item active' : 'item'}>select</li>
+            <li key="page-textarea" className={currentMenu === 'textarea' ? 'item active' : 'item'}>textarea</li>
+            <li key="page-radio" className={currentMenu === 'radio' ? 'item active' : 'item'}>radio</li>
+            <li key="page-checkbox" className={currentMenu === 'checkbox' ? 'item active' : 'item'}>checkbox</li>
+            <li key="page-custom" className={currentMenu === 'custom' ? 'item active' : 'item'}>custom</li>
           </ul>
           
         </div>

@@ -1,4 +1,4 @@
-export const getprosType = (language) => {
+export const getprosTypeTextInput = (language) => {
   switch (language) {
     case 'en': {
       return {
@@ -53,12 +53,35 @@ export const getprosType = (language) => {
             description: 'ให้ focus input',
           },
           {
+            property: 'rules',
+            type: 'object',
+            default: '',
+            description: 'กดการ Verify input เช่น { required: "value is require." }',
+          },
+          {
             property: 'onChange',
             type: 'function',
             default: '',
-            description: 'function ที่ return value name errorMessage',
+            description: 'function ที่ return value name errorMessage ทุกครั้งที่มีการเปลียนแปลงใน input',
           },
-
+          {
+            property: 'onBlur',
+            type: 'function',
+            default: '',
+            description: 'function ที่ return value name errorMessage ทุกครั้งที่ lostfocus',
+          },
+          {
+            property: 'handleVerify',
+            type: 'function',
+            default: '',
+            description: 'function customize verify input เช่น (value, rules) => "error message"',
+          },
+          {
+            property: 'children',
+            type: 'any',
+            default: '',
+            description: 'สิ่งที่ต้องการแสดงเพิ่มเติม',
+          },
         ],
       };
     }

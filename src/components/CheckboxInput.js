@@ -91,7 +91,7 @@ export default class CheckboxInput extends React.Component {
                     type="checkbox"
                     name={name}
                     value={detail.value}
-                    disabled={detail.disabled}
+                    disabled={disabled ? disabled : detail.disabled}
                     checked={checked}
                     onChange={() => this.handleChangeOptions(detail, index, !checked)}
                     onChange={() => this.handleChangeOptions(detail, index, !checked)}

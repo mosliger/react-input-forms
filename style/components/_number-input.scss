@@ -20,6 +20,10 @@
       outline: $outlineColor auto 5px;
       border: 1px solid $outlineColor;
     }
+    &:disabled {
+      background: $bgDisabled;
+      opacity: 0.9;
+    }
   }
   input[type="text"].form-input.error {
     border: 1px solid $borderError;

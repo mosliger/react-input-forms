@@ -59,11 +59,13 @@
     background: #fff;
     overflow-Y: auto;
     overflow-X: hidden;
+    visibility: hidden;
   }
   li.active {
     transform: translateX(0);
     transition: all .7s ease-in;
     z-index: 2;
+    visibility: visible;
   }
 }
 
@@ -89,4 +91,8 @@ table {
   tr td {
     padding: 10px;
   }
+}
+
+.box-demo-input {
+  margin-bottom: 30px;
 }

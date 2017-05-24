@@ -65,6 +65,7 @@ export default class TextareaInput extends React.Component {
           }}
           rows={rows}
           cols={cols}
+          disabled={disabled}
           className={classInput}
           value={value}
           onKeyUp={(e) => handleKeyCode(e)}

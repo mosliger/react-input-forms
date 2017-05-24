@@ -1,84 +1,96 @@
 import React, { Component } from 'react';
 import InputField from '../../src';
 import RenderCode from './RenderCode';
-import { getprosType } from '../helpers/textInput';
+import { getprosTypeTextInput } from '../helpers/textInput';
 
 export default class TextInput extends Component {
   state = {
     textInput: '',
     textInputRules: '',
+    textInputChildren: '',
+    basicinput: '',
   }
 
   handleUpdateValue = (value, name) => {
     this.setState({ [name]: value });
   }
 
-  render() {
+  renderBasicInput = () => {
+    const { basicinput } = this.state;
+    return (
+      <div>
+        <InputField type="text" value={basicinput} name="input-text" label="basic input" onChange={this.handleUpdateValue} />
+      <pre>
+        <code>
+        {`
+<InputField
+  type="text"
+  value={value}
+  name="input-text"
+  label="basic input"
+  onChange={this.handleUpdateValue}
+/>
+          `}
+        </code>
+      </pre>
+      </div>
+    )
+  }
+
+  renderDemo = () => {
     const { textInput, textInputRules, textInputChildren } = this.state;
-    const prosType = getprosType('en');
+    return (
+      <div>
+        <div className="box-demo-input">
+          <InputField
+            type="text"
+            value={textInput}
+            name="textInput"
+            label="label"
+            onChange={this.handleUpdateValue}
+          />
+        </div>
+        <div className="box-demo-input">
+          <InputField
+            type="text"
+            value={textInputRules}
+            rules={{
+              required: 'value is require',
+              email: 'รูปแบบ email ไม่ถูกต้อง'
+            }}
+            name="textInputRules"
+            label="Input verify field"
+            placeholder="E-mail"
+            onChange={this.handleUpdateValue}
+          />
+        </div>
+        <div className="box-demo-input">
+          <InputField
+            type="text"
+            value={textInputChildren}
+            name="textInputChildren"
+            label="Text Input Children"
+            onChange={this.handleUpdateValue}
+          >
+          <button>search</button>
+          </InputField>
+        </div>
+      </div>
+    )
+  }
+
+  render() {
+    const prosType = getprosTypeTextInput('en');
     return (
       <div className="container">
         <h1>Input Type Text</h1>
         <div className="row">
-          <div className="D-4 M-12">
-            <InputField
-              type="text"
-              value={textInput}
-              name="textInput"
-              label="label"
-              onChange={this.handleUpdateValue}
-            />
+          <div className="D-6 M-12">
+            {this.renderDemo()}
           </div>
-          <div className="D-4 M-12">
-            <InputField
-              type="text"
-              value={textInputRules}
-              rules={{
-                required: 'value is require',
-                email: 'รูปแบบ email ไม่ถูกต้อง'
-              }}
-              name="textInputRules"
-              label="label"
-              onChange={this.handleUpdateValue}
-            />
-          </div>
-          <div className="D-4 M-12">
-            <InputField
-              type="text"
-              value={textInputChildren}
-              name="textInputChildren"
-              label="Text Input Children"
-              onChange={this.handleUpdateValue}
-            >
-            <button>search</button>
-            </InputField>
-          </div>          
-        </div>
-        <div className="pros-type">
-          <div className="title">{prosType.title}</div>
-          <table>
-            <tr>
-              <th>{prosType.header.property}</th>
-              <th>{prosType.header.type}</th>
-              <th>{prosType.header.default}</th>
-              <th>{prosType.header.description}</th>
-            </tr>
-            {
-              prosType.detail.map((obj) => {
-                return (
-                  <tr>
-                    <td>{obj.property}</td>
-                    <td>{obj.type}</td>
-                    <td>{obj.default}</td>
-                    <td>{obj.description}</td>
-                  </tr>
-                )
-              })
-            }
-          </table>
-        </div>
-        <pre>
-          <code className="html">
+          <div className="D-6 M-12">
+            <pre>
+              <code className="html">
                 {`
 import React, { Component } from 'react'
 import InputField from 'react-inputs'
@@ -107,8 +119,41 @@ export default class Demo extends Component {
     )
   }
 }`}
-          </code>
-        </pre>
+            </code>
+          </pre>
+          </div>          
+        </div>
+        <div className="pros-type">
+          <div className="title">{prosType.title}</div>
+          <table>
+            <tr>
+              <th>{prosType.header.property}</th>
+              <th>{prosType.header.type}</th>
+              <th>{prosType.header.default}</th>
+              <th>{prosType.header.description}</th>
+            </tr>
+            {
+              prosType.detail.map((obj, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{obj.property}</td>
+                    <td>{obj.type}</td>
+                    <td>{obj.default}</td>
+                    <td>{obj.description}</td>
+                  </tr>
+                )
+              })
+            }
+          </table>
+        </div>
+        <div className="demo">
+          <h2> Demo input type text</h2>
+          <div className="row">
+            <div className="D-6 M-12">
+              {this.renderBasicInput()}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

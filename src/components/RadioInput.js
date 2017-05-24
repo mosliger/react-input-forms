@@ -63,7 +63,7 @@ export default class RadioInput extends React.Component {
                   type="radio"
                   name={name}
                   value={detail.value}
-                  disabled={detail.disabled}
+                  disabled={disabled ? disabled : detail.disabled}
                   checked={checked}
                   onChange={() => handleChange(detail.value)}
                   onBlur={(e) => handleBlur(detail.value)}
