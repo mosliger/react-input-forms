@@ -134,14 +134,24 @@ export default class Index extends React.Component {
   }
 
   handleBlur = (value) => {
-    const { name, onBlur } = this.props;
-    const errorMessage = this.handleValidation(value);
+    const { name, onBlur, type } = this.props;
     try {
-      this.setState({
-        value: value,
-        errorMessage: errorMessage,
-      });
-      if (onBlur) onBlur(value, name, errorMessage);
+      if (onBlur) {        
+        const errorMessage = this.handleValidation(value);
+        this.setState({
+          value: value,
+          errorMessage: errorMessage,
+        });
+        onBlur(value, name, errorMessage);
+      } else {
+        switch (type) {
+          case 'number': {
+            this.handleChange(value);
+            break;
+          }
+          default: break;
+        }
+      }
     } catch (err) {
       console.error(err);
     }

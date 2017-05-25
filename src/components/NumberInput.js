@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { isEmpey, toNumber, toNumeral, pick, checkNumberFormat } from '../helpers/global';
+import { size, isEmpey, toNumber, toNumeral, pick, checkNumberFormat } from '../helpers/global';
 
 export default class NumberInput extends React.Component {
   static propTypes = {
@@ -38,6 +38,12 @@ export default class NumberInput extends React.Component {
     editValue: true,
   }
 
+  componentDidMount () {
+    const { value, format, handleBlur } = this.props;
+    const numberValue = Number(toNumber(value));
+    if (!isEmpey(value) && !isEmpey(format) && isFinite(toNumber(value))) handleBlur(this.getValueFormat(toNumeral(numberValue.toString(), format)))
+  }
+
   shouldComponentUpdate(nextProps) {
     const keys = ['name', 'value', 'type', 'label', 'format', 'focus', 'disabled', 'errorMessage', 'placeholder'];
     const checkProps = pick(keys, this.props);
@@ -46,15 +52,8 @@ export default class NumberInput extends React.Component {
     return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
   }
 
-  onInputChange = (value) => {
-    const { handleChange, format } = this.props;
-    const valueToNumber = toNumber(value);
-    const emptyValue = value === '';
-    if (checkNumberFormat(valueToNumber, format) || emptyValue) handleChange(valueToNumber);
-  }
-
-  handleOnBlur = (value) => {
-    const { handleBlur, format } = this.props;
+  getValueFormat = (value) => {
+    const { format } = this.props;
     const valueTopNumber = toNumber(value);
     const splitFormat = format.split('.');
     const splitValue = valueTopNumber.split('.');
@@ -63,10 +62,30 @@ export default class NumberInput extends React.Component {
     if (decimalFormat !== '' && decimalFormat.length !== decimalValue.length) {
       let decimal = decimalValue;
       for (let i = 1; i <= (decimalFormat.length - decimalValue.length); i++) decimal += '0';
-      handleBlur(isEmpey(value) ? '' : `${splitValue[0]}.${decimal}`);
+      return isEmpey(value) ? '' : `${splitValue[0]}.${decimal}`;
     } else {      
-      handleBlur(valueTopNumber);  
+      return valueTopNumber;  
     }  
+  }
+  
+  onInputChange = (value) => {
+    const { handleChange, format } = this.props;
+    const valueToNumber = toNumber(value);
+    const emptyValue = value === '';
+    if (emptyValue) {
+      handleChange(value);
+    } else if (checkNumberFormat(valueToNumber, format)) {
+      handleChange(valueToNumber);
+    } else if (/^-?\d+(\.)?(\d+)?$/.test(value)) {
+      handleChange(valueToNumber);
+    } else if (size(valueToNumber) < size(this.props.value)) {
+      handleChange(valueToNumber);
+    }
+  }
+
+  handleOnBlur = (value) => {
+    const { handleBlur } = this.props;
+    if (handleBlur) handleBlur(this.getValueFormat(value));
   }
 
   render() {
