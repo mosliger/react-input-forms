@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './Home';
-import TextInput from './TextInput'
+import TextInput from './TextInput';
+import NumberInput from './NumberInput';
 
 export default class Index extends React.Component {
   state = {
@@ -42,7 +43,7 @@ export default class Index extends React.Component {
           <ul className="page-list">
             <li key="page-home" className={currentMenu === 'home' ? 'item active' : 'item'}><Home /></li>
             <li key="page-text" className={currentMenu === 'text' ? 'item active' : 'item'}><TextInput /></li>
-            <li key="page-number" className={currentMenu === 'number' ? 'item active' : 'item'}>number</li>
+            <li key="page-number" className={currentMenu === 'number' ? 'item active' : 'item'}><NumberInput /></li>
             <li key="page-select" className={currentMenu === 'select' ? 'item active' : 'item'}>select</li>
             <li key="page-textarea" className={currentMenu === 'textarea' ? 'item active' : 'item'}>textarea</li>
             <li key="page-radio" className={currentMenu === 'radio' ? 'item active' : 'item'}>radio</li>

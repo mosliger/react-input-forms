@@ -55,6 +55,7 @@
     }
     &:disabled {
       cursor: default;
+      pointer-events: none;
     }
     &:disabled ~ label.icon {
       background: $bgDisabled;

@@ -14,6 +14,8 @@ export default class Home  extends Component {
   }
 
   handleUpdateValue = (value, name, error) => {
+    // console.log('handleUpdateValue >>', name, value);
+    
     this.setState({ [name]: value });
   }
 
@@ -43,17 +45,17 @@ export default class Home  extends Component {
         <div className="row">
           <div className="D-6 M-12">
             <h2>Text Input</h2>
-            <InputField disabled type="text" value={textInput} rules={rules} focus={textInput === ''} key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
+            <InputField type="text" value={textInput} rules={rules} focus={textInput === ''} key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
           </div>
           <div className="D-6 M-12">
             <h2>Number Input</h2>
-            <InputField disabled type="number" value={numberInput} rules={{...rules, number: 'กรุณากรอกตัวเลย'}} key="numberInput" format="0,000.00" name="numberInput" label="label Number Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
+            <InputField type="number" value={numberInput} rules={{...rules, number: 'กรุณากรอกตัวเลย'}} key="numberInput" format="0,000.0000" name="numberInput" label="label Number Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
           </div>          
         </div>
         <div className="row">
           <div className="D-6 M-12">
             <h2>Select</h2>
-            <InputField disabled type="select" rules={rules} value={selectInput} key="selectInput" name="selectInput" label="label Select" options={opctionList} onChange={this.handleUpdateValue} />
+            <InputField type="select" rules={rules} value={selectInput} key="selectInput" name="selectInput" label="label Select" options={opctionList} onChange={this.handleUpdateValue} />
           </div>
           <div className="D-6 M-12">
             <h2>Textarea</h2>

@@ -1,4 +1,4 @@
-const getprosTypeTextInput = (language) => {
+const getprosTypeNumberInput = (language) => {
   switch (language) {
     case 'en': {
       return {
@@ -12,7 +12,7 @@ const getprosTypeTextInput = (language) => {
         detail: [
           {
             property: 'value',
-            type: 'string | number',
+            type: 'number',
             default: '""',
             description: 'ส่งมาเพื่อแสดงใน input',
           },
@@ -90,5 +90,4 @@ const getprosTypeTextInput = (language) => {
   }
 };
 
-export default getprosTypeTextInput;
-
+export default getprosTypeNumberInput;
