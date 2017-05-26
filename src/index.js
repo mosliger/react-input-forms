@@ -66,15 +66,20 @@ export default class Index extends React.Component {
   state = {
     value: '',
     errorMessage: '',
+    editValue: false,
   }
 
   componentWillMount() {
     const { value } = this.props;
     const errorMessage = this.handleValidation(value);
-    this.setState({
-      value: value,
-      errorMessage: errorMessage,
+    this.setState(() => {
+      return {
+        value: value,
+        errorMessage: errorMessage,
+        editValue: false,
+      };
     });
+    if (!isEmpey(errorMessage)) this.handleUpdateValue(value);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -86,15 +91,14 @@ export default class Index extends React.Component {
     const checkNextProps = pick(keys, nextProps);
     if (JSON.stringify(checkProps) !== JSON.stringify(checkNextProps)) {
       const errorMessage = this.handleValidation(value);
-      this.setState({
-        value: value,
-        errorMessage: errorMessage,
+      this.setState(() => {
+        return {
+          value: value,
+          errorMessage: errorMessage,
+          editValue: false,
+        }
       });
-      if (this.props.onChange) {
-        this.props.onChange(value, name, errorMessage);
-      } else if (this.props.onBlue) {
-        this.props.onBlue(value, name, errorMessage);
-      }
+      if (!isEmpey(errorMessage)) this.handleUpdateValue(value);
     }
     return true;
   }
@@ -111,12 +115,25 @@ export default class Index extends React.Component {
   }
 
   handleUpdateValue = (value) => {
+    const errorMessage = this.handleValidation(value);
+    const { name } = this.props;
+    if (this.props.onChange) {
+      this.props.onChange(value, name, errorMessage);
+    } else if (this.props.onBlue) {
+      this.props.onBlue(value, name, errorMessage);
+    }
+  }
+
+  handleChange = (value) => {
     const { name, onChange } = this.props;
     const errorMessage = this.handleValidation(value);
     try {
-      this.setState({
-        value: value,
-        errorMessage: errorMessage,
+      this.setState(() => {
+        return {
+          value: value,
+          errorMessage: errorMessage,
+          editValue: !onChange,
+        }
       });
       if (onChange) onChange(value, name, errorMessage);
     } catch (err) {
@@ -124,23 +141,17 @@ export default class Index extends React.Component {
     }
   }
 
-  handleChange = (value) => {
-    if (this.props.onChange) this.handleUpdateValue(value);
-    const errorMessage = this.handleValidation(value);
-    this.setState({
-      value: value,
-      errorMessage: errorMessage,
-    });
-  }
-
   handleBlur = (value) => {
     const { name, onBlur, type } = this.props;
     try {
       if (onBlur) {        
         const errorMessage = this.handleValidation(value);
-        this.setState({
-          value: value,
-          errorMessage: errorMessage,
+        this.setState(() => {
+          return {
+            value: value,
+            errorMessage: errorMessage,
+            editValue: false,
+          }
         });
         onBlur(value, name, errorMessage);
       } else {
@@ -166,10 +177,10 @@ export default class Index extends React.Component {
 
   render() {
     const { type } = this.props;
-    const { value, errorMessage } = this.state;
+    const { value, errorMessage, editValue } = this.state;
     const propsForm = {
       ...remove(['onChange', 'value', 'onBlur', 'onKeyCode', 'handleVerify', 'renderComponent', 'children'], this.props),
-      value,
+      value: editValue ? value : this.props.value,
       errorMessage: errorMessage,
       handleChange: this.handleChange,
       handleBlur: this.handleBlur,

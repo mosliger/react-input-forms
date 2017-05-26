@@ -24,7 +24,7 @@ export default class TextInput extends Component {
     const { basicinput } = this.state;
     return (
       <div>
-        <InputField type="number" value={basicinput} name="input-text" label="basic input" onChange={this.handleUpdateValue} />
+        <InputField type="number" value={basicinput} name="basicinput" label="basic input" onChange={this.handleUpdateValue} />
       <pre>
         <code>
         {`
