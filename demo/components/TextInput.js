@@ -68,7 +68,7 @@ export default class TextInput extends Component {
             type="text"
             value={textInputChildren}
             name="textInputChildren"
-            label="Text Input Children"
+            label="Children"
             onChange={this.handleUpdateValue}
           >
           <button>search</button>

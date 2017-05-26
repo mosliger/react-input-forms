@@ -90,7 +90,7 @@ const optionList = [
             value={selectInputChildren}
             options={optionList}
             name="selectInputChildren"
-            label="Text Input Children"
+            label="Children"
             onChange={this.handleUpdateValue}
           >
           <button>search</button>

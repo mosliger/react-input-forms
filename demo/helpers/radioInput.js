@@ -1,4 +1,4 @@
-const getprosTypeSelectInput = (language) => {
+const getprosTypeRadioInput = (language) => {
   switch (language) {
     case 'th': {
       return {
@@ -12,7 +12,7 @@ const getprosTypeSelectInput = (language) => {
         detail: [
           {
             property: 'value',
-            type: 'object | string',
+            type: 'number',
             default: '""',
             description: 'ส่งมาเพื่อแสดงใน input',
           },
@@ -52,30 +52,30 @@ const getprosTypeSelectInput = (language) => {
             default: 'false',
             description: 'ให้ focus input',
           },
-          {
-            property: 'rules',
-            type: 'object',
-            default: '',
-            description: 'กดการ Verify input เช่น { required: "value is require." }',
-          },
+          // {
+          //   property: 'rules',
+          //   type: 'object',
+          //   default: '',
+          //   description: 'กดการ Verify input เช่น { required: "value is require." }',
+          // },
           {
             property: 'onChange',
             type: 'function',
             default: '',
-            description: 'function ที่ return option name errorMessage ทุกครั้งที่มีการเปลียนแปลงใน input',
+            description: 'function ที่ return value name errorMessage ทุกครั้งที่มีการเปลียนแปลงใน input',
           },
           {
             property: 'onBlur',
             type: 'function',
             default: '',
-            description: 'function ที่ return option name errorMessage ทุกครั้งที่ lostfocus',
+            description: 'function ที่ return value name errorMessage ทุกครั้งที่ lostfocus',
           },
-          {
-            property: 'handleVerify',
-            type: 'function',
-            default: '',
-            description: 'function customize verify input เช่น (value, rules) => "error message"',
-          },
+          // {
+          //   property: 'handleVerify',
+          //   type: 'function',
+          //   default: '',
+          //   description: 'function customize verify input เช่น (value, rules) => "error message"',
+          // },
           {
             property: 'children',
             type: 'any',
@@ -90,4 +90,4 @@ const getprosTypeSelectInput = (language) => {
   }
 };
 
-export default getprosTypeSelectInput;
+export default getprosTypeRadioInput;

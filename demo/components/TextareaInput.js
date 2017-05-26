@@ -73,7 +73,7 @@ export default class TextareaInput extends Component {
             rows={4}
             value={textareaInputChildren}
             name="textareaInputChildren"
-            label="Text Input Children"
+            label="Children"
             onChange={this.handleUpdateValue}
           >
           <button>search</button>

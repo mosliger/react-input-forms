@@ -52,6 +52,7 @@ export default class RadioInput extends React.Component {
     }
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
+        <label htmlFor={label}>{label}</label>
         {options.map((detail, index) => {
           const getValue = value.value ? value.value : value;
           const checked = getValue === detail.value;
@@ -76,6 +77,7 @@ export default class RadioInput extends React.Component {
         })
         }
         {renderErrorMessage}
+        <div className="children">{this.props.children}</div>
       </div>
     );
   }

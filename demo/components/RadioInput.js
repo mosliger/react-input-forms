@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import InputField from '../../src';
-import getprosTypeNumberInput from '../helpers/numberInput';
+import getprosTypeRadioInput from '../helpers/radioInput';
 
-export default class TextInput extends Component {
+const optionList = [
+  { label: 'one', value: '1' },
+  { label: 'two', value: '2' },
+  { label: 'three', value: '3' },
+];
+    
+export default class RadioInput extends Component {
   state = {
-    numberInput: '',
-    numberInputRules: '',
-    numberInputChildren: '',
+    radioInput: '',
+    radioInputRules: '',
+    radioInputChildren: '',
     basicinput: '',
-    numberInputFormat: '',
   }
 
   handleUpdateValue = (value, name) => {
@@ -23,12 +28,23 @@ export default class TextInput extends Component {
     const { basicinput } = this.state;
     return (
       <div>
-        <InputField type="number" value={basicinput} name="basicinput" label="basic input" onChange={this.handleUpdateValue} />
+        <InputField type="radio" options={optionList} value={basicinput} name="basicinput" label="basic input " onChange={this.handleUpdateValue} />
       <pre>
         <code>
         {`
+const optionList = [
+  { label: 'one', value: '1' },
+  { label: 'two', value: '2' },
+  { label: 'three', value: '3' },
+  { label: 'four', value: '4' },
+  { label: 'five', value: '5' },
+];
+
+...
+
 <InputField
-  type="number"
+  type="text"
+  options={optionList}
   value={value}
   name="input-text"
   label="basic input"
@@ -40,51 +56,49 @@ export default class TextInput extends Component {
       </div>
     )
   }
-  
+
   renderDemo = () => {
-    const { numberInput, numberInputRules, numberInputFormat, numberInputChildren } = this.state;
+    const { radioInput, radioInputChildren, radioInputRules } = this.state;
     return (
       <div>
         <div className="box-demo-input">
           <InputField
-            type="number"
-            value={numberInput}
-            name="numberInput"
+            type="radio"
+            value={radioInput}
+            options={[
+              { label: 'one', value: '1' },
+              { label: 'two', value: '2' },
+              { label: 'three', value: '3' },
+            ]}
+            name="radioInput"
             label="label"
             onChange={this.handleUpdateValue}
           />
         </div>
         <div className="box-demo-input">
           <InputField
-            type="number"
-            value={numberInputRules}
-            rules={{
-              required: 'value is require'
-            }}
-            name="numberInputRules"
-            label="Input verify field"
+            type="radio"
+            value={radioInputRules}
+            options={[
+              { label: 'one', value: '1' },
+              { label: 'two', value: '2', disabled: true },
+              { label: 'three', value: '3' },
+            ]}
+            name="radioInputRules"
+            label="disabled บางตัว"
             onChange={this.handleUpdateValue}
           />
         </div>
         <div className="box-demo-input">
           <InputField
-            type="number"
-            value={numberInputFormat}
-            name="numberInputFormat"
-            label="Input number format"
-            format="0,000.00"
-            onChange={this.handleUpdateValue}
-          />
-        </div>
-        <div className="box-demo-input">
-          <InputField
-            type="number"
-            value={numberInputChildren}
-            name="numberInputChildren"
+            type="radio"
+            value={radioInputChildren}
+            options={optionList}
+            name="radioInputChildren"
             label="Children"
             onChange={this.handleUpdateValue}
           >
-          <button onClick={() => this.handleClearValue('numberInputChildren')}>clear</button>
+          <button onClick={() => this.handleClearValue('radioInputChildren')}>clear</button>
           </InputField>
         </div>
       </div>
@@ -92,7 +106,7 @@ export default class TextInput extends Component {
   }
 
   render() {
-    const prosType = getprosTypeNumberInput('th');
+    const prosType = getprosTypeRadioInput('th');
     return (
       <div className="container">
         <h1>Input Type Text</h1>
@@ -118,12 +132,21 @@ export default class Demo extends Component {
 
   render() {
     const { value } = this.state;
+    const optionList = [
+      { label: 'select ...', value: '' },
+      { label: 'one', value: '1' },
+      { label: 'two', value: '2' },
+      { label: 'three', value: '3' },
+      { label: 'four', value: '4' },
+      { label: 'five', value: '5' },
+    ];
     return (
       <div className="container">
         <InputField
-          type="number"
+          type="radio"
           value={value}
-          name="input-text"
+          options={optionList}
+          name="input-select"
           label="label"
           onChange={this.handleUpdateValue}
         />
