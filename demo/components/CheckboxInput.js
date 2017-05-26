@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import InputField from '../../src';
-import getprosTypeRadioInput from '../helpers/radioInput';
+import getprosTypeCheckboxInput from '../helpers/checkboxInput';
 
 const optionList = [
   { label: 'one', value: '1' },
@@ -28,7 +28,7 @@ export default class RadioInput extends Component {
     const { basicinput } = this.state;
     return (
       <div>
-        <InputField type="radio" options={optionList} value={basicinput} name="basicinput" label="basic input " onChange={this.handleUpdateValue} />
+        <InputField type="checkbox" options={optionList} value={basicinput} name="basicinput" label="basic input " onChange={this.handleUpdateValue} />
       <pre>
         <code>
         {`
@@ -63,7 +63,7 @@ const optionList = [
       <div>
         <div className="box-demo-input">
           <InputField
-            type="radio"
+            type="checkbox"
             value={radioInput}
             options={[
               { label: 'one', value: '1' },
@@ -77,7 +77,7 @@ const optionList = [
         </div>
         <div className="box-demo-input">
           <InputField
-            type="radio"
+            type="checkbox"
             value={radioInputRules}
             options={[
               { label: 'one', value: '1' },
@@ -91,7 +91,7 @@ const optionList = [
         </div>
         <div className="box-demo-input">
           <InputField
-            type="radio"
+            type="checkbox"
             value={radioInputChildren}
             options={optionList}
             name="radioInputChildren"
@@ -106,7 +106,7 @@ const optionList = [
   }
 
   render() {
-    const prosType = getprosTypeRadioInput('th');
+    const prosType = getprosTypeCheckboxInput('th');
     return (
       <div className="container">
         <h1>Input Type Text</h1>
@@ -142,7 +142,7 @@ export default class Demo extends Component {
     return (
       <div className="container">
         <InputField
-          type="radio"
+          type="checkbox"
           value={value}
           options={optionList}
           name="input-select"
