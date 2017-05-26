@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import InputField from '../../src';
-import RenderCode from './RenderCode';
 import getprosTypeTextInput from '../helpers/textInput';
 
 export default class TextInput extends Component {
@@ -19,7 +18,7 @@ export default class TextInput extends Component {
     const { basicinput } = this.state;
     return (
       <div>
-        <InputField type="text" value={basicinput} name="input-text" label="basic input" onChange={this.handleUpdateValue} />
+        <InputField type="text" value={basicinput} name="basicinput" label="basic input" onChange={this.handleUpdateValue} />
       <pre>
         <code>
         {`
@@ -80,7 +79,7 @@ export default class TextInput extends Component {
   }
 
   render() {
-    const prosType = getprosTypeTextInput('en');
+    const prosType = getprosTypeTextInput('th');
     return (
       <div className="container">
         <h1>Input Type Text</h1>
@@ -93,7 +92,7 @@ export default class TextInput extends Component {
               <code className="html">
                 {`
 import React, { Component } from 'react'
-import InputField from 'react-inputs'
+import InputField from 'react-input-forms'
 
 export default class Demo extends Component {
   state = {

@@ -73,6 +73,11 @@ export default class SelectInput extends React.Component {
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
         <label htmlFor={label}>{label}</label>
         <select
+          ref={(input) => {
+            if (input != null && focus) {
+              input.focus();
+            }
+          }}
           className={classInput}
           value={valueString}
           onChange={e => this.handleSelectChange(e)}

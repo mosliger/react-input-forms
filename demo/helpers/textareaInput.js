@@ -1,4 +1,4 @@
-const getprosTypeNumberInput = (language) => {
+const getprosTypeTextareaInput = (language) => {
   switch (language) {
     case 'th': {
       return {
@@ -12,7 +12,7 @@ const getprosTypeNumberInput = (language) => {
         detail: [
           {
             property: 'value',
-            type: 'number',
+            type: 'string | number',
             default: '""',
             description: 'ส่งมาเพื่อแสดงใน input',
           },
@@ -29,12 +29,6 @@ const getprosTypeNumberInput = (language) => {
             description: 'คำอธิบายของ input',
           },
           {
-            property: 'format',
-            type: 'string',
-            default: '""',
-            description: 'การกำหนดรูปแบบของ value และกำหนดจํานวนทศนิยม เช่น 0,000.00',
-          },
-          {
             property: 'placeholder',
             type: 'string',
             default: '""',
@@ -45,6 +39,12 @@ const getprosTypeNumberInput = (language) => {
             type: 'string',
             default: 'text',
             description: 'ประเภทของ input',
+          },
+          {
+            property: 'rows',
+            type: 'number',
+            default: '3',
+            description: 'จำนวนแถวของข้อความ',
           },
           {
             property: 'disabled',
@@ -96,4 +96,5 @@ const getprosTypeNumberInput = (language) => {
   }
 };
 
-export default getprosTypeNumberInput;
+export default getprosTypeTextareaInput;
+

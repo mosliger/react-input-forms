@@ -1,6 +1,6 @@
 const getprosTypeTextInput = (language) => {
   switch (language) {
-    case 'en': {
+    case 'th': {
       return {
         title: 'Further options',
         header: {
@@ -26,7 +26,7 @@ const getprosTypeTextInput = (language) => {
             property: 'label',
             type: 'string',
             default: '""',
-            description: 'title field',
+            description: 'คำอธิบายของ input',
           },
           {
             property: 'placeholder',

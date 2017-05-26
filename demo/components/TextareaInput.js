@@ -1,34 +1,31 @@
 import React, { Component } from 'react';
 import InputField from '../../src';
-import getprosTypeNumberInput from '../helpers/numberInput';
+import getprosTypeTextareaInput from '../helpers/textareaInput';
 
-export default class TextInput extends Component {
+export default class TextareaInput extends Component {
   state = {
-    numberInput: '',
-    numberInputRules: '',
-    numberInputChildren: '',
+    textareaInput: '',
+    textareaInputRules: '',
+    textareaInputChildren: '',
     basicinput: '',
-    numberInputFormat: '',
   }
 
   handleUpdateValue = (value, name) => {
     this.setState({ [name]: value });
   }
 
-  handleClearValue = (key) => {
-   this.setState({ [key]: '' });
-  }
-
   renderBasicInput = () => {
     const { basicinput } = this.state;
     return (
       <div>
-        <InputField type="number" value={basicinput} name="basicinput" label="basic input" onChange={this.handleUpdateValue} />
+        <InputField type="textarea"
+        rows={4} value={basicinput} name="basicinput" label="basic input" onChange={this.handleUpdateValue} />
       <pre>
         <code>
         {`
 <InputField
-  type="number"
+  type="textarea"
+  rows={4}
   value={value}
   name="input-text"
   label="basic input"
@@ -40,51 +37,46 @@ export default class TextInput extends Component {
       </div>
     )
   }
-  
+
   renderDemo = () => {
-    const { numberInput, numberInputRules, numberInputFormat, numberInputChildren } = this.state;
+    const { textareaInput, textareaInputRules, textareaInputChildren } = this.state;
     return (
       <div>
         <div className="box-demo-input">
           <InputField
-            type="number"
-            value={numberInput}
-            name="numberInput"
+            type="textarea"
+            rows={4}
+            value={textareaInput}
+            name="textareaInput"
             label="label"
             onChange={this.handleUpdateValue}
           />
         </div>
         <div className="box-demo-input">
           <InputField
-            type="number"
-            value={numberInputRules}
+            type="textarea"
+            rows={4}
+            value={textareaInputRules}
             rules={{
-              required: 'value is require'
+              required: 'value is require',
+              email: 'รูปแบบ email ไม่ถูกต้อง'
             }}
-            name="numberInputRules"
+            name="textareaInputRules"
             label="Input verify field"
+            placeholder="E-mail"
             onChange={this.handleUpdateValue}
           />
         </div>
         <div className="box-demo-input">
           <InputField
-            type="number"
-            value={numberInputFormat}
-            name="numberInputFormat"
-            label="Input number format"
-            format="0,000.00"
-            onChange={this.handleUpdateValue}
-          />
-        </div>
-        <div className="box-demo-input">
-          <InputField
-            type="number"
-            value={numberInputChildren}
-            name="numberInputChildren"
+            type="textarea"
+            rows={4}
+            value={textareaInputChildren}
+            name="textareaInputChildren"
             label="Text Input Children"
             onChange={this.handleUpdateValue}
           >
-          <button onClick={() => this.handleClearValue('numberInputChildren')}>clear</button>
+          <button>search</button>
           </InputField>
         </div>
       </div>
@@ -92,7 +84,7 @@ export default class TextInput extends Component {
   }
 
   render() {
-    const prosType = getprosTypeNumberInput('th');
+    const prosType = getprosTypeTextareaInput('th');
     return (
       <div className="container">
         <h1>Input Type Text</h1>
@@ -121,7 +113,8 @@ export default class Demo extends Component {
     return (
       <div className="container">
         <InputField
-          type="number"
+          type="textarea"
+          rows={4}
           value={value}
           name="input-text"
           label="label"
