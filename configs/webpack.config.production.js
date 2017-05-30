@@ -7,18 +7,16 @@ module.exports = {
   // entry: './app/index.js',
   entry: {
     style: [
-      path.join(__dirname, 'demo/index.js'),
-      './style/style.scss',
+      path.join(__dirname, '../demo/index.js'),
     ],
     vendor: [
       'react',
       'react-dom',
-      './css/style.scss',
     ],
   },
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
   },
 
@@ -41,14 +39,12 @@ module.exports = {
       minimize: true,
     }),
     new webpack.NoErrorsPlugin(),
-    // new ExtractTextPlugin('style.css'),
-    new ExtractTextPlugin('[name].css', {
-      allChunks: true,
-    }),
+    new ExtractTextPlugin('style.css'),
+
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
-      path: path.join(__dirname, 'lib'),
+      path: path.join(__dirname, 'build'),
       filename: '[name].js',
     }),
   ],
@@ -63,10 +59,7 @@ module.exports = {
     ],
   },
   resolve: {
-    alias: {
-      'api-jarvis': path.join(__dirname, 'src'),
-    },
-    modulesDirectories: ['app', 'src', 'node_modules'],
-    extensions: ['', '.js', '.jsx', '.json'],
+    // modulesDirectories: ['demo', 'src', 'node_modules'],
+    extensions: ['.js', '.jsx', '.json'],
   },
 }
