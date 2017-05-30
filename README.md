@@ -5,3 +5,5 @@ Installation using npm:
 npm install react-input-forms --save
 ```
 ``` js
+
+###  [Demo](https://mosliger.github.io/react-input-forms/)

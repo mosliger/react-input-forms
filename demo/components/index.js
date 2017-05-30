@@ -18,7 +18,7 @@ export default class Index extends React.Component {
       { name: 'Textarea', key: 'textarea'},
       { name: 'Radio', key: 'radio'},
       { name: 'Checkbox', key: 'checkbox'},
-      { name: 'Custom', key: 'custom'},
+      // { name: 'Custom', key: 'custom'},
     ],
   }
 
@@ -54,7 +54,6 @@ export default class Index extends React.Component {
             <li key="page-checkbox" className={currentMenu === 'checkbox' ? 'item active' : 'item'}><CheckboxInput /></li>
             <li key="page-custom" className={currentMenu === 'custom' ? 'item active' : 'item'}>custom</li>
           </ul>
-          
         </div>
       </div>
     );

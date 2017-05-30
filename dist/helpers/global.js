@@ -39,6 +39,13 @@ var isEmpey = exports.isEmpey = function isEmpey() {
   }
 };
 
+var size = exports.size = function size(value) {
+  try {
+    return value.length;
+  } catch (e) {
+    return -1;
+  }
+};
 var pick = exports.pick = function pick(keys, objects) {
   var rules = {};
   for (var variable in keys) {
@@ -88,15 +95,16 @@ var checkNumberFormat = exports.checkNumberFormat = function checkNumberFormat()
   var splitValue = value.split('.');
   var decimalFormat = splitFormat[1] ? splitFormat[1] : '';
   var decimalValue = splitValue[1] ? splitValue[1] : '';
-  if (format === '') return true;
+  if (format === '') return false;
   return re.test(value) && decimalFormat.length >= decimalValue.length;
 };
 
 function toNumeral(value) {
   var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
-  if (value === '') return value;
   var valueToNumber = toNumber(value);
+  if (value === '') return value;
+  if (!isFinite(valueToNumber)) return value;
   if (!isEmpey(format)) {
     var splitFormat = format.split('.');
     var integerFormat = splitFormat[0] ? splitFormat[0] : '0';
@@ -107,19 +115,21 @@ function toNumeral(value) {
       return Number(valueToNumber);
     } else {
       try {
+        var splitValue = valueToNumber.split('.');
+        var comma = decimalFormat.length > 0 && value.indexOf('.') >= 0 ? '.' : '';
+        var decimal = decimalFormat.length > 0 && splitValue[1] ? splitValue[1].substring(0, decimalFormat.length) : '';
+        var number = splitValue[0] ? splitValue[0].toString() : '';
+        number = number.length < 10 && number.length > 0 ? Number(number).toString() : number;
         if (integerFormat.indexOf(',') >= 0) {
-          var splitValue = valueToNumber.split('.');
-          var comma = decimalFormat.length > 0 && value.indexOf('.') >= 0 ? '.' : '';
-          var decimal = decimalFormat.length > 0 && splitValue[1] ? splitValue[1].substring(0, decimalFormat.length) : '';
-          var number = splitValue[0] ? splitValue[0].toString() : '';
-          number = number.length < 5 && number.length > 0 ? Number(number) : number;
-          var pattern = /(-?\d+)(\d{3})/;
+          var splitIntegerFormat = integerFormat.split(',');
+          var getcomma = splitIntegerFormat[splitIntegerFormat.length - 1] ? splitIntegerFormat[splitIntegerFormat.length - 1].length : 3;
+          var pattern = new RegExp('(-?\\d+)(\\d{' + getcomma + '})'); // /(-?\d+)(\d{3})/;
 
           while (pattern.test(number)) {
             number = number.replace(pattern, '$1,$2');
           }return '' + number + comma + decimal;
         } else {
-          return valueToNumber;
+          return '' + number + comma + decimal;
         }
       } catch (e) {
         return valueToNumber;

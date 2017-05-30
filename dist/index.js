@@ -44,7 +44,8 @@ var Index = function (_React$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       value: '',
-      errorMessage: ''
+      errorMessage: '',
+      editValue: false
     }, _this.handleValidation = function (value) {
       var rules = _this.props.rules;
 
@@ -56,39 +57,60 @@ var Index = function (_React$Component) {
       }
       return validation;
     }, _this.handleUpdateValue = function (value) {
+      var errorMessage = _this.handleValidation(value);
+      var name = _this.props.name;
+
+      if (_this.props.onChange) {
+        _this.props.onChange(value, name, errorMessage);
+      } else if (_this.props.onBlue) {
+        _this.props.onBlue(value, name, errorMessage);
+      }
+    }, _this.handleChange = function (value) {
       var _this$props = _this.props,
           name = _this$props.name,
           onChange = _this$props.onChange;
 
       var errorMessage = _this.handleValidation(value);
       try {
-        _this.setState({
-          value: value,
-          errorMessage: errorMessage
+        _this.setState(function () {
+          return {
+            value: value,
+            errorMessage: errorMessage,
+            editValue: !onChange
+          };
         });
         if (onChange) onChange(value, name, errorMessage);
       } catch (err) {
         console.error(err);
       }
-    }, _this.handleChange = function (value) {
-      if (_this.props.onChange) _this.handleUpdateValue(value);
-      var errorMessage = _this.handleValidation(value);
-      _this.setState({
-        value: value,
-        errorMessage: errorMessage
-      });
     }, _this.handleBlur = function (value) {
       var _this$props2 = _this.props,
           name = _this$props2.name,
-          onBlur = _this$props2.onBlur;
+          onBlur = _this$props2.onBlur,
+          type = _this$props2.type;
 
-      var errorMessage = _this.handleValidation(value);
       try {
-        _this.setState({
-          value: value,
-          errorMessage: errorMessage
-        });
-        if (onBlur) onBlur(value, name, errorMessage);
+        if (onBlur) {
+          var errorMessage = _this.handleValidation(value);
+          _this.setState(function () {
+            return {
+              value: value,
+              errorMessage: errorMessage,
+              editValue: false
+            };
+          });
+          onBlur(value, name, errorMessage);
+        } else {
+          switch (type) {
+            case 'number':
+              {
+                _this.handleChange(value);
+                break;
+              }
+            default:
+              break;
+          }
+        }
       } catch (err) {
         console.error(err);
       }
@@ -107,10 +129,14 @@ var Index = function (_React$Component) {
       var value = this.props.value;
 
       var errorMessage = this.handleValidation(value);
-      this.setState({
-        value: value,
-        errorMessage: errorMessage
+      this.setState(function () {
+        return {
+          value: value,
+          errorMessage: errorMessage,
+          editValue: false
+        };
       });
+      if (!(0, _global.isEmpey)(errorMessage)) this.handleUpdateValue(value);
     }
   }, {
     key: 'shouldComponentUpdate',
@@ -125,15 +151,14 @@ var Index = function (_React$Component) {
       var checkNextProps = (0, _global.pick)(keys, nextProps);
       if (JSON.stringify(checkProps) !== JSON.stringify(checkNextProps)) {
         var errorMessage = this.handleValidation(value);
-        this.setState({
-          value: value,
-          errorMessage: errorMessage
+        this.setState(function () {
+          return {
+            value: value,
+            errorMessage: errorMessage,
+            editValue: false
+          };
         });
-        if (this.props.onChange) {
-          this.props.onChange(value, name, errorMessage);
-        } else if (this.props.onBlue) {
-          this.props.onBlue(value, name, errorMessage);
-        }
+        if (!(0, _global.isEmpey)(errorMessage)) this.handleUpdateValue(value);
       }
       return true;
     }
@@ -143,10 +168,11 @@ var Index = function (_React$Component) {
       var type = this.props.type;
       var _state = this.state,
           value = _state.value,
-          errorMessage = _state.errorMessage;
+          errorMessage = _state.errorMessage,
+          editValue = _state.editValue;
 
       var propsForm = _extends({}, (0, _global.remove)(['onChange', 'value', 'onBlur', 'onKeyCode', 'handleVerify', 'renderComponent', 'children'], this.props), {
-        value: value,
+        value: editValue ? value : this.props.value,
         errorMessage: errorMessage,
         handleChange: this.handleChange,
         handleBlur: this.handleBlur,

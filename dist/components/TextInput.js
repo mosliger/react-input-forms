@@ -32,7 +32,7 @@ var TextInput = function (_React$Component) {
   _createClass(TextInput, [{
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps) {
-      var keys = ['name', 'value', 'type', 'label', 'focus', 'disabled', 'errorMessage', 'placeholder'];
+      var keys = ['name', 'value', 'type', 'label', 'focus', 'disabled', 'errorMessage', 'placeholder', 'inputProps'];
       var checkProps = (0, _global.pick)(keys, this.props);
       var checkNextProps = (0, _global.pick)(keys, nextProps);
       return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);

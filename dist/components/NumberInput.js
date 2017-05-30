@@ -36,18 +36,8 @@ var NumberInput = function (_React$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NumberInput.__proto__ || Object.getPrototypeOf(NumberInput)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       editValue: true
-    }, _this.onInputChange = function (value) {
-      var _this$props = _this.props,
-          handleChange = _this$props.handleChange,
-          format = _this$props.format;
-
-      var valueToNumber = (0, _global.toNumber)(value);
-      var emptyValue = value === '';
-      if ((0, _global.checkNumberFormat)(valueToNumber, format) || emptyValue) handleChange(valueToNumber);
-    }, _this.handleOnBlur = function (value) {
-      var _this$props2 = _this.props,
-          handleBlur = _this$props2.handleBlur,
-          format = _this$props2.format;
+    }, _this.getValueFormat = function (value) {
+      var format = _this.props.format;
 
       var valueTopNumber = (0, _global.toNumber)(value);
       var splitFormat = format.split('.');
@@ -58,14 +48,45 @@ var NumberInput = function (_React$Component) {
         var decimal = decimalValue;
         for (var i = 1; i <= decimalFormat.length - decimalValue.length; i++) {
           decimal += '0';
-        }handleBlur((0, _global.isEmpey)(value) ? '' : splitValue[0] + '.' + decimal);
+        }return (0, _global.isEmpey)(value) ? '' : splitValue[0] + '.' + decimal;
       } else {
-        handleBlur(valueTopNumber);
+        return valueTopNumber;
       }
+    }, _this.onInputChange = function (value) {
+      var _this$props = _this.props,
+          handleChange = _this$props.handleChange,
+          format = _this$props.format;
+
+      var valueToNumber = (0, _global.toNumber)(value);
+      var emptyValue = value === '';
+      if (emptyValue) {
+        handleChange(value);
+      } else if ((0, _global.checkNumberFormat)(valueToNumber, format)) {
+        handleChange(valueToNumber);
+      } else if (/^-?\d+(\.)?(\d+)?$/.test(value)) {
+        handleChange(valueToNumber);
+      } else if ((0, _global.size)(valueToNumber) < (0, _global.size)(_this.props.value)) {
+        handleChange(valueToNumber);
+      }
+    }, _this.handleOnBlur = function (value) {
+      var handleBlur = _this.props.handleBlur;
+
+      if (handleBlur) handleBlur(_this.getValueFormat(value));
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(NumberInput, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _props = this.props,
+          value = _props.value,
+          format = _props.format,
+          handleBlur = _props.handleBlur;
+
+      var numberValue = Number((0, _global.toNumber)(value));
+      if (!(0, _global.isEmpey)(value) && !(0, _global.isEmpey)(format) && isFinite((0, _global.toNumber)(value))) handleBlur(this.getValueFormat((0, _global.toNumeral)(numberValue.toString(), format)));
+    }
+  }, {
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps) {
       var keys = ['name', 'value', 'type', 'label', 'format', 'focus', 'disabled', 'errorMessage', 'placeholder'];
@@ -79,21 +100,20 @@ var NumberInput = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props,
-          label = _props.label,
-          value = _props.value,
-          disabled = _props.disabled,
-          focus = _props.focus,
-          placeholder = _props.placeholder,
-          name = _props.name,
-          format = _props.format,
-          tabIndex = _props.tabIndex,
-          errorMessage = _props.errorMessage,
-          inputProps = _props.inputProps,
-          handleChange = _props.handleChange,
-          handleKeyCode = _props.handleKeyCode;
+      var _props2 = this.props,
+          label = _props2.label,
+          value = _props2.value,
+          disabled = _props2.disabled,
+          focus = _props2.focus,
+          placeholder = _props2.placeholder,
+          name = _props2.name,
+          format = _props2.format,
+          tabIndex = _props2.tabIndex,
+          errorMessage = _props2.errorMessage,
+          inputProps = _props2.inputProps,
+          handleChange = _props2.handleChange,
+          handleKeyCode = _props2.handleKeyCode;
       var editValue = this.state.editValue;
-
 
       var renderErrorMessage = '';
       var classInput = 'form-input';

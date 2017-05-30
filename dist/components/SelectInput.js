@@ -47,7 +47,7 @@ var SelectInput = function (_React$Component) {
   _createClass(SelectInput, [{
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps) {
-      var keys = ['name', 'value', 'type', 'label', 'options', 'focus', 'disabled', 'errorMessage', 'placeholder'];
+      var keys = ['name', 'value', 'type', 'label', 'options', 'focus', 'disabled', 'errorMessage', 'placeholder', 'inputProps', 'labelProps'];
       var checkProps = (0, _global.pick)(keys, this.props);
       var checkNextProps = (0, _global.pick)(keys, nextProps);
       return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
@@ -72,7 +72,6 @@ var SelectInput = function (_React$Component) {
           handleBlur = _props.handleBlur;
 
       var renderOptions = [];
-
       var renderErrorMessage = '';
       var classInput = 'form-input';
       var valueString = '';
@@ -110,6 +109,11 @@ var SelectInput = function (_React$Component) {
         _react2.default.createElement(
           'select',
           {
+            ref: function ref(input) {
+              if (input != null && focus) {
+                input.focus();
+              }
+            },
             className: classInput,
             value: valueString,
             onChange: function onChange(e) {

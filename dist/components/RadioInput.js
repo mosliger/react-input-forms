@@ -32,7 +32,7 @@ var RadioInput = function (_React$Component) {
   _createClass(RadioInput, [{
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps) {
-      var keys = ['name', 'value', 'type', 'label', 'focus', 'options', 'disabled', 'errorMessage', 'placeholder'];
+      var keys = ['name', 'value', 'type', 'label', 'focus', 'options', 'disabled', 'errorMessage', 'inputProps'];
       var checkProps = (0, _global.pick)(keys, this.props);
       var checkNextProps = (0, _global.pick)(keys, nextProps);
       return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
@@ -65,11 +65,17 @@ var RadioInput = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: inputProps.className ? inputProps.className : 'field-group' },
+        _react2.default.createElement(
+          'label',
+          { htmlFor: label },
+          label
+        ),
         options.map(function (detail, index) {
           var getValue = value.value ? value.value : value;
+          var checked = getValue === detail.value;
           return _react2.default.createElement(
             'div',
-            { className: 'checkbox-list', key: name + '-' + index },
+            { className: 'radio-list', key: name + '-' + index },
             _react2.default.createElement(
               'div',
               { className: 'box-input' },
@@ -78,15 +84,16 @@ var RadioInput = function (_React$Component) {
                 type: 'radio',
                 name: name,
                 value: detail.value,
-                disabled: detail.disabled,
-                checked: getValue === detail.value,
+                disabled: disabled ? disabled : detail.disabled,
+                checked: checked,
                 onChange: function onChange() {
                   return handleChange(detail.value);
                 },
                 onBlur: function onBlur(e) {
                   return handleBlur(detail.value);
                 }
-              })
+              }),
+              _react2.default.createElement('label', { className: 'icon ' + (checked ? 'checked' : '') })
             ),
             _react2.default.createElement(
               'label',
@@ -95,7 +102,12 @@ var RadioInput = function (_React$Component) {
             )
           );
         }),
-        renderErrorMessage
+        renderErrorMessage,
+        _react2.default.createElement(
+          'div',
+          { className: 'children' },
+          this.props.children
+        )
       );
     }
   }]);

@@ -16,6 +16,8 @@ var _global = require('../helpers/global');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63,10 +65,11 @@ var CheckboxInput = function (_React$Component) {
       var value = _this.props.value;
 
       try {
-        if (value.find(function (optionDetail) {
+        var filterValue = value.filter(function (optionDetail) {
           var key = optionDetail.key ? optionDetail.key : index;
           return option.label === optionDetail.label && key === index;
-        })) return true;
+        });
+        if (filterValue.length === 1) return true;
       } catch (e) {
         return false;
       }
@@ -77,7 +80,7 @@ var CheckboxInput = function (_React$Component) {
   _createClass(CheckboxInput, [{
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps) {
-      var keys = ['name', 'value', 'type', 'label', 'focus', 'disabled', 'errorMessage', 'placeholder'];
+      var keys = ['name', 'value', 'type', 'label', 'focus', 'disabled', 'errorMessage'];
       var checkProps = (0, _global.pick)(keys, this.props);
       var checkNextProps = (0, _global.pick)(keys, nextProps);
       return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
@@ -99,7 +102,6 @@ var CheckboxInput = function (_React$Component) {
           handleChange = _props.handleChange,
           handleBlur = _props.handleBlur;
 
-
       var renderErrorMessage = '';
       var classInput = 'form-input';
       if (!(0, _global.isEmpey)(errorMessage)) {
@@ -116,6 +118,8 @@ var CheckboxInput = function (_React$Component) {
           'div',
           { className: inputProps.className ? inputProps.className : 'field-group' },
           options.map(function (detail, index) {
+            var _React$createElement;
+
             var checked = _this2.handleChecked(detail, index);
             return _react2.default.createElement(
               'div',
@@ -123,20 +127,22 @@ var CheckboxInput = function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'box-input' },
-                _react2.default.createElement('input', {
+                _react2.default.createElement('input', (_React$createElement = {
                   className: classInput,
                   type: 'checkbox',
                   name: name,
                   value: detail.value,
-                  disabled: detail.disabled,
+                  disabled: disabled ? disabled : detail.disabled,
                   checked: checked,
                   onChange: function onChange() {
                     return _this2.handleChangeOptions(detail, index, !checked);
-                  },
-                  onBlur: function onBlur() {
-                    return _this2.handleBlueOptions(detail, index, checked);
                   }
-                })
+                }, _defineProperty(_React$createElement, 'onChange', function onChange() {
+                  return _this2.handleChangeOptions(detail, index, !checked);
+                }), _defineProperty(_React$createElement, 'onBlur', function onBlur() {
+                  return _this2.handleBlueOptions(detail, index, checked);
+                }), _React$createElement)),
+                _react2.default.createElement('label', { className: 'icon ' + (checked ? 'checked' : '') })
               ),
               _react2.default.createElement(
                 'label',
@@ -168,7 +174,8 @@ var CheckboxInput = function (_React$Component) {
             onBlur: function onBlur() {
               return _this2.handleBlur(value);
             }
-          })
+          }),
+          _react2.default.createElement('label', { className: 'icon ' + (value ? 'checked' : '') })
         ),
         _react2.default.createElement(
           'label',

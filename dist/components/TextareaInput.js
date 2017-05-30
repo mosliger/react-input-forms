@@ -56,7 +56,6 @@ var TextareaInput = function (_React$Component) {
           handleKeyCode = _props.handleKeyCode,
           handleBlur = _props.handleBlur;
 
-
       var renderErrorMessage = '';
       var classInput = 'form-input';
       if (!(0, _global.isEmpey)(errorMessage)) {
@@ -86,6 +85,8 @@ var TextareaInput = function (_React$Component) {
             },
             rows: rows,
             cols: cols,
+            disabled: disabled,
+            className: classInput,
             value: value,
             onKeyUp: function onKeyUp(e) {
               return handleKeyCode(e);
