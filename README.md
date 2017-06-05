@@ -6,7 +6,9 @@ npm install react-input-forms --save
 ```
 
 Live demo: [react-input-forms](https://mosliger.github.io/react-input-forms/build/)
+
 css [css](https://mosliger.github.io/react-input-forms/build/react-input.css)
+
 sass [sass](https://mosliger.github.io/react-input-forms/build/sass.rar)
 
 
