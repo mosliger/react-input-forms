@@ -16,7 +16,7 @@ module.exports = {
   },
 
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, '../build'),
     filename: 'bundle.js',
   },
 
@@ -50,12 +50,46 @@ module.exports = {
   ],
 
   module: {
-    loaders: [
-      { test: /\.jsx?$/, loaders: ['babel-loader'], exclude: /node_modules/, include: __dirname },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract(['css', 'sass?outputStyle=compressed']) },
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract(['css', 'sass?outputStyle=compressed']) },
-      { test: /\.(woff2?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=100000&name=fonts/[name].[ext]' },
-      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=10000&name=img/[name].[ext]' },
+    rules: [
+      {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader',
+          publicPath: '',
+        }),
+      },
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+          publicPath: '',
+        }),
+      },
+      {
+        test: /\.(woff2?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=1000&name=fonts/[name].[ext]',
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=1000&name=img/[name].[ext]',
+      },
     ],
   },
   resolve: {
