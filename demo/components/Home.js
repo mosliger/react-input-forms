@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputField from '../../src';
+import InputField from 'react-input-forms';
 
 export default class Home  extends Component {
   state = {
@@ -45,7 +45,7 @@ export default class Home  extends Component {
         <div className="row">
           <div className="D-6 M-12">
             <h2>Text Input</h2>
-            <InputField type="text" value={textInput} rules={rules}  key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
+            <InputField type="text" focus={textInput === ''} value={textInput} rules={rules}  key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
           </div>
           <div className="D-6 M-12">
             <h2>Number Input</h2>
@@ -55,7 +55,7 @@ export default class Home  extends Component {
         <div className="row">
           <div className="D-6 M-12">
             <h2>Select</h2>
-            <InputField type="select" rules={rules} focus={textInput === ''} value={selectInput} key="selectInput" name="selectInput" label="label Select" options={optionList} onChange={this.handleUpdateValue} />
+            <InputField type="select" rules={rules} value={selectInput} key="selectInput" name="selectInput" label="label Select" options={optionList} onChange={this.handleUpdateValue} />
           </div>
           <div className="D-6 M-12">
             <h2>Textarea</h2>

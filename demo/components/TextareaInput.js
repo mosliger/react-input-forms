@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputField from '../../src';
+import InputField from 'react-input-forms';
 import getprosTypeTextareaInput from '../helpers/textareaInput';
 
 export default class TextareaInput extends Component {
@@ -87,7 +87,7 @@ export default class TextareaInput extends Component {
     const prosType = getprosTypeTextareaInput('th');
     return (
       <div className="container">
-        <h1>Input Type Text</h1>
+        <h1>Input Type Textarea</h1>
         <div className="row">
           <div className="D-6 M-12">
             {this.renderDemo()}
@@ -152,7 +152,7 @@ export default class Demo extends Component {
           </table>
         </div>
         <div className="demo">
-          <h2> Demo input type text</h2>
+          <h2> Demo input type textarea</h2>
           <div className="row">
             <div className="D-6 M-12">
               {this.renderBasicInput()}
