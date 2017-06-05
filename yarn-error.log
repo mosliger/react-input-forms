@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add extract-text-webpack-plugin --save-dev
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add node-sass --D
 
 PATH: 
   C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Git\cmd;C:\Program Files\TortoiseGit\bin;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Java\jdk1.7.0_79\bin;C:\Program Files (x86)\apache-maven-3.3.9\bin;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\MongoDB\Server\3.2\bin;C:\Users\Mos\AppData\Local\atom\bin;C:\Users\Mos\AppData\Local\Microsoft\WindowsApps;C:\Users\Mos\AppData\Local\Yarn\.bin;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Program Files\Heroku\bin;C:\Users\Mos\AppData\Roaming\npm
@@ -22,7 +22,6 @@ npm manifest:
     "scripts": {
       "test": "mocha ./tests/**/*.js",
       "dev": "webpack-dev-server --hot --config ./configs/webpack.config.js",
-      "build:demo": "webpack --progress --hide-modules --config ./configs/webpack.config.production.js",
       "build": "cross-env BABEL_ENV=production babel src --out-dir dist"
     },
     "author": "",
@@ -6027,5 +6026,5 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: ENOENT: no such file or directory, chmod 'C:\xampp\htdocs\react-input-forms\node_modules\.bin\babel'
+  Error: ENOENT: no such file or directory, chmod 'C:\xampp\htdocs\react-input-forms\node_modules\.bin\babel-external-helpers'
       at Error (native)
