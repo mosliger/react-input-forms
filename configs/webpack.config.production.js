@@ -23,11 +23,11 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     NODE_ENV: JSON.stringify('production'),
+    //   },
+    // }),
     new webpack.optimize.DedupePlugin(),
     new webpack.ProvidePlugin({
       React: 'react',
@@ -43,8 +43,8 @@ module.exports = {
 
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks: Infinity,
-      path: path.join(__dirname, 'build'),
+      // minChunks: Infinity,
+      path: path.join(__dirname, '../build'),
       filename: '[name].js',
     }),
   ],

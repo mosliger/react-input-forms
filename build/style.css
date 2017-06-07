@@ -1393,11 +1393,13 @@ table {
   padding: 5px;
   border: 1px solid #bebebe;
   color: #333;
-  transition: all .4s ease-in-out;
-  outline: transparent auto 5px; }
+  transition: all .2s ease-in-out;
+  box-shadow: 0px 0px 1px 1px transparent;
+  outline: none; }
   .text-input input[type="text"].form-input:focus {
-    outline: #4087ff auto 5px;
-    border: 1px solid #4087ff; }
+    box-shadow: 0px 0px 1px 1px #4087ff;
+    border: 1px solid #4087ff;
+    outline: none; }
   .text-input input[type="text"].form-input:disabled {
     background: #ebebe4;
     opacity: 0.9; }
@@ -1405,7 +1407,8 @@ table {
 .text-input input[type="text"].form-input.error {
   border: 1px solid #FF0033; }
   .text-input input[type="text"].form-input.error:focus {
-    outline: #FF0033 auto 5px; }
+    box-shadow: 0px 0px 1px 1px #FF0033;
+    outline: none; }
 
 .text-input .error-message {
   margin: 5px 0;
@@ -1425,11 +1428,13 @@ table {
   padding: 5px;
   border: 1px solid #bebebe;
   color: #333;
-  transition: all .4s ease-in-out;
-  outline: transparent auto 5px; }
+  transition: all .2s ease-in-out;
+  box-shadow: 0px 0px 1px 1px transparent;
+  outline: none; }
   .number-input input[type="text"].form-input:focus {
-    outline: #4087ff auto 5px;
-    border: 1px solid #4087ff; }
+    box-shadow: 0px 0px 1px 1px #4087ff;
+    border: 1px solid #4087ff;
+    outline: none; }
   .number-input input[type="text"].form-input:disabled {
     background: #ebebe4;
     opacity: 0.9; }
@@ -1437,7 +1442,8 @@ table {
 .number-input input[type="text"].form-input.error {
   border: 1px solid #FF0033; }
   .number-input input[type="text"].form-input.error:focus {
-    outline: #FF0033 auto 5px; }
+    box-shadow: 0px 0px 1px 1px #FF0033;
+    outline: none; }
 
 .number-input .error-message {
   margin: 5px 0;
@@ -1468,6 +1474,7 @@ table {
     border-radius: 2px;
     border: 1px solid #bebebe;
     transition: all .4s ease-in-out;
+    box-shadow: 0px 0px 1px 1px transparent;
     outline: transparent auto 5px; }
     .checkbox-input .box-input label.icon:after {
       content: '\2714';
@@ -1499,8 +1506,9 @@ table {
       opacity: 0.9;
       pointer-events: none; }
     .checkbox-input .box-input input[type="checkbox"]:focus ~ label.icon, .checkbox-input .box-input input[type="checkbox"]:hover ~ label.icon {
-      outline: #4087ff auto 5px;
-      border: 1px solid #4087ff; }
+      border: 1px solid #4087ff;
+      box-shadow: 0 0 1px 1px #4087ff;
+      outline: none; }
 
 .radio-input {
   display: inline-block;
@@ -1525,7 +1533,9 @@ table {
     left: 0;
     border-radius: 100%;
     border: 1px solid #bebebe;
-    transition: all .4s ease-in-out; }
+    transition: all .2s ease-in-out;
+    box-shadow: 0px 0px 1px 1px transparent;
+    outline: none; }
     .radio-input .box-input label.icon:after {
       content: '';
       position: absolute;
@@ -1560,7 +1570,8 @@ table {
       pointer-events: none; }
     .radio-input .box-input input[type="radio"]:focus ~ label.icon, .radio-input .box-input input[type="radio"]:hover ~ label.icon {
       border: 1px solid #4087ff;
-      box-shadow: 0 0 1px 1px #4087ff; }
+      box-shadow: 0 0 1px 1px #4087ff;
+      outline: none; }
 
 .select-input .field-group {
   margin: 10px 0; }
@@ -1575,11 +1586,13 @@ table {
   padding: 5px;
   border: 1px solid #bebebe;
   color: #333;
-  transition: all .4s ease-in-out;
-  outline: transparent auto 5px; }
+  transition: all .2s ease-in-out;
+  box-shadow: 0px 0px 1px 1px transparent;
+  outline: none; }
   .select-input select.form-input:focus {
-    outline: #4087ff auto 5px;
-    border: 1px solid #4087ff; }
+    box-shadow: 0px 0px 1px 1px #4087ff;
+    border: 1px solid #4087ff;
+    outline: none; }
   .select-input select.form-input:disabled {
     background: #ebebe4;
     opacity: 0.9; }
@@ -1587,7 +1600,8 @@ table {
 .select-input select.form-input.error {
   border: 1px solid #FF0033; }
   .select-input select.form-input.error:focus {
-    outline: #FF0033 auto 5px; }
+    box-shadow: 0px 0px 1px 1px #FF0033;
+    outline: none; }
 
 .select-input .error-message {
   margin: 5px 0;
@@ -1607,16 +1621,19 @@ table {
   padding: 5px;
   border: 1px solid #bebebe;
   color: #333;
-  transition: all .4s ease-in-out;
-  outline: transparent auto 5px; }
+  transition: all .2s ease-in-out;
+  box-shadow: 0px 0px 1px 1px transparent;
+  outline: none; }
   .textarea-input textarea.form-input:focus {
-    outline: #4087ff auto 5px;
-    border: 1px solid #4087ff; }
+    box-shadow: 0px 0px 1px 1px #4087ff;
+    border: 1px solid #4087ff;
+    outline: none; }
 
 .textarea-input textarea.form-input.error {
   border: 1px solid #FF0033; }
   .textarea-input textarea.form-input.error:focus {
-    outline: #FF0033 auto 5px; }
+    box-shadow: 0px 0px 1px 1px #FF0033;
+    outline: none; }
 
 .textarea-input .error-message {
   margin: 5px 0;
