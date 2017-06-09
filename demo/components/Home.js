@@ -52,7 +52,7 @@ export default class Home  extends Component {
         <div className="row">
           <div className="D-6 M-12">
             <h2>Text Input</h2>
-            <InputField type="text" errorMessage="mosliger" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} focus={textInput === ''} value={textInput} rules={rules}  key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
+            <InputField type="text"  onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} focus={textInput === ''} value={textInput} rules={rules}  key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
           </div>
           <div className="D-6 M-12">
             <h2>Number Input</h2>
