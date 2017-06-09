@@ -71,6 +71,18 @@ const getprosTypeTextInput = (language) => {
             description: 'function ที่ return value name errorMessage ทุกครั้งที่ lostfocus',
           },
           {
+            property: 'onKeyCode',
+            type: 'function',
+            default: '',
+            description: 'function get key code return (keyCode, value, name, event)',
+          },
+          {
+            property: 'onPropsChange',
+            type: 'function',
+            default: '',
+            description: 'function ที่จะทำงานตอนที่ value, rules มีการเปลียนแปลงจากข้างนอก form',
+          },
+          {
             property: 'handleVerify',
             type: 'function',
             default: '',

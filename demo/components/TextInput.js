@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputField from '../../src';
+import InputField from 'react-input-forms';
 import getprosTypeTextInput from '../helpers/textInput';
 
 export default class TextInput extends Component {

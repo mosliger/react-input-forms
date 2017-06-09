@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputField from '../../src';
+import InputField from 'react-input-forms';
 import getprosTypeNumberInput from '../helpers/numberInput';
 
 export default class TextInput extends Component {
@@ -95,7 +95,7 @@ export default class TextInput extends Component {
     const prosType = getprosTypeNumberInput('th');
     return (
       <div className="container">
-        <h1>Input Type Text</h1>
+        <h1>Input Type Number</h1>
         <div className="row">
           <div className="D-6 M-12">
             {this.renderDemo()}

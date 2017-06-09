@@ -117,6 +117,11 @@ var CheckboxInput = function (_React$Component) {
         return _react2.default.createElement(
           'div',
           { className: inputProps.className ? inputProps.className : 'field-group' },
+          _react2.default.createElement(
+            'label',
+            { htmlFor: label },
+            label
+          ),
           options.map(function (detail, index) {
             var _React$createElement;
 

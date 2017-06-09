@@ -47,9 +47,9 @@ export default class Index extends React.Component {
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
     onKeyCode: PropTypes.func,
+    onPropsChange: PropTypes.func,
     handleVerify: PropTypes.func,
     renderComponent: PropTypes.func,
-
   };
 
   static defaultProps = {
@@ -98,7 +98,7 @@ export default class Index extends React.Component {
           editValue: false,
         }
       });
-      if (!isEmpey(errorMessage)) this.handleUpdateValue(value);
+      if (this.props.onPropsChange) this.props.onPropsChange(value, name, errorMessage);
     }
     return true;
   }

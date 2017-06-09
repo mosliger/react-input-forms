@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputField from '../../src';
+import InputField from 'react-input-forms';
 import getprosTypeRadioInput from '../helpers/radioInput';
 
 const optionList = [
@@ -109,7 +109,7 @@ const optionList = [
     const prosType = getprosTypeRadioInput('th');
     return (
       <div className="container">
-        <h1>Input Type Text</h1>
+        <h1>Input Type Radio</h1>
         <div className="row">
           <div className="D-6 M-12">
             {this.renderDemo()}
@@ -181,7 +181,7 @@ export default class Demo extends Component {
           </table>
         </div>
         <div className="demo">
-          <h2> Demo input type text</h2>
+          <h2> Demo input type radio</h2>
           <div className="row">
             <div className="D-6 M-12">
               {this.renderBasicInput()}

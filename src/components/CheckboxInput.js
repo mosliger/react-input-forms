@@ -81,6 +81,7 @@ export default class CheckboxInput extends React.Component {
     if (options.length > 0) {
       return (
         <div className={inputProps.className ? inputProps.className : 'field-group'}>
+          <label htmlFor={label}>{label}</label>
           {options.map((detail, index) => {
             const checked = this.handleChecked(detail, index);
             return (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputField from '../../src';
+import InputField from 'react-input-forms';
 import getprosTypeCheckboxInput from '../helpers/checkboxInput';
 
 const optionList = [
@@ -8,7 +8,7 @@ const optionList = [
   { label: 'three', value: '3' },
 ];
     
-export default class RadioInput extends Component {
+export default class CheckboxInput extends Component {
   state = {
     radioInput: '',
     radioInputRules: '',
@@ -109,7 +109,7 @@ const optionList = [
     const prosType = getprosTypeCheckboxInput('th');
     return (
       <div className="container">
-        <h1>Input Type Text</h1>
+        <h1>Input Type Checkbox</h1>
         <div className="row">
           <div className="D-6 M-12">
             {this.renderDemo()}
@@ -181,7 +181,7 @@ export default class Demo extends Component {
           </table>
         </div>
         <div className="demo">
-          <h2> Demo input type text</h2>
+          <h2> Demo input type checkbox</h2>
           <div className="row">
             <div className="D-6 M-12">
               {this.renderBasicInput()}

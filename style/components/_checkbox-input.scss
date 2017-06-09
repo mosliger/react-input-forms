@@ -25,6 +25,7 @@
     border-radius: 2px;
     border: 1px solid $borderColor;
     transition: all .4s ease-in-out;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0);
     outline: transparent auto 5px;
     &:after {
       content: '\2714';
@@ -61,8 +62,9 @@
       pointer-events: none;
     }
     &:focus ~ label.icon, &:hover ~ label.icon {
-      outline: $outlineColor auto 5px;
       border: 1px solid $outlineColor;
+      box-shadow: 0 0 1px 1px $outlineColor;
+      outline: none;
     }  
   }
 }

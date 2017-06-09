@@ -49,7 +49,7 @@ export default class SelectInput extends React.Component {
   }
 
   render() {
-    const { label, value, disabled, focus, placeholder, name, format, errorMessage, options, inputProps, tabIndex, handleBlur } = this.props;
+    const { label, value, disabled, focus, placeholder, name, format, errorMessage, options, inputProps, tabIndex, handleBlur, handleKeyCode } = this.props;
     const renderOptions = [];
     let renderErrorMessage = '';
     let classInput = 'form-input';
@@ -82,6 +82,7 @@ export default class SelectInput extends React.Component {
           value={valueString}
           onChange={e => this.handleSelectChange(e)}
           onBlur={(e) => handleBlur(e.target.value)}
+          onKeyUp={(e) => handleKeyCode(e)}
           disabled={disabled}
         >
           {renderOptions}

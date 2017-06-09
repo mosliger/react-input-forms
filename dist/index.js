@@ -158,7 +158,7 @@ var Index = function (_React$Component) {
             editValue: false
           };
         });
-        if (!(0, _global.isEmpey)(errorMessage)) this.handleUpdateValue(value);
+        if (this.props.onPropsChange) this.props.onPropsChange(value, name, errorMessage);
       }
       return true;
     }
@@ -327,7 +327,7 @@ Index.propTypes = (_Index$propTypes = {
   inputProps: _react.PropTypes.object,
   labelProps: _react.PropTypes.object,
   rules: _react.PropTypes.object
-}, _defineProperty(_Index$propTypes, 'children', _react.PropTypes.node), _defineProperty(_Index$propTypes, 'disabled', _react.PropTypes.bool), _defineProperty(_Index$propTypes, 'focus', _react.PropTypes.bool), _defineProperty(_Index$propTypes, 'onChange', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onBlur', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onKeyCode', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'handleVerify', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'renderComponent', _react.PropTypes.func), _Index$propTypes);
+}, _defineProperty(_Index$propTypes, 'children', _react.PropTypes.node), _defineProperty(_Index$propTypes, 'disabled', _react.PropTypes.bool), _defineProperty(_Index$propTypes, 'focus', _react.PropTypes.bool), _defineProperty(_Index$propTypes, 'onChange', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onBlur', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onKeyCode', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onPropsChange', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'handleVerify', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'renderComponent', _react.PropTypes.func), _Index$propTypes);
 Index.defaultProps = {
   name: 'input',
   label: '',
