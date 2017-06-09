@@ -95,6 +95,12 @@ const getprosTypeTextareaInput = (language) => {
             description: 'function customize verify input เช่น (value, rules) => "error message"',
           },
           {
+            property: 'errorMessage',
+            type: 'string',
+            default: '',
+            description: 'ถ้ามีการส่ง errorMessage function handleVerify และ rules จะไม่มีผลเพราะเชื่อค่าที่ส่งเข้ามา',
+          },
+          {
             property: 'children',
             type: 'any',
             default: '',

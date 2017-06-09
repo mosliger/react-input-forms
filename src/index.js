@@ -31,6 +31,7 @@ export default class Index extends React.Component {
     placeholder: PropTypes.string,
     type: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    errorMessage: PropTypes.string,
 
     children: PropTypes.string,
 
@@ -79,28 +80,31 @@ export default class Index extends React.Component {
         editValue: false,
       };
     });
-    if (!isEmpey(errorMessage)) this.handleUpdateValue(value);
+    if (!isEmpey(errorMessage) && !this.props.errorMessage) this.handleUpdateValue(value);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    const valueState = nextState.value;
-    const { value, name } = nextProps;
-    
-    const keys = ['value', 'rules'];
-    const checkProps = pick(keys, { ...this.props, value: valueState });
-    const checkNextProps = pick(keys, nextProps);
-    if (JSON.stringify(checkProps) !== JSON.stringify(checkNextProps)) {
-      const errorMessage = this.handleValidation(value);
-      this.setState(() => {
-        return {
-          value: value,
-          errorMessage: errorMessage,
-          editValue: false,
-        }
-      });
-      if (this.props.onPropsChange) this.props.onPropsChange(value, name, errorMessage);
+  componentWillUpdate(nextProps, nextState) {
+    const { editValue } = nextState;
+    if (!editValue) {
+      const valueState = nextState.value;
+      const { value, name } = nextProps;
+      
+      const keys = ['value', 'rules'];
+      const checkProps = pick(keys, { ...this.props, value: valueState });
+      const checkNextProps = pick(keys, nextProps);
+      if (JSON.stringify(checkProps) !== JSON.stringify(checkNextProps)) {
+        const errorMessage = this.handleValidation(value);
+        this.setState(() => {
+          return {
+            value: value,
+            errorMessage: errorMessage,
+            editValue: false,
+          }
+        });
+        if (this.props.onPropsChange) this.props.onPropsChange(value, name, errorMessage);
+      }
     }
-    return true;
+    
   }
 
   handleValidation = (value) => {
@@ -111,7 +115,7 @@ export default class Index extends React.Component {
     } else {
       validation = verifyField(value, rules);
     }
-    return validation;
+    return this.props.errorMessage ? this.props.errorMessage : validation;
   }
 
   handleUpdateValue = (value) => {
@@ -132,7 +136,7 @@ export default class Index extends React.Component {
         return {
           value: value,
           errorMessage: errorMessage,
-          editValue: !onChange,
+          editValue: true,
         }
       });
       if (onChange) onChange(value, name, errorMessage);
@@ -181,7 +185,7 @@ export default class Index extends React.Component {
     const propsForm = {
       ...remove(['onChange', 'value', 'onBlur', 'onKeyCode', 'handleVerify', 'renderComponent', 'children'], this.props),
       value: editValue ? value : this.props.value,
-      errorMessage: errorMessage,
+      errorMessage: this.props.errorMessage ? this.props.errorMessage : errorMessage,
       handleChange: this.handleChange,
       handleBlur: this.handleBlur,
       handleKeyCode: this.handleKeyCode,
@@ -215,6 +219,7 @@ export default class Index extends React.Component {
           return this.props.renderComponent ? this.props.renderComponent(propsForm) : '';
         }
         default:
+
           if (this.props.children) return (<div className="text-input"><TextInput {...propsForm}>{this.props.children}</TextInput></div>);
           return (<div className="text-input"><TextInput {...propsForm} /></div>);
       }

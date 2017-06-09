@@ -55,7 +55,7 @@ var Index = function (_React$Component) {
       } else {
         validation = (0, _global.verifyField)(value, rules);
       }
-      return validation;
+      return _this.props.errorMessage ? _this.props.errorMessage : validation;
     }, _this.handleUpdateValue = function (value) {
       var errorMessage = _this.handleValidation(value);
       var name = _this.props.name;
@@ -76,7 +76,7 @@ var Index = function (_React$Component) {
           return {
             value: value,
             errorMessage: errorMessage,
-            editValue: !onChange
+            editValue: true
           };
         });
         if (onChange) onChange(value, name, errorMessage);
@@ -136,31 +136,34 @@ var Index = function (_React$Component) {
           editValue: false
         };
       });
-      if (!(0, _global.isEmpey)(errorMessage)) this.handleUpdateValue(value);
+      if (!(0, _global.isEmpey)(errorMessage) && !this.props.errorMessage) this.handleUpdateValue(value);
     }
   }, {
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps, nextState) {
-      var valueState = nextState.value;
-      var value = nextProps.value,
-          name = nextProps.name;
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      var editValue = nextState.editValue;
+
+      if (!editValue) {
+        var valueState = nextState.value;
+        var value = nextProps.value,
+            name = nextProps.name;
 
 
-      var keys = ['value', 'rules'];
-      var checkProps = (0, _global.pick)(keys, _extends({}, this.props, { value: valueState }));
-      var checkNextProps = (0, _global.pick)(keys, nextProps);
-      if (JSON.stringify(checkProps) !== JSON.stringify(checkNextProps)) {
-        var errorMessage = this.handleValidation(value);
-        this.setState(function () {
-          return {
-            value: value,
-            errorMessage: errorMessage,
-            editValue: false
-          };
-        });
-        if (this.props.onPropsChange) this.props.onPropsChange(value, name, errorMessage);
+        var keys = ['value', 'rules'];
+        var checkProps = (0, _global.pick)(keys, _extends({}, this.props, { value: valueState }));
+        var checkNextProps = (0, _global.pick)(keys, nextProps);
+        if (JSON.stringify(checkProps) !== JSON.stringify(checkNextProps)) {
+          var errorMessage = this.handleValidation(value);
+          this.setState(function () {
+            return {
+              value: value,
+              errorMessage: errorMessage,
+              editValue: false
+            };
+          });
+          if (this.props.onPropsChange) this.props.onPropsChange(value, name, errorMessage);
+        }
       }
-      return true;
     }
   }, {
     key: 'render',
@@ -173,7 +176,7 @@ var Index = function (_React$Component) {
 
       var propsForm = _extends({}, (0, _global.remove)(['onChange', 'value', 'onBlur', 'onKeyCode', 'handleVerify', 'renderComponent', 'children'], this.props), {
         value: editValue ? value : this.props.value,
-        errorMessage: errorMessage,
+        errorMessage: this.props.errorMessage ? this.props.errorMessage : errorMessage,
         handleChange: this.handleChange,
         handleBlur: this.handleBlur,
         handleKeyCode: this.handleKeyCode
@@ -286,6 +289,7 @@ var Index = function (_React$Component) {
             return this.props.renderComponent ? this.props.renderComponent(propsForm) : '';
           }
         default:
+
           if (this.props.children) return _react2.default.createElement(
             'div',
             { className: 'text-input' },
@@ -319,6 +323,7 @@ Index.propTypes = (_Index$propTypes = {
   placeholder: _react.PropTypes.string,
   type: _react.PropTypes.string.isRequired,
   name: _react.PropTypes.string.isRequired,
+  errorMessage: _react.PropTypes.string,
 
   children: _react.PropTypes.string,
 
