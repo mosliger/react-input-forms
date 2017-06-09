@@ -69,7 +69,8 @@ var SelectInput = function (_React$Component) {
           options = _props.options,
           inputProps = _props.inputProps,
           tabIndex = _props.tabIndex,
-          handleBlur = _props.handleBlur;
+          handleBlur = _props.handleBlur,
+          handleKeyCode = _props.handleKeyCode;
 
       var renderOptions = [];
       var renderErrorMessage = '';
@@ -121,6 +122,9 @@ var SelectInput = function (_React$Component) {
             },
             onBlur: function onBlur(e) {
               return handleBlur(e.target.value);
+            },
+            onKeyUp: function onKeyUp(e) {
+              return handleKeyCode(e);
             },
             disabled: disabled
           },

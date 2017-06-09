@@ -83,6 +83,18 @@ const getprosTypeNumberInput = (language) => {
             description: 'function customize verify input เช่น (value, rules) => "error message"',
           },
           {
+            property: 'onKeyCode',
+            type: 'function',
+            default: '',
+            description: 'function get key code return (keyCode, value, name, event)',
+          },
+          {
+            property: 'onPropsChange',
+            type: 'function',
+            default: '',
+            description: 'function ที่จะทำงานตอนที่ value, rules มีการเปลียนแปลงจากข้างนอก form',
+          },
+          {
             property: 'children',
             type: 'any',
             default: '',

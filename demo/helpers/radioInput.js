@@ -12,8 +12,8 @@ const getprosTypeRadioInput = (language) => {
         detail: [
           {
             property: 'value',
-            type: 'number',
-            default: '""',
+            type: 'object | string | number',
+            default: '',
             description: 'ส่งมาเพื่อแสดงใน input',
           },
           {
@@ -32,7 +32,7 @@ const getprosTypeRadioInput = (language) => {
             property: 'options',
             type: 'array<object>',
             default: '',
-            description: 'Ordered array of options to render.',
+            description: 'options ที่ต้องการ rendee [{ label: "one", value: 1 }, { label: "two", value: 2, disabled: true }]',
           },
           {
             property: 'type',
@@ -44,7 +44,7 @@ const getprosTypeRadioInput = (language) => {
             property: 'disabled',
             type: 'bool',
             default: 'false',
-            description: 'disabled input',
+            description: 'disabled all input',
           },
           {
             property: 'focus',
@@ -52,12 +52,12 @@ const getprosTypeRadioInput = (language) => {
             default: 'false',
             description: 'ให้ focus input',
           },
-          // {
-          //   property: 'rules',
-          //   type: 'object',
-          //   default: '',
-          //   description: 'กดการ Verify input เช่น { required: "value is require." }',
-          // },
+          {
+            property: 'rules',
+            type: 'object',
+            default: '',
+            description: 'กดการ Verify input เช่น { required: "value is require." }',
+          },
           {
             property: 'onChange',
             type: 'function',
@@ -70,12 +70,18 @@ const getprosTypeRadioInput = (language) => {
             default: '',
             description: 'function ที่ return value name errorMessage ทุกครั้งที่ lostfocus',
           },
-          // {
-          //   property: 'handleVerify',
-          //   type: 'function',
-          //   default: '',
-          //   description: 'function customize verify input เช่น (value, rules) => "error message"',
-          // },
+          {
+            property: 'onPropsChange',
+            type: 'function',
+            default: '',
+            description: 'function ที่จะทำงานตอนที่ value, rules มีการเปลียนแปลงจากข้างนอก form',
+          },
+          {
+            property: 'handleVerify',
+            type: 'function',
+            default: '',
+            description: 'function customize verify input เช่น (value, rules) => "error message"',
+          },
           {
             property: 'children',
             type: 'any',
