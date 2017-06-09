@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import InputField from 'react-input-forms';
-// import InputField from '../../src';
+// import InputField from 'react-input-forms';
+import InputField from '../../src';
 
-export default class Home  extends Component {
+export default class Home extends Component {
   state = {
     textInput: '',
     numberInput: '',
@@ -11,6 +11,8 @@ export default class Home  extends Component {
     customInput: '',
     checkboxInput: [],
     radioInput: {},
+    customerInput: '',
+    textInputCustomElement: '',
     checkboxInputNotOption: false,
   }
 
@@ -39,25 +41,62 @@ export default class Home  extends Component {
       customInput: '',
       checkboxInput: [],
       radioInput: {},
+      customerInput: '',
+      textInputCustomElement: '',
       checkboxInputNotOption: false,
     })
   }
-  
+
+  customElementText = (input, label, errorMessage) => {
+    return (
+      <div className="custom-element">
+        <label>{label}</label>
+        {input}
+        <div className="error-message">{errorMessage}</div>
+      </div>
+    )
+  }
+
+  customElement = (rules) => {
+    const { textInputCustomElement, customerInput } = this.state;
+    return (
+      <div>
+        <h2>Custom Element</h2>
+        <div className="row">
+          <div className="D-6 M-12">
+            <h2>Text Input</h2>
+            <InputField type="text"
+              customElement={this.customElementText}
+              onPropsChange={this.onPropsChange}
+              onKeyCode={this.getKeyCode}
+              value={textInputCustomElement}
+              rules={rules}
+              key="textInputCustomElement"
+              name="textInputCustomElement"
+              label="Text Input Custom Element"
+              onChange={this.handleUpdateValue}
+              onBlur={this.handleOnBlur} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
-    const { textInput, numberInput, selectInput, textarea, customInput, checkboxInput, radioInput, checkboxInputNotOption } = this.state;
-    const optionList = [ { label: 'select ...', value: '', disabled: true }, { label: 'one', value: '1' }, { label: 'two', value: '2', disabled: true }, { label: 'three', value: '3' }, { label: 'four', value: '4', disabled: true }, { label: 'five', value: '5' }];
+    const { textInput, customerInput, numberInput, selectInput, textarea, customInput, checkboxInput, radioInput, checkboxInputNotOption } = this.state;
+    const optionList = [{ label: 'select ...', value: '', disabled: true }, { label: 'one', value: '1' }, { label: 'two', value: '2', disabled: true }, { label: 'three', value: '3' }, { label: 'four', value: '4', disabled: true }, { label: 'five', value: '5' }];
     const rules = { required: 'input is require.' };
     return (
       <div className="container">
         <div className="row">
           <div className="D-6 M-12">
             <h2>Text Input</h2>
-            <InputField type="text"  onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} focus={textInput === ''} value={textInput} rules={rules}  key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
+            <InputField type="text" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} focus={textInput === ''} value={textInput} rules={rules} key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
           </div>
           <div className="D-6 M-12">
             <h2>Number Input</h2>
-            <InputField type="number" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} value={numberInput} rules={{...rules, number: 'กรุณากรอกตัวเลย'}} key="numberInput" format="0,000.0000" name="numberInput" label="label Number Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
-          </div>          
+            <InputField type="number" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} value={numberInput} rules={{ ...rules, number: 'กรุณากรอกตัวเลย' }} key="numberInput" format="0,000.0000" name="numberInput" label="label Number Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
+          </div>
         </div>
         <div className="row">
           <div className="D-6 M-12">
@@ -79,6 +118,7 @@ export default class Home  extends Component {
             <InputField type="radio" onPropsChange={this.onPropsChange} value={radioInput} key="radioInput" name="radioInput" label="label radio" options={optionList} onChange={this.handleUpdateValue} />
           </div>
         </div>
+        {this.customElement(rules)}
         <button onClick={() => this.clearForms()}>Clear Forms</button>
       </div>
     );

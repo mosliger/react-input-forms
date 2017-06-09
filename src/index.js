@@ -51,6 +51,7 @@ export default class Index extends React.Component {
     onPropsChange: PropTypes.func,
     handleVerify: PropTypes.func,
     renderComponent: PropTypes.func,
+    customElement: PropTypes.func,
   };
 
   static defaultProps = {

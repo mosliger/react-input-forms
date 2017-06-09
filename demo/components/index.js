@@ -6,6 +6,7 @@ import SelectInput from './SelectInput';
 import TextareaInput from './TextareaInput';
 import RadioInput from './RadioInput';
 import CheckboxInput from './CheckboxInput';
+import CustomInput from './CustomInput';
 
 export default class Index extends React.Component {
   state = {
@@ -18,7 +19,7 @@ export default class Index extends React.Component {
       { name: 'Textarea', key: 'textarea'},
       { name: 'Radio', key: 'radio'},
       { name: 'Checkbox', key: 'checkbox'},
-      // { name: 'Custom', key: 'custom'},
+      { name: 'Custom', key: 'custom'},
     ],
   }
 
@@ -52,7 +53,7 @@ export default class Index extends React.Component {
             <li key="page-textarea" className={currentMenu === 'textarea' ? 'item active' : 'item'}><TextareaInput /></li>
             <li key="page-radio" className={currentMenu === 'radio' ? 'item active' : 'item'}><RadioInput /></li>
             <li key="page-checkbox" className={currentMenu === 'checkbox' ? 'item active' : 'item'}><CheckboxInput /></li>
-            <li key="page-custom" className={currentMenu === 'custom' ? 'item active' : 'item'}>custom</li>
+            <li key="page-custom" className={currentMenu === 'custom' ? 'item active' : 'item'}><CustomInput /></li>
           </ul>
         </div>
       </div>
