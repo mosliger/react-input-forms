@@ -6,8 +6,7 @@
   "scripts": {
     "test": "mocha ./tests/**/*.js",
     "dev": "webpack-dev-server --hot --config ./configs/webpack.config.js",
-    "build:demo": "webpack --progress --hide-modules --config ./configs/webpack.config.production.js",
-    "build": "cross-env BABEL_ENV=production babel src --out-dir dist"
+    "build:demo": "webpack --progress --hide-modules --config ./configs/webpack.config.production.js"
   },
   "author": "",
   "license": "ISC",
