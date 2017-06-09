@@ -48,6 +48,7 @@ export default class Home extends Component {
   }
 
   customElementText = (input, label, errorMessage) => {
+    console.log('customElementText ', input, label, errorMessage);
     return (
       <div className="custom-element">
         <label>{label}</label>
@@ -57,8 +58,31 @@ export default class Home extends Component {
     )
   }
 
+  customElementRadio = (inputList, label, errorMessage) => {
+    return (
+      <div className={'field-group'}>
+        <label htmlFor={label}>{label}</label>
+        {inputList.map((detail, index) => {
+          return (
+            <div className="radio-list" key={`${name}-${index}`}>
+              <div className="box-input">
+                {detail.input}
+                <label className="icon"></label>
+              </div>
+              <label htmlFor={label}>{detail.label}</label>
+            </div>
+          )
+        })
+        }
+        {errorMessage}
+      </div>
+    )
+  }
+
   customElement = (rules) => {
     const { textInputCustomElement, customerInput } = this.state;
+    const optionList = [{ label: 'select ...', value: '', disabled: true }, { label: 'one', value: '1' }, { label: 'two', value: '2', disabled: true }, { label: 'three', value: '3' }, { label: 'four', value: '4', disabled: true }, { label: 'five', value: '5' }];
+
     return (
       <div>
         <h2>Custom Element</h2>
@@ -66,16 +90,19 @@ export default class Home extends Component {
           <div className="D-6 M-12">
             <h2>Text Input</h2>
             <InputField type="text"
-              customElement={this.customElementText}
+              customElement={this.customElementRadio}
               onPropsChange={this.onPropsChange}
               onKeyCode={this.getKeyCode}
               value={textInputCustomElement}
               rules={rules}
+              type="radio"
+              options={optionList}
               key="textInputCustomElement"
               name="textInputCustomElement"
               label="Text Input Custom Element"
               onChange={this.handleUpdateValue}
-              onBlur={this.handleOnBlur} />
+              onBlur={this.handleOnBlur}
+              />
           </div>
         </div>
       </div>

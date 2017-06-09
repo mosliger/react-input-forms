@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import InputField from 'react-input-forms';
-import getprosTypeTextInput from '../helpers/textInput';
+import getprosTypeCustomInput from '../helpers/customInput';
 
 export default class CustomInput extends Component {
   state = {
@@ -118,7 +118,7 @@ export class RenderInput extends Component {
   }
 
   render() {
-    const prosType = getprosTypeTextInput('th');
+    const prosType = getprosTypeCustomInput('th');
     return (
       <div className="container">
         <h1>Input Type Custom</h1>

@@ -95,6 +95,12 @@ const getprosTypeTextInput = (language) => {
             description: 'ถ้ามีการส่ง errorMessage function handleVerify และ rules จะไม่มีผลเพราะเชื่อค่าที่ส่งเข้ามา',
           },
           {
+            property: 'customElement',
+            type: 'function',
+            default: '',
+            description: 'function ที่จัดการ render เอง เช่น customElement={(input, label, errorMessage) => (<div>{input}</div>)}',
+          },
+          {
             property: 'children',
             type: 'any',
             default: '',

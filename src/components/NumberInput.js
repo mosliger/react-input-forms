@@ -34,11 +34,7 @@ export default class NumberInput extends React.Component {
     type: 'text',
   }
 
-  state = {
-    editValue: true,
-  }
-
-  componentDidMount () {
+  componentDidMount() {
     const { value, format, handleBlur } = this.props;
     const numberValue = Number(toNumber(value));
     if (!isEmpey(value) && !isEmpey(format) && isFinite(toNumber(value))) handleBlur(this.getValueFormat(toNumeral(numberValue.toString(), format)))
@@ -63,11 +59,11 @@ export default class NumberInput extends React.Component {
       let decimal = decimalValue;
       for (let i = 1; i <= (decimalFormat.length - decimalValue.length); i++) decimal += '0';
       return isEmpey(value) ? '' : `${splitValue[0]}.${decimal}`;
-    } else {      
-      return valueTopNumber;  
-    }  
+    } else {
+      return valueTopNumber;
+    }
   }
-  
+
   onInputChange = (value) => {
     const { handleChange, format } = this.props;
     const valueToNumber = toNumber(value);
@@ -88,9 +84,38 @@ export default class NumberInput extends React.Component {
     if (handleBlur) handleBlur(this.getValueFormat(value));
   }
 
+  renderCustomElement = () => {
+    const { label, value, disabled, focus, format, placeholder, name, errorMessage, inputProps, tabIndex, handleChange, handleKeyCode, handleBlur } = this.props;
+    let classInput = 'form-input';
+    if (!isEmpey(errorMessage)) {
+      classInput = 'form-input error';
+    }
+    const input = (<input
+      ref={(input) => {
+        if (input != null && focus) {
+          input.focus();
+        }
+      } }
+      className={classInput}
+      type="text"
+      name={name}
+      value={!isEmpey(format) ? toNumeral(value, format) : value}
+      placeholder={placeholder}
+      disabled={disabled}
+      onKeyUp={(e) => handleKeyCode(e)}
+      onChange={(e) => this.onInputChange(e.target.value)}
+      onBlur={(e) => this.handleOnBlur(e.target.value)}
+      />);
+    return this.props.customElement(input, label, errorMessage);
+  }
+
   render() {
     const { label, value, disabled, focus, placeholder, name, format, tabIndex, errorMessage, inputProps, handleChange, handleKeyCode } = this.props;
-    const { editValue } = this.state;
+
+    if (this.props.customElement) {
+      return this.renderCustomElement();
+    }
+
     let renderErrorMessage = '';
     let classInput = 'form-input';
     if (!isEmpey(errorMessage)) {
@@ -106,7 +131,7 @@ export default class NumberInput extends React.Component {
             if (input != null && focus) {
               input.focus();
             }
-          }}
+          } }
           className={classInput}
           type="text"
           name={name}
@@ -116,9 +141,9 @@ export default class NumberInput extends React.Component {
           onKeyUp={(e) => handleKeyCode(e)}
           onChange={(e) => this.onInputChange(e.target.value)}
           onBlur={(e) => this.handleOnBlur(e.target.value)}
-        />
-        {this.props.children}
+          />
         {renderErrorMessage}
+        {this.props.children}
       </div>
     );
   }

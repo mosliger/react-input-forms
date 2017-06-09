@@ -42,8 +42,43 @@ export default class RadioInput extends React.Component {
     return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
   }
 
+  renderCustomElement = () => {
+    const { label, value, disabled, focus, options, name, errorMessage, inputProps, handleChange, handleBlur } = this.props;
+
+    let classInput = 'form-input';
+    if (!isEmpey(errorMessage)) {
+      classInput = 'form-input error';
+    }
+    const inputList = options.map((detail, index) => {
+      const getValue = value.value ? value.value : value;
+      const checked = getValue === detail.value;
+      const input = (
+        <input
+          className={classInput}
+          type="radio"
+          name={name}
+          value={detail.value}
+          disabled={disabled ? disabled : detail.disabled}
+          checked={checked}
+          onChange={() => handleChange(detail.value)}
+          onBlur={(e) => handleBlur(detail.value)}
+          />
+      )
+      return ({
+        input: input,
+        ...detail
+      })
+    });
+    return this.props.customElement(inputList, label, errorMessage);
+  }
+
   render() {
     const { label, value, disabled, focus, options, name, errorMessage, inputProps, handleChange, handleBlur } = this.props;
+
+    if (this.props.customElement) {
+      return this.renderCustomElement();
+    }
+
     let renderErrorMessage = '';
     let classInput = 'form-input';
     if (!isEmpey(errorMessage)) {
@@ -68,7 +103,7 @@ export default class RadioInput extends React.Component {
                   checked={checked}
                   onChange={() => handleChange(detail.value)}
                   onBlur={(e) => handleBlur(detail.value)}
-                />
+                  />
                 <label className={`icon ${checked ? 'checked' : ''}`}></label>
               </div>
               <label htmlFor={label}>{detail.label}</label>

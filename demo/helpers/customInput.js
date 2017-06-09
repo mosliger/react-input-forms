@@ -1,4 +1,4 @@
-const getprosTypeSelectInput = (language) => {
+const getprosTypeCustomInput = (language) => {
   switch (language) {
     case 'th': {
       return {
@@ -12,9 +12,9 @@ const getprosTypeSelectInput = (language) => {
         detail: [
           {
             property: 'value',
-            type: 'object | string',
+            type: 'array | object | number | string',
             default: '""',
-            description: 'ส่งมาเพื่อแสดงใน input',
+            description: 'ส่งมาเพื่อแสดงใน render',
           },
           {
             property: 'name',
@@ -29,10 +29,16 @@ const getprosTypeSelectInput = (language) => {
             description: 'คำอธิบายของ input',
           },
           {
-            property: 'options',
-            type: 'array<object>',
-            default: '',
-            description: 'Ordered array of options to render.',
+            property: 'format',
+            type: 'string',
+            default: '""',
+            description: 'การกำหนดรูปแบบของ value และกำหนดจํานวนทศนิยม เช่น 0,000.00',
+          },
+          {
+            property: 'placeholder',
+            type: 'string',
+            default: '""',
+            description: 'ข้อความไว้บ่งบอกตัวอย่างการใส่ข้อความใน text field',
           },
           {
             property: 'type',
@@ -62,13 +68,19 @@ const getprosTypeSelectInput = (language) => {
             property: 'onChange',
             type: 'function',
             default: '',
-            description: 'function ที่ return option name errorMessage ทุกครั้งที่มีการเปลียนแปลงใน input',
+            description: 'function ที่ return value name errorMessage ทุกครั้งที่มีการเปลียนแปลงใน input',
           },
           {
             property: 'onBlur',
             type: 'function',
             default: '',
-            description: 'function ที่ return option name errorMessage ทุกครั้งที่ lostfocus',
+            description: 'function ที่ return value name errorMessage ทุกครั้งที่ lostfocus',
+          },
+          {
+            property: 'handleVerify',
+            type: 'function',
+            default: '',
+            description: 'function customize verify input เช่น (value, rules) => "error message"',
           },
           {
             property: 'onKeyCode',
@@ -83,28 +95,16 @@ const getprosTypeSelectInput = (language) => {
             description: 'function ที่จะทำงานตอนที่ value, rules มีการเปลียนแปลงจากข้างนอก form',
           },
           {
-            property: 'handleVerify',
-            type: 'function',
-            default: '',
-            description: 'function customize verify input เช่น (value, rules) => "error message"',
-          },
-          {
             property: 'errorMessage',
             type: 'string',
             default: '',
             description: 'ถ้ามีการส่ง errorMessage function handleVerify และ rules จะไม่มีผลเพราะเชื่อค่าที่ส่งเข้ามา',
           },
           {
-            property: 'customElement',
+            property: 'renderComponent',
             type: 'function',
             default: '',
-            description: 'function ที่จัดการ render เอง เช่น customElement={(input, label, errorMessage) => (<div>{input}</div>)}',
-          },
-          {
-            property: 'children',
-            type: 'any',
-            default: '',
-            description: 'สิ่งที่ต้องการแสดงเพิ่มเติม',
+            description: 'function return component เช่น renderComponent={(data) => <Component { ...data } />}',
           },
         ],
       };
@@ -114,4 +114,4 @@ const getprosTypeSelectInput = (language) => {
   }
 };
 
-export default getprosTypeSelectInput;
+export default getprosTypeCustomInput;
