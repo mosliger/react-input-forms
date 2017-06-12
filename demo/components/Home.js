@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import InputField from 'react-input-forms';
-import InputField from '../../src';
+import InputField from 'react-input-forms';
+// import InputField from '../../src';
 
 export default class Home extends Component {
   state = {
@@ -48,7 +48,6 @@ export default class Home extends Component {
   }
 
   customElementText = (input, label, errorMessage) => {
-    console.log('customElementText ', input, label, errorMessage);
     return (
       <div className="custom-element">
         <label>{label}</label>
@@ -90,13 +89,12 @@ export default class Home extends Component {
           <div className="D-6 M-12">
             <h2>Text Input</h2>
             <InputField type="text"
-              customElement={this.customElementRadio}
+              customElement={this.customElementText}
               onPropsChange={this.onPropsChange}
               onKeyCode={this.getKeyCode}
               value={textInputCustomElement}
               rules={rules}
-              type="radio"
-              options={optionList}
+              type="text"
               key="textInputCustomElement"
               name="textInputCustomElement"
               label="Text Input Custom Element"
@@ -113,6 +111,7 @@ export default class Home extends Component {
     const { textInput, customerInput, numberInput, selectInput, textarea, customInput, checkboxInput, radioInput, checkboxInputNotOption } = this.state;
     const optionList = [{ label: 'select ...', value: '', disabled: true }, { label: 'one', value: '1' }, { label: 'two', value: '2', disabled: true }, { label: 'three', value: '3' }, { label: 'four', value: '4', disabled: true }, { label: 'five', value: '5' }];
     const rules = { required: 'input is require.' };
+
     return (
       <div className="container">
         <div className="row">

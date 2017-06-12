@@ -34,9 +34,7 @@ var NumberInput = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NumberInput.__proto__ || Object.getPrototypeOf(NumberInput)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      editValue: true
-    }, _this.getValueFormat = function (value) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NumberInput.__proto__ || Object.getPrototypeOf(NumberInput)).call.apply(_ref, [this].concat(args))), _this), _this.getValueFormat = function (value) {
       var format = _this.props.format;
 
       var valueTopNumber = (0, _global.toNumber)(value);
@@ -72,6 +70,49 @@ var NumberInput = function (_React$Component) {
       var handleBlur = _this.props.handleBlur;
 
       if (handleBlur) handleBlur(_this.getValueFormat(value));
+    }, _this.renderCustomElement = function () {
+      var _this$props2 = _this.props,
+          label = _this$props2.label,
+          value = _this$props2.value,
+          disabled = _this$props2.disabled,
+          focus = _this$props2.focus,
+          format = _this$props2.format,
+          placeholder = _this$props2.placeholder,
+          name = _this$props2.name,
+          errorMessage = _this$props2.errorMessage,
+          inputProps = _this$props2.inputProps,
+          tabIndex = _this$props2.tabIndex,
+          handleChange = _this$props2.handleChange,
+          handleKeyCode = _this$props2.handleKeyCode,
+          handleBlur = _this$props2.handleBlur;
+
+      var classInput = 'form-input';
+      if (!(0, _global.isEmpey)(errorMessage)) {
+        classInput = 'form-input error';
+      }
+      var input = _react2.default.createElement('input', {
+        ref: function ref(input) {
+          if (input != null && focus) {
+            input.focus();
+          }
+        },
+        className: classInput,
+        type: 'text',
+        name: name,
+        value: !(0, _global.isEmpey)(format) ? (0, _global.toNumeral)(value, format) : value,
+        placeholder: placeholder,
+        disabled: disabled,
+        onKeyUp: function onKeyUp(e) {
+          return handleKeyCode(e);
+        },
+        onChange: function onChange(e) {
+          return _this.onInputChange(e.target.value);
+        },
+        onBlur: function onBlur(e) {
+          return _this.handleOnBlur(e.target.value);
+        }
+      });
+      return _this.props.customElement(input, label, errorMessage);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -113,7 +154,11 @@ var NumberInput = function (_React$Component) {
           inputProps = _props2.inputProps,
           handleChange = _props2.handleChange,
           handleKeyCode = _props2.handleKeyCode;
-      var editValue = this.state.editValue;
+
+
+      if (this.props.customElement) {
+        return this.renderCustomElement();
+      }
 
       var renderErrorMessage = '';
       var classInput = 'form-input';
@@ -156,8 +201,8 @@ var NumberInput = function (_React$Component) {
             return _this2.handleOnBlur(e.target.value);
           }
         }),
-        this.props.children,
-        renderErrorMessage
+        renderErrorMessage,
+        this.props.children
       );
     }
   }]);

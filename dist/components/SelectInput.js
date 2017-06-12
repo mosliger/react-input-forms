@@ -41,6 +41,69 @@ var SelectInput = function (_React$Component) {
 
       var value = e.target.value;
       handleChange((0, _global.getOption)(value, options));
+    }, _this.renderCustomElement = function () {
+      var _this$props2 = _this.props,
+          label = _this$props2.label,
+          value = _this$props2.value,
+          disabled = _this$props2.disabled,
+          focus = _this$props2.focus,
+          placeholder = _this$props2.placeholder,
+          name = _this$props2.name,
+          format = _this$props2.format,
+          errorMessage = _this$props2.errorMessage,
+          options = _this$props2.options,
+          inputProps = _this$props2.inputProps,
+          tabIndex = _this$props2.tabIndex,
+          handleBlur = _this$props2.handleBlur,
+          handleKeyCode = _this$props2.handleKeyCode;
+
+
+      var renderOptions = [];
+      var renderErrorMessage = '';
+      var classInput = 'form-input';
+      var valueString = '';
+
+      if (typeof value === 'string') {
+        valueString = value;
+      } else {
+        valueString = value.value ? value.value : '';
+      }
+      if (!(0, _global.isEmpey)(errorMessage)) {
+        classInput = 'form-input error';
+      }
+
+      for (var key in options) {
+        renderOptions.push(_react2.default.createElement(
+          'option',
+          { value: options[key].value, key: key + '-' + options[key].value },
+          options[key].label
+        ));
+      }
+
+      var input = _react2.default.createElement(
+        'select',
+        {
+          ref: function ref(input) {
+            if (input != null && focus) {
+              input.focus();
+            }
+          },
+          className: classInput,
+          value: valueString,
+          onChange: function onChange(e) {
+            return _this.handleSelectChange(e);
+          },
+          onBlur: function onBlur(e) {
+            return handleBlur(e.target.value);
+          },
+          onKeyUp: function onKeyUp(e) {
+            return handleKeyCode(e);
+          },
+          disabled: disabled
+        },
+        renderOptions
+      );
+      return _this.props.customElement(input, label, errorMessage);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -71,6 +134,11 @@ var SelectInput = function (_React$Component) {
           tabIndex = _props.tabIndex,
           handleBlur = _props.handleBlur,
           handleKeyCode = _props.handleKeyCode;
+
+
+      if (this.props.customElement) {
+        return this.renderCustomElement();
+      }
 
       var renderOptions = [];
       var renderErrorMessage = '';

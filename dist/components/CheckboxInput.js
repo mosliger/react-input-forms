@@ -74,6 +74,65 @@ var CheckboxInput = function (_React$Component) {
         return false;
       }
       return false;
+    }, _this.renderCustomElement = function () {
+      var _this$props3 = _this.props,
+          label = _this$props3.label,
+          value = _this$props3.value,
+          disabled = _this$props3.disabled,
+          focus = _this$props3.focus,
+          options = _this$props3.options,
+          name = _this$props3.name,
+          errorMessage = _this$props3.errorMessage,
+          inputProps = _this$props3.inputProps,
+          handleChange = _this$props3.handleChange,
+          handleBlur = _this$props3.handleBlur;
+
+
+      var classInput = 'form-input';
+      if (!(0, _global.isEmpey)(errorMessage)) {
+        classInput = 'form-input error';
+      }
+      if (options.length > 0) {
+        var inputList = options.map(function (detail, index) {
+          var _React$createElement;
+
+          var getValue = value.value ? value.value : value;
+          var checked = getValue === detail.value;
+          var input = _react2.default.createElement('input', (_React$createElement = {
+            className: classInput,
+            type: 'checkbox',
+            name: name,
+            value: detail.value,
+            disabled: disabled ? disabled : detail.disabled,
+            checked: checked,
+            onChange: function onChange() {
+              return _this.handleChangeOptions(detail, index, !checked);
+            }
+          }, _defineProperty(_React$createElement, 'onChange', function onChange() {
+            return _this.handleChangeOptions(detail, index, !checked);
+          }), _defineProperty(_React$createElement, 'onBlur', function onBlur() {
+            return _this.handleBlueOptions(detail, index, checked);
+          }), _React$createElement));
+          return _extends({
+            input: input
+          }, detail);
+        });
+        return _this.props.customElement(inputList, label, errorMessage);
+      }
+      var inputCheckbox = _react2.default.createElement('input', {
+        className: classInput,
+        type: 'checkbox',
+        name: name,
+        disabled: disabled,
+        checked: value,
+        onClick: function onClick() {
+          return handleChange(!value);
+        },
+        onBlur: function onBlur() {
+          return _this.handleBlur(value);
+        }
+      });
+      return _this.props.customElement(inputCheckbox, label, errorMessage);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -123,7 +182,7 @@ var CheckboxInput = function (_React$Component) {
             label
           ),
           options.map(function (detail, index) {
-            var _React$createElement;
+            var _React$createElement2;
 
             var checked = _this2.handleChecked(detail, index);
             return _react2.default.createElement(
@@ -132,7 +191,7 @@ var CheckboxInput = function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'box-input' },
-                _react2.default.createElement('input', (_React$createElement = {
+                _react2.default.createElement('input', (_React$createElement2 = {
                   className: classInput,
                   type: 'checkbox',
                   name: name,
@@ -142,11 +201,11 @@ var CheckboxInput = function (_React$Component) {
                   onChange: function onChange() {
                     return _this2.handleChangeOptions(detail, index, !checked);
                   }
-                }, _defineProperty(_React$createElement, 'onChange', function onChange() {
+                }, _defineProperty(_React$createElement2, 'onChange', function onChange() {
                   return _this2.handleChangeOptions(detail, index, !checked);
-                }), _defineProperty(_React$createElement, 'onBlur', function onBlur() {
+                }), _defineProperty(_React$createElement2, 'onBlur', function onBlur() {
                   return _this2.handleBlueOptions(detail, index, checked);
-                }), _React$createElement)),
+                }), _React$createElement2)),
                 _react2.default.createElement('label', { className: 'icon ' + (checked ? 'checked' : '') })
               ),
               _react2.default.createElement(

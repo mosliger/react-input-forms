@@ -24,9 +24,65 @@ var TextareaInput = function (_React$Component) {
   _inherits(TextareaInput, _React$Component);
 
   function TextareaInput() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, TextareaInput);
 
-    return _possibleConstructorReturn(this, (TextareaInput.__proto__ || Object.getPrototypeOf(TextareaInput)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextareaInput.__proto__ || Object.getPrototypeOf(TextareaInput)).call.apply(_ref, [this].concat(args))), _this), _this.renderCustomElement = function () {
+      var _this$props = _this.props,
+          label = _this$props.label,
+          value = _this$props.value,
+          disabled = _this$props.disabled,
+          focus = _this$props.focus,
+          placeholder = _this$props.placeholder,
+          name = _this$props.name,
+          rows = _this$props.rows,
+          cols = _this$props.cols,
+          tabIndex = _this$props.tabIndex,
+          errorMessage = _this$props.errorMessage,
+          inputProps = _this$props.inputProps,
+          handleChange = _this$props.handleChange,
+          handleKeyCode = _this$props.handleKeyCode,
+          handleBlur = _this$props.handleBlur;
+
+
+      var classInput = 'form-input';
+      if (!(0, _global.isEmpey)(errorMessage)) {
+        classInput = 'form-input error';
+      }
+      var input = _react2.default.createElement(
+        'textarea',
+        {
+          ref: function ref(input) {
+            if (input != null && focus) {
+              input.focus();
+            }
+          },
+          rows: rows,
+          cols: cols,
+          disabled: disabled,
+          className: classInput,
+          value: value,
+          onKeyUp: function onKeyUp(e) {
+            return handleKeyCode(e);
+          },
+          onChange: function onChange(e) {
+            return handleChange(e.target.value);
+          },
+          onBlur: function onBlur(e) {
+            return handleBlur(e.target.value);
+          }
+        },
+        value
+      );
+      return _this.props.customElement(input, label, errorMessage);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(TextareaInput, [{
@@ -55,6 +111,11 @@ var TextareaInput = function (_React$Component) {
           handleChange = _props.handleChange,
           handleKeyCode = _props.handleKeyCode,
           handleBlur = _props.handleBlur;
+
+
+      if (this.props.customElement) {
+        return this.renderCustomElement();
+      }
 
       var renderErrorMessage = '';
       var classInput = 'form-input';

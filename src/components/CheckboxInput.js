@@ -56,17 +56,63 @@ export default class CheckboxInput extends React.Component {
   }
 
   handleChecked = (option, index) => {
-    const  { value } = this.props;
+    const { value } = this.props;
     try {
       const filterValue = value.filter((optionDetail) => {
         const key = optionDetail.key ? optionDetail.key : index;
-        return  option.label === optionDetail.label && key === index;
+        return option.label === optionDetail.label && key === index;
       });
       if (filterValue.length === 1) return true;
     } catch (e) {
       return false;
     }
     return false;
+  }
+
+  renderCustomElement = () => {
+    const { label, value, disabled, focus, options, name, errorMessage, inputProps, handleChange, handleBlur } = this.props;
+
+    let classInput = 'form-input';
+    if (!isEmpey(errorMessage)) {
+      classInput = 'form-input error';
+    }
+    if (options.length > 0) {
+      const inputList = options.map((detail, index) => {
+        const getValue = value.value ? value.value : value;
+        const checked = getValue === detail.value;
+        const input = (
+          <input
+            className={classInput}
+            type="checkbox"
+            name={name}
+            value={detail.value}
+            disabled={disabled ? disabled : detail.disabled}
+            checked={checked}
+            onChange={() => this.handleChangeOptions(detail, index, !checked)}
+            onChange={() => this.handleChangeOptions(detail, index, !checked)}
+            onBlur={() => this.handleBlueOptions(detail, index, checked)}
+            />
+        )
+        return ({
+          input: input,
+          ...detail
+        })
+      });
+      return this.props.customElement(inputList, label, errorMessage);
+    }
+    const inputCheckbox = (
+      <input
+        className={classInput}
+        type="checkbox"
+        name={name}
+        disabled={disabled}
+        checked={value}
+        onClick={() => handleChange(!value)}
+        onBlur={() => this.handleBlur(value)}
+        />
+    )
+    return this.props.customElement(inputCheckbox, label, errorMessage);
+
   }
 
   render() {
@@ -97,7 +143,7 @@ export default class CheckboxInput extends React.Component {
                     onChange={() => this.handleChangeOptions(detail, index, !checked)}
                     onChange={() => this.handleChangeOptions(detail, index, !checked)}
                     onBlur={() => this.handleBlueOptions(detail, index, checked)}
-                  />
+                    />
                   <label className={`icon ${checked ? 'checked' : ''}`}></label>
                 </div>
                 <label htmlFor={label}>{detail.label}</label>
@@ -122,7 +168,7 @@ export default class CheckboxInput extends React.Component {
             checked={value}
             onClick={() => handleChange(!value)}
             onBlur={() => this.handleBlur(value)}
-          />
+            />
           <label className={`icon ${value ? 'checked' : ''}`}></label>
         </div>
         <label htmlFor={label}>{label}</label>

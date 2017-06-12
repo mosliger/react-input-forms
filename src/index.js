@@ -105,7 +105,6 @@ export default class Index extends React.Component {
         if (this.props.onPropsChange) this.props.onPropsChange(value, name, errorMessage);
       }
     }
-    
   }
 
   handleValidation = (value) => {
@@ -137,7 +136,7 @@ export default class Index extends React.Component {
         return {
           value: value,
           errorMessage: errorMessage,
-          editValue: true,
+          editValue: !onChange,
         }
       });
       if (onChange) onChange(value, name, errorMessage);
@@ -220,7 +219,6 @@ export default class Index extends React.Component {
           return this.props.renderComponent ? this.props.renderComponent(propsForm) : '';
         }
         default:
-
           if (this.props.children) return (<div className="text-input"><TextInput {...propsForm}>{this.props.children}</TextInput></div>);
           return (<div className="text-input"><TextInput {...propsForm} /></div>);
       }

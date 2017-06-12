@@ -76,7 +76,7 @@ var Index = function (_React$Component) {
           return {
             value: value,
             errorMessage: errorMessage,
-            editValue: true
+            editValue: !onChange
           };
         });
         if (onChange) onChange(value, name, errorMessage);
@@ -289,7 +289,6 @@ var Index = function (_React$Component) {
             return this.props.renderComponent ? this.props.renderComponent(propsForm) : '';
           }
         default:
-
           if (this.props.children) return _react2.default.createElement(
             'div',
             { className: 'text-input' },
@@ -332,7 +331,7 @@ Index.propTypes = (_Index$propTypes = {
   inputProps: _react.PropTypes.object,
   labelProps: _react.PropTypes.object,
   rules: _react.PropTypes.object
-}, _defineProperty(_Index$propTypes, 'children', _react.PropTypes.node), _defineProperty(_Index$propTypes, 'disabled', _react.PropTypes.bool), _defineProperty(_Index$propTypes, 'focus', _react.PropTypes.bool), _defineProperty(_Index$propTypes, 'onChange', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onBlur', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onKeyCode', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onPropsChange', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'handleVerify', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'renderComponent', _react.PropTypes.func), _Index$propTypes);
+}, _defineProperty(_Index$propTypes, 'children', _react.PropTypes.node), _defineProperty(_Index$propTypes, 'disabled', _react.PropTypes.bool), _defineProperty(_Index$propTypes, 'focus', _react.PropTypes.bool), _defineProperty(_Index$propTypes, 'onChange', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onBlur', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onKeyCode', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onPropsChange', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'handleVerify', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'renderComponent', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'customElement', _react.PropTypes.func), _Index$propTypes);
 Index.defaultProps = {
   name: 'input',
   label: '',

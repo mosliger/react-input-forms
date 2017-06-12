@@ -24,9 +24,59 @@ var TextInput = function (_React$Component) {
   _inherits(TextInput, _React$Component);
 
   function TextInput() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, TextInput);
 
-    return _possibleConstructorReturn(this, (TextInput.__proto__ || Object.getPrototypeOf(TextInput)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextInput.__proto__ || Object.getPrototypeOf(TextInput)).call.apply(_ref, [this].concat(args))), _this), _this.renderCustomElement = function () {
+      var _this$props = _this.props,
+          label = _this$props.label,
+          value = _this$props.value,
+          disabled = _this$props.disabled,
+          focus = _this$props.focus,
+          placeholder = _this$props.placeholder,
+          name = _this$props.name,
+          errorMessage = _this$props.errorMessage,
+          inputProps = _this$props.inputProps,
+          tabIndex = _this$props.tabIndex,
+          handleChange = _this$props.handleChange,
+          handleKeyCode = _this$props.handleKeyCode,
+          handleBlur = _this$props.handleBlur;
+
+      var classInput = 'form-input';
+      if (!(0, _global.isEmpey)(errorMessage)) {
+        classInput = 'form-input error';
+      }
+      var input = _react2.default.createElement('input', {
+        ref: function ref(input) {
+          if (input != null && focus) {
+            input.focus();
+          }
+        },
+        className: classInput,
+        type: 'text',
+        name: name,
+        value: value,
+        placeholder: placeholder,
+        disabled: disabled,
+        onKeyUp: function onKeyUp(e) {
+          return handleKeyCode(e);
+        },
+        onChange: function onChange(e) {
+          return handleChange(e.target.value);
+        },
+        onBlur: function onBlur(e) {
+          return handleBlur(e.target.value);
+        }
+      });
+      return _this.props.customElement(input, label, errorMessage);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(TextInput, [{
@@ -54,6 +104,10 @@ var TextInput = function (_React$Component) {
           handleKeyCode = _props.handleKeyCode,
           handleBlur = _props.handleBlur;
 
+
+      if (this.props.customElement) {
+        return this.renderCustomElement();
+      }
 
       var renderErrorMessage = '';
       var classInput = 'form-input';
