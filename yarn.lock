@@ -4604,9 +4604,9 @@ react-dom@^15.4.2:
     object-assign "^4.1.0"
     prop-types "~15.5.7"
 
-react-input-forms@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/react-input-forms/-/react-input-forms-1.2.2.tgz#d059d92236528ab06e43c246303851088c7f4650"
+react-input-forms@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/react-input-forms/-/react-input-forms-1.2.3.tgz#e456f8ff531a220d55403b0932bda89b45ec13a2"
   dependencies:
     node-sass "^4.5.3"
     npm "^4.6.1"

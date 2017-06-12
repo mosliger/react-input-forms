@@ -161,6 +161,11 @@ var CheckboxInput = function (_React$Component) {
           handleChange = _props.handleChange,
           handleBlur = _props.handleBlur;
 
+
+      if (this.props.customElement) {
+        return this.renderCustomElement();
+      }
+
       var renderErrorMessage = '';
       var classInput = 'form-input';
       if (!(0, _global.isEmpey)(errorMessage)) {
