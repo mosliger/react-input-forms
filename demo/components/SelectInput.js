@@ -10,13 +10,14 @@ const optionList = [
   { label: 'four', value: '4' },
   { label: 'five', value: '5' },
 ];
-    
+
 export default class SelectInput extends Component {
   state = {
     selectInput: '',
     selectInputRules: '',
     selectInputChildren: '',
     basicinput: '',
+    customElement: ''
   }
 
   handleUpdateValue = (value, name) => {
@@ -28,9 +29,9 @@ export default class SelectInput extends Component {
     return (
       <div>
         <InputField type="select" options={optionList} value={basicinput} name="basicinput" label="basic input " onChange={this.handleUpdateValue} />
-      <pre>
-        <code>
-        {`
+        <pre>
+          <code>
+            {`
 const optionList = [
   { label: 'select ...', value: '' },
   { label: 'one', value: '1' },
@@ -51,11 +52,68 @@ const optionList = [
   onChange={this.handleUpdateValue}
 />
           `}
-        </code>
-      </pre>
+          </code>
+        </pre>
       </div>
     )
   }
+
+  customElementSelect = (input, label, errorMessage) => {
+    return (
+      <div className="custom-element">
+        <label>{label}</label>
+        {input}
+        <div className="error-message">{errorMessage}</div>
+      </div>
+    )
+  }
+
+  renderCustomElement = () => {
+    const { customElement } = this.state;
+    return (
+      <div>
+        <InputField type="select" options={optionList} customElement={this.customElementSelect} value={customElement} name="customElement" label="custom element" onChange={this.handleUpdateValue} />
+        <pre>
+          <code>
+            {`
+customElementSelect = (input, label, errorMessage) => {
+  return (
+    <div className="custom-element">
+      <label>{label}</label>
+      {input}
+      <div className="error-message">{errorMessage}</div>
+    </div>
+  )
+}
+
+...
+
+const optionList = [
+  { label: 'select ...', value: '' },
+  { label: 'one', value: '1' },
+  { label: 'two', value: '2' },
+  { label: 'three', value: '3' },
+  { label: 'four', value: '4' },
+  { label: 'five', value: '5' },
+];
+
+...
+
+<InputField
+  type="select"
+  customElement={this.customElementSelect}
+  value={value}
+  name="input-select"
+  label="custom element"
+  onChange={this.handleUpdateValue}
+/>
+            `}
+          </code>
+        </pre>
+      </div>
+    )
+  }
+
 
   renderDemo = () => {
     const { selectInput, selectInputRules, selectInputChildren } = this.state;
@@ -69,7 +127,7 @@ const optionList = [
             name="selectInput"
             label="label"
             onChange={this.handleUpdateValue}
-          />
+            />
         </div>
         <div className="box-demo-input">
           <InputField
@@ -82,7 +140,7 @@ const optionList = [
             name="selectInputRules"
             label="Input verify field"
             onChange={this.handleUpdateValue}
-          />
+            />
         </div>
         <div className="box-demo-input">
           <InputField
@@ -92,8 +150,8 @@ const optionList = [
             name="selectInputChildren"
             label="Children"
             onChange={this.handleUpdateValue}
-          >
-          <button>search</button>
+            >
+            <button>search</button>
           </InputField>
         </div>
       </div>
@@ -149,9 +207,9 @@ export default class Demo extends Component {
     )
   }
 }`}
-            </code>
-          </pre>
-          </div>          
+              </code>
+            </pre>
+          </div>
         </div>
         <div className="pros-type">
           <div className="title">{prosType.title}</div>
@@ -181,6 +239,9 @@ export default class Demo extends Component {
           <div className="row">
             <div className="D-6 M-12">
               {this.renderBasicInput()}
+            </div>
+            <div className="D-6 M-12">
+              {this.renderCustomElement()}
             </div>
           </div>
         </div>

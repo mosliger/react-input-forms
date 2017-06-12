@@ -8,6 +8,7 @@ export default class TextInput extends Component {
     textInputRules: '',
     textInputChildren: '',
     basicinput: '',
+    customElement: ''
   }
 
   handleUpdateValue = (value, name) => {
@@ -19,9 +20,9 @@ export default class TextInput extends Component {
     return (
       <div>
         <InputField type="text" value={basicinput} name="basicinput" label="basic input" onChange={this.handleUpdateValue} />
-      <pre>
-        <code>
-        {`
+        <pre>
+          <code>
+            {`
 <InputField
   type="text"
   value={value}
@@ -30,8 +31,53 @@ export default class TextInput extends Component {
   onChange={this.handleUpdateValue}
 />
           `}
-        </code>
-      </pre>
+          </code>
+        </pre>
+      </div>
+    )
+  }
+
+  customElementText = (input, label, errorMessage) => {
+    return (
+      <div className="custom-element">
+        <label>{label}</label>
+        {input}
+        <div className="error-message">{errorMessage}</div>
+      </div>
+    )
+  }
+
+  renderCustomElement = () => {
+    const { customElement } = this.state;
+    return (
+      <div>
+        <InputField type="text" customElement={this.customElementText} value={customElement} name="customElement" label="custom element" onChange={this.handleUpdateValue} />
+        <pre>
+          <code>
+            {`
+customElementText = (input, label, errorMessage) => {
+  return (
+    <div className="custom-element">
+      <label>{label}</label>
+      {input}
+      <div className="error-message">{errorMessage}</div>
+    </div>
+  )
+}
+
+...
+
+<InputField
+  type="text"
+  customElement={this.customElementText}
+  value={value}
+  name="input-text"
+  label="custom element"
+  onChange={this.handleUpdateValue}
+/>
+            `}
+          </code>
+        </pre>
       </div>
     )
   }
@@ -47,7 +93,7 @@ export default class TextInput extends Component {
             name="textInput"
             label="label"
             onChange={this.handleUpdateValue}
-          />
+            />
         </div>
         <div className="box-demo-input">
           <InputField
@@ -61,7 +107,7 @@ export default class TextInput extends Component {
             label="Input verify field"
             placeholder="E-mail"
             onChange={this.handleUpdateValue}
-          />
+            />
         </div>
         <div className="box-demo-input">
           <InputField
@@ -70,8 +116,8 @@ export default class TextInput extends Component {
             name="textInputChildren"
             label="Children"
             onChange={this.handleUpdateValue}
-          >
-          <button>search</button>
+            >
+            <button>search</button>
           </InputField>
         </div>
       </div>
@@ -118,9 +164,9 @@ export default class Demo extends Component {
     )
   }
 }`}
-            </code>
-          </pre>
-          </div>          
+              </code>
+            </pre>
+          </div>
         </div>
         <div className="pros-type">
           <div className="title">{prosType.title}</div>
@@ -150,6 +196,9 @@ export default class Demo extends Component {
           <div className="row">
             <div className="D-6 M-12">
               {this.renderBasicInput()}
+            </div>
+            <div className="D-6 M-12">
+              {this.renderCustomElement()}
             </div>
           </div>
         </div>
