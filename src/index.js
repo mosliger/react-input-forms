@@ -185,11 +185,12 @@ export default class Index extends React.Component {
     const propsForm = {
       ...remove(['onChange', 'value', 'onBlur', 'onKeyCode', 'handleVerify', 'renderComponent', 'children'], this.props),
       value: editValue ? value : this.props.value,
-      errorMessage: this.props.errorMessage ? this.props.errorMessage : errorMessage,
+      errorMessage: this.props.errorMessage || this.props.errorMessage === "" ? this.props.errorMessage : errorMessage,
       handleChange: this.handleChange,
       handleBlur: this.handleBlur,
       handleKeyCode: this.handleKeyCode,
     };
+
       switch (type) {
         case 'text': {
           if (this.props.children) return (<div className="text-input"><TextInput {...propsForm} >{this.props.children}</TextInput></div>);
