@@ -19,10 +19,10 @@ export default class TextareaInput extends Component {
     return (
       <div>
         <InputField type="textarea"
-        rows={4} value={basicinput} name="basicinput" label="basic input" onChange={this.handleUpdateValue} />
-      <pre>
-        <code>
-        {`
+          rows={4} value={basicinput} name="basicinput" label="basic input" onChange={this.handleUpdateValue} />
+        <pre>
+          <code>
+            {`
 <InputField
   type="textarea"
   rows={4}
@@ -32,11 +32,57 @@ export default class TextareaInput extends Component {
   onChange={this.handleUpdateValue}
 />
           `}
-        </code>
-      </pre>
+          </code>
+        </pre>
       </div>
     )
   }
+
+  customElementTextarea = (input, label, errorMessage) => {
+    return (
+      <div className="custom-element">
+        <label>{label}</label>
+        {input}
+        <div className="error-message">{errorMessage}</div>
+      </div>
+    )
+  }
+
+  renderCustomElement = () => {
+    const { customElement } = this.state;
+    return (
+      <div>
+        <InputField type="textarea" customElement={this.customElementTextarea} value={customElement} name="customElement" label="custom element" onChange={this.handleUpdateValue} />
+        <pre>
+          <code>
+            {`
+customElementTextarea = (input, label, errorMessage) => {
+  return (
+    <div className="custom-element">
+      <label>{label}</label>
+      {input}
+      <div className="error-message">{errorMessage}</div>
+    </div>
+  )
+}
+
+...
+
+<InputField
+  type="textarea"
+  customElement={this.customElementTextarea}
+  value={value}
+  name="input-textarea"
+  label="custom element"
+  onChange={this.handleUpdateValue}
+/>
+            `}
+          </code>
+        </pre>
+      </div>
+    )
+  }
+
 
   renderDemo = () => {
     const { textareaInput, textareaInputRules, textareaInputChildren } = this.state;
@@ -50,7 +96,7 @@ export default class TextareaInput extends Component {
             name="textareaInput"
             label="label"
             onChange={this.handleUpdateValue}
-          />
+            />
         </div>
         <div className="box-demo-input">
           <InputField
@@ -65,7 +111,7 @@ export default class TextareaInput extends Component {
             label="Input verify field"
             placeholder="E-mail"
             onChange={this.handleUpdateValue}
-          />
+            />
         </div>
         <div className="box-demo-input">
           <InputField
@@ -75,8 +121,8 @@ export default class TextareaInput extends Component {
             name="textareaInputChildren"
             label="Children"
             onChange={this.handleUpdateValue}
-          >
-          <button>search</button>
+            >
+            <button>search</button>
           </InputField>
         </div>
       </div>
@@ -124,9 +170,9 @@ export default class Demo extends Component {
     )
   }
 }`}
-            </code>
-          </pre>
-          </div>          
+              </code>
+            </pre>
+          </div>
         </div>
         <div className="pros-type">
           <div className="title">{prosType.title}</div>
@@ -156,6 +202,9 @@ export default class Demo extends Component {
           <div className="row">
             <div className="D-6 M-12">
               {this.renderBasicInput()}
+            </div>
+            <div className="D-6 M-12">
+              {this.renderCustomElement()}
             </div>
           </div>
         </div>
