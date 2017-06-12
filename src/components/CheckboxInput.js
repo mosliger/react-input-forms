@@ -117,6 +117,12 @@ export default class CheckboxInput extends React.Component {
 
   render() {
     const { label, value, disabled, focus, options, name, errorMessage, inputProps, handleChange, handleBlur } = this.props;
+    
+     if (this.props.customElement) {
+      return this.renderCustomElement();
+    }
+
+    
     let renderErrorMessage = '';
     let classInput = 'form-input';
     if (!isEmpey(errorMessage)) {

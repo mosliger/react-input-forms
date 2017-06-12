@@ -14,7 +14,7 @@ const getprosTypeCheckboxInput = (language) => {
             property: 'value',
             type: 'array<object> | bool',
             default: '',
-            description: 'ส่งมาเพื่อแสดงใน input',
+            description: 'ถ้ามี options value จะเป็น array ถ้าไม่มี options value จะเป็น bool',
           },
           {
             property: 'name',
@@ -31,8 +31,8 @@ const getprosTypeCheckboxInput = (language) => {
           {
             property: 'options',
             type: 'array<object>',
-            default: '',
-            description: 'options ที่ต้องการ rendee [{ label: "one", value: 1 }, { label: "two", value: 2, disabled: true }]'
+            default: '[ ]',
+            description: 'options ที่ต้องการ render [{ label: "one", value: 1 }, { label: "two", value: 2, disabled: true }]'
           },
           {
             property: 'type',
@@ -87,6 +87,12 @@ const getprosTypeCheckboxInput = (language) => {
             type: 'function',
             default: '',
             description: 'function ที่จะทำงานตอนที่ value, rules มีการเปลียนแปลงจากข้างนอก form',
+          },
+          {
+            property: 'customElement',
+            type: 'function',
+            default: '',
+            description: 'function ที่จัดการ render เอง เช่น customElement={(input, label, errorMessage) => (<div>{input}</div>)}',
           },
           {
             property: 'children',
