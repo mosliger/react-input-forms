@@ -141,18 +141,26 @@ customElementNotOption = (input, label, errorMessage) => {
         <pre>
           <code>
             {`
-customElementHaveOption = (input, label, errorMessage) => {
-    return (
-      <div className="field-group">
-        <div className="box-input">
-          {input}
-           <label className="icon"></label>
-        </div>
-        <label htmlFor={label}>{label}</label>
-        <div className="error-message">{errorMessage}</div>
-      </div>
-    )
-  }
+customElementHaveOption = (inputList, label, errorMessage) => {
+  return (
+    <div className="field-group">
+      <label htmlFor={label}>{label}</label>
+      {inputList.map((detail, index) => {
+        return (
+          <div className="checkbox-list"}>
+            <div className="box-input">
+              {detail.input}
+              <label className="icon"></label>
+            </div>
+            <label htmlFor={label}>{detail.label}</label>
+          </div>
+        )
+      })
+      }
+      {errorMessage}
+    </div>
+  )
+}
 
 ...
 

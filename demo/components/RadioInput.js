@@ -14,6 +14,7 @@ export default class RadioInput extends Component {
     radioInputRules: '',
     radioInputChildren: '',
     basicinput: '',
+    customElement: '',
   }
 
   handleUpdateValue = (value, name) => {
@@ -53,6 +54,83 @@ const optionList = [
           `}
         </code>
       </pre>
+      </div>
+    )
+  }
+
+  customElementRadio = (inputList, label, errorMessage) => {
+    return (
+      <div className={'field-group'}>
+        <label htmlFor={label}>{label}</label>
+        {inputList.map((detail, index) => {
+          return (
+            <div className="radio-list" key={`${name}-${index}`}>
+              <div className="box-input">
+                {detail.input}
+                <label className="icon"></label>
+              </div>
+              <label htmlFor={label}>{detail.label}</label>
+            </div>
+          )
+        })
+        }
+        {errorMessage}
+      </div>
+    )
+  }
+
+  renderCustomElement = () => {
+    const { customElement } = this.state;
+    return (
+      <div>
+        <InputField type="radio" options={optionList} customElement={this.customElementRadio} value={customElement} name="customElement" label="custom element" onChange={this.handleUpdateValue} />
+        <pre>
+          <code>
+            {`
+customElementRadio = (inputList, label, errorMessage) => {
+  return (
+    <div className="field-group">
+      <label htmlFor={label}>{label}</label>
+      {inputList.map((detail, index) => {
+        return (
+          <div className="radio-list"}>
+            <div className="box-input">
+              {detail.input}
+              <label className="icon"></label>
+            </div>
+            <label htmlFor={label}>{detail.label}</label>
+          </div>
+        )
+      })
+      }
+      {errorMessage}
+    </div>
+  )
+}
+
+...
+
+const optionList = [
+  { label: 'one', value: '1' },
+  { label: 'two', value: '2' },
+  { label: 'three', value: '3' },
+  { label: 'four', value: '4' },
+  { label: 'five', value: '5' },
+];
+
+...
+
+<InputField
+  type="radio"
+  customElement={this.customElementRadio}
+  value={value}
+  name="input-radio"
+  label="custom element"
+  onChange={this.handleUpdateValue}
+/>
+          `}
+          </code>
+        </pre>
       </div>
     )
   }
@@ -185,6 +263,9 @@ export default class Demo extends Component {
           <div className="row">
             <div className="D-6 M-12">
               {this.renderBasicInput()}
+            </div>
+            <div className="D-6 M-12">
+              {this.renderCustomElement()}
             </div>
           </div>
         </div>
