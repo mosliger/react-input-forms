@@ -176,11 +176,12 @@ var Index = function (_React$Component) {
 
       var propsForm = _extends({}, (0, _global.remove)(['onChange', 'value', 'onBlur', 'onKeyCode', 'handleVerify', 'renderComponent', 'children'], this.props), {
         value: editValue ? value : this.props.value,
-        errorMessage: this.props.errorMessage ? this.props.errorMessage : errorMessage,
+        errorMessage: this.props.errorMessage || this.props.errorMessage === "" ? this.props.errorMessage : errorMessage,
         handleChange: this.handleChange,
         handleBlur: this.handleBlur,
         handleKeyCode: this.handleKeyCode
       });
+
       switch (type) {
         case 'text':
           {

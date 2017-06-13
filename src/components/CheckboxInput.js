@@ -78,8 +78,7 @@ export default class CheckboxInput extends React.Component {
     }
     if (options.length > 0) {
       const inputList = options.map((detail, index) => {
-        const getValue = value.value ? value.value : value;
-        const checked = getValue === detail.value;
+        const checked = this.handleChecked(detail, index);
         const input = (
           <input
             className={classInput}
@@ -95,6 +94,7 @@ export default class CheckboxInput extends React.Component {
         )
         return ({
           input: input,
+          checked,
           ...detail
         })
       });
@@ -108,7 +108,7 @@ export default class CheckboxInput extends React.Component {
         disabled={disabled}
         checked={value}
         onClick={() => handleChange(!value)}
-        onBlur={() => this.handleBlur(value)}
+        onBlur={() => handleBlur(value)}
         />
     )
     return this.props.customElement(inputCheckbox, label, errorMessage);
@@ -173,7 +173,7 @@ export default class CheckboxInput extends React.Component {
             disabled={disabled}
             checked={value}
             onClick={() => handleChange(!value)}
-            onBlur={() => this.handleBlur(value)}
+            onBlur={() => handleBlur(value)}
             />
           <label className={`icon ${value ? 'checked' : ''}`}></label>
         </div>
