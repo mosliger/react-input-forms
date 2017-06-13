@@ -96,8 +96,7 @@ var CheckboxInput = function (_React$Component) {
         var inputList = options.map(function (detail, index) {
           var _React$createElement;
 
-          var getValue = value.value ? value.value : value;
-          var checked = getValue === detail.value;
+          var checked = _this.handleChecked(detail, index);
           var input = _react2.default.createElement('input', (_React$createElement = {
             className: classInput,
             type: 'checkbox',
@@ -114,7 +113,8 @@ var CheckboxInput = function (_React$Component) {
             return _this.handleBlueOptions(detail, index, checked);
           }), _React$createElement));
           return _extends({
-            input: input
+            input: input,
+            checked: checked
           }, detail);
         });
         return _this.props.customElement(inputList, label, errorMessage);
