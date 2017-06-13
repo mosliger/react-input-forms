@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import InputField from 'react-input-forms';
-import InputField from '../../src';
+import InputField from 'react-input-forms';
+// import InputField from '../../src';
 import getprosTypeCheckboxInput from '../helpers/checkboxInput';
 
 const optionList = [
@@ -113,7 +113,7 @@ customElementNotOption = (input, label, errorMessage) => {
   }
 
   customElementHaveOption = (inputList, label, errorMessage) => {
-    console.log('renderCustomElementHaveOption >>', inputList);
+    // console.log('renderCustomElementHaveOption >>', inputList);
     return (
       <div className="field-group">
         <label htmlFor={label}>{label}</label>

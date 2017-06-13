@@ -129,7 +129,7 @@ var CheckboxInput = function (_React$Component) {
           return handleChange(!value);
         },
         onBlur: function onBlur() {
-          return _this.handleBlur(value);
+          return handleBlur(value);
         }
       });
       return _this.props.customElement(inputCheckbox, label, errorMessage);
@@ -241,7 +241,7 @@ var CheckboxInput = function (_React$Component) {
               return handleChange(!value);
             },
             onBlur: function onBlur() {
-              return _this2.handleBlur(value);
+              return handleBlur(value);
             }
           }),
           _react2.default.createElement('label', { className: 'icon ' + (value ? 'checked' : '') })
