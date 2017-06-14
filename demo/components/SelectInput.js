@@ -176,7 +176,7 @@ import InputField from 'react-input-forms'
 
 export default class Demo extends Component {
   state = {
-    value: '',
+    value: {},
   }
 
   handleUpdateValue = (value) => {
