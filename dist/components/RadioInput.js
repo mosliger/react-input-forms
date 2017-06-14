@@ -22,8 +22,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var RadioInput = function (_React$Component) {
-  _inherits(RadioInput, _React$Component);
+var RadioInput = function (_React$PureComponent) {
+  _inherits(RadioInput, _React$PureComponent);
 
   function RadioInput() {
     var _ref;
@@ -80,14 +80,6 @@ var RadioInput = function (_React$Component) {
   }
 
   _createClass(RadioInput, [{
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps) {
-      var keys = ['name', 'value', 'type', 'label', 'focus', 'options', 'disabled', 'errorMessage', 'inputProps'];
-      var checkProps = (0, _global.pick)(keys, this.props);
-      var checkNextProps = (0, _global.pick)(keys, nextProps);
-      return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _props = this.props,
@@ -168,7 +160,7 @@ var RadioInput = function (_React$Component) {
   }]);
 
   return RadioInput;
-}(_react2.default.Component);
+}(_react2.default.PureComponent);
 
 RadioInput.propTypes = {
   value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string, _react.PropTypes.object]),

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { isEmpey, pick } from '../helpers/global';
 
-export default class TextInput extends React.Component {
+export default class TextInput extends React.PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.number,
@@ -35,13 +35,6 @@ export default class TextInput extends React.Component {
     focus: false,
     placeholder: '',
     type: 'text',
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const keys = ['name', 'value', 'type', 'label', 'focus', 'disabled', 'errorMessage', 'placeholder', 'inputProps'];
-    const checkProps = pick(keys, this.props);
-    const checkNextProps = pick(keys, nextProps);
-    return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
   }
 
   renderCustomElement = () => {

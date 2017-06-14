@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { isEmpey, pick } from '../helpers/global';
 
-export default class CheckboxInput extends React.Component {
+export default class CheckboxInput extends React.PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.bool,
@@ -30,13 +30,6 @@ export default class CheckboxInput extends React.Component {
     disabled: false,
     focus: false,
     type: 'text',
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const keys = ['name', 'value', 'type', 'label', 'focus', 'disabled', 'errorMessage'];
-    const checkProps = pick(keys, this.props);
-    const checkNextProps = pick(keys, nextProps);
-    return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
   }
 
   handleChangeOptions = (optionDetail, key, checked) => {

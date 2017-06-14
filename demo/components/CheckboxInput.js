@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import InputField from 'react-input-forms';
-// import InputField from '../../src';
 import getprosTypeCheckboxInput from '../helpers/checkboxInput';
 
 const optionList = [

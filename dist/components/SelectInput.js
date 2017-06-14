@@ -20,8 +20,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SelectInput = function (_React$Component) {
-  _inherits(SelectInput, _React$Component);
+var SelectInput = function (_React$PureComponent) {
+  _inherits(SelectInput, _React$PureComponent);
 
   function SelectInput() {
     var _ref;
@@ -108,14 +108,6 @@ var SelectInput = function (_React$Component) {
   }
 
   _createClass(SelectInput, [{
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps) {
-      var keys = ['name', 'value', 'type', 'label', 'options', 'focus', 'disabled', 'errorMessage', 'placeholder', 'inputProps', 'labelProps'];
-      var checkProps = (0, _global.pick)(keys, this.props);
-      var checkNextProps = (0, _global.pick)(keys, nextProps);
-      return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -205,7 +197,7 @@ var SelectInput = function (_React$Component) {
   }]);
 
   return SelectInput;
-}(_react2.default.Component);
+}(_react2.default.PureComponent);
 
 SelectInput.propTypes = {
   value: _react.PropTypes.oneOfType([_react.PropTypes.object, _react.PropTypes.string]),

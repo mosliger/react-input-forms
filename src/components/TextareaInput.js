@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { isEmpey, pick } from '../helpers/global';
 
-export default class TextareaInput extends React.Component {
+export default class TextareaInput extends React.PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.number,
@@ -36,13 +36,6 @@ export default class TextareaInput extends React.Component {
     focus: false,
     placeholder: '',
     type: 'text',
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const keys = ['name', 'value', 'type', 'label', 'rows', 'cols', 'focus', 'disabled', 'errorMessage', 'placeholder'];
-    const checkProps = pick(keys, this.props);
-    const checkNextProps = pick(keys, nextProps);
-    return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
   }
 
   renderCustomElement = () => {

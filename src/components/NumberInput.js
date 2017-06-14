@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { size, isEmpey, toNumber, toNumeral, pick, checkNumberFormat } from '../helpers/global';
 
-export default class NumberInput extends React.Component {
+export default class NumberInput extends React.PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.number,
@@ -38,14 +38,6 @@ export default class NumberInput extends React.Component {
     const { value, format, handleBlur } = this.props;
     const numberValue = Number(toNumber(value));
     if (!isEmpey(value) && !isEmpey(format) && isFinite(toNumber(value))) handleBlur(this.getValueFormat(toNumeral(numberValue.toString(), format)))
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const keys = ['name', 'value', 'type', 'label', 'format', 'focus', 'disabled', 'errorMessage', 'placeholder'];
-    const checkProps = pick(keys, this.props);
-    const checkNextProps = pick(keys, nextProps);
-    return true;
-    return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
   }
 
   getValueFormat = (value) => {

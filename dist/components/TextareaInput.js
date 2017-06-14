@@ -20,8 +20,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var TextareaInput = function (_React$Component) {
-  _inherits(TextareaInput, _React$Component);
+var TextareaInput = function (_React$PureComponent) {
+  _inherits(TextareaInput, _React$PureComponent);
 
   function TextareaInput() {
     var _ref;
@@ -86,14 +86,6 @@ var TextareaInput = function (_React$Component) {
   }
 
   _createClass(TextareaInput, [{
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps) {
-      var keys = ['name', 'value', 'type', 'label', 'rows', 'cols', 'focus', 'disabled', 'errorMessage', 'placeholder'];
-      var checkProps = (0, _global.pick)(keys, this.props);
-      var checkNextProps = (0, _global.pick)(keys, nextProps);
-      return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _props = this.props,
@@ -168,7 +160,7 @@ var TextareaInput = function (_React$Component) {
   }]);
 
   return TextareaInput;
-}(_react2.default.Component);
+}(_react2.default.PureComponent);
 
 TextareaInput.propTypes = {
   value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),

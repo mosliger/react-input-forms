@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { isEmpey, getOption, pick } from '../helpers/global';
 
 
-export default class SelectInput extends React.Component {
+export default class SelectInput extends React.PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.object,
@@ -33,13 +33,6 @@ export default class SelectInput extends React.Component {
     focus: false,
     placeholder: '',
     type: 'text',
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const keys = ['name', 'value', 'type', 'label', 'options', 'focus', 'disabled', 'errorMessage', 'placeholder', 'inputProps', 'labelProps'];
-    const checkProps = pick(keys, this.props);
-    const checkNextProps = pick(keys, nextProps);
-    return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
   }
 
   handleSelectChange = (e) => {

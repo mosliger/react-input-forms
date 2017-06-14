@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { isEmpey, pick } from '../helpers/global';
 
-export default class RadioInput extends React.Component {
+export default class RadioInput extends React.PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.number,
@@ -33,13 +33,6 @@ export default class RadioInput extends React.Component {
     disabled: false,
     focus: false,
     type: 'text',
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const keys = ['name', 'value', 'type', 'label', 'focus', 'options', 'disabled', 'errorMessage', 'inputProps'];
-    const checkProps = pick(keys, this.props);
-    const checkNextProps = pick(keys, nextProps);
-    return JSON.stringify(checkProps) !== JSON.stringify(checkNextProps);
   }
 
   renderCustomElement = () => {
