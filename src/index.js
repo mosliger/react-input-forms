@@ -34,6 +34,7 @@ export default class Index extends React.Component {
     errorMessage: PropTypes.string,
 
     children: PropTypes.string,
+    remark: PropTypes.string,
 
     options: PropTypes.array,
 
@@ -62,6 +63,7 @@ export default class Index extends React.Component {
     focus: false,
     placeholder: '',
     tabIndex: 1,
+    remark: '',
     type: 'text',
   }
 

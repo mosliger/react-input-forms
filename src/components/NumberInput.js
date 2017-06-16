@@ -17,6 +17,7 @@ export default class NumberInput extends React.PureComponent {
     disabled: PropTypes.bool,
     focus: PropTypes.bool,
     errorMessage: PropTypes.string,
+    remark: PropTypes.string,
     handleChange: PropTypes.func,
     handleBlur: PropTypes.func,
     handleKeyCode: PropTypes.func,
@@ -102,7 +103,7 @@ export default class NumberInput extends React.PureComponent {
   }
 
   render() {
-    const { label, value, disabled, focus, placeholder, name, format, tabIndex, errorMessage, inputProps, handleChange, handleKeyCode } = this.props;
+    const { label, value, disabled, remark, focus, placeholder, name, format, tabIndex, errorMessage, inputProps, handleChange, handleKeyCode } = this.props;
 
     if (this.props.customElement) {
       return this.renderCustomElement();
@@ -117,7 +118,7 @@ export default class NumberInput extends React.PureComponent {
 
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
-        <label htmlFor={label}>{label}</label>
+        <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
         <input
           ref={(input) => {
             if (input != null && focus) {

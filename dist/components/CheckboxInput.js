@@ -145,6 +145,7 @@ var CheckboxInput = function (_React$PureComponent) {
           label = _props.label,
           value = _props.value,
           disabled = _props.disabled,
+          remark = _props.remark,
           focus = _props.focus,
           options = _props.options,
           name = _props.name,
@@ -176,7 +177,13 @@ var CheckboxInput = function (_React$PureComponent) {
           _react2.default.createElement(
             'label',
             { htmlFor: label },
-            label
+            label,
+            ' ',
+            !(0, _global.isEmpey)(remark) && _react2.default.createElement(
+              'span',
+              { className: 'remark' },
+              remark
+            )
           ),
           options.map(function (detail, index) {
             var _React$createElement2;
@@ -262,6 +269,7 @@ CheckboxInput.propTypes = {
   disabled: _react.PropTypes.bool,
   focus: _react.PropTypes.bool,
   errorMessage: _react.PropTypes.string,
+  remark: _react.PropTypes.string,
   handleChange: _react.PropTypes.func,
   handleBlur: _react.PropTypes.func
 };

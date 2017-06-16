@@ -93,6 +93,7 @@ var TextareaInput = function (_React$PureComponent) {
           value = _props.value,
           disabled = _props.disabled,
           focus = _props.focus,
+          remark = _props.remark,
           placeholder = _props.placeholder,
           name = _props.name,
           rows = _props.rows,
@@ -126,7 +127,13 @@ var TextareaInput = function (_React$PureComponent) {
         _react2.default.createElement(
           'label',
           { htmlFor: label },
-          label
+          label,
+          ' ',
+          !(0, _global.isEmpey)(remark) && _react2.default.createElement(
+            'span',
+            { className: 'remark' },
+            remark
+          )
         ),
         _react2.default.createElement(
           'textarea',
@@ -175,6 +182,7 @@ TextareaInput.propTypes = {
   disabled: _react.PropTypes.bool,
   focus: _react.PropTypes.bool,
   errorMessage: _react.PropTypes.string,
+  remark: _react.PropTypes.string,
   handleChange: _react.PropTypes.func,
   handleBlur: _react.PropTypes.func,
   handleKeyCode: _react.PropTypes.func

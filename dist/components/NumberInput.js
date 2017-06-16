@@ -136,6 +136,7 @@ var NumberInput = function (_React$PureComponent) {
           label = _props2.label,
           value = _props2.value,
           disabled = _props2.disabled,
+          remark = _props2.remark,
           focus = _props2.focus,
           placeholder = _props2.placeholder,
           name = _props2.name,
@@ -168,7 +169,13 @@ var NumberInput = function (_React$PureComponent) {
         _react2.default.createElement(
           'label',
           { htmlFor: label },
-          label
+          label,
+          ' ',
+          !(0, _global.isEmpey)(remark) && _react2.default.createElement(
+            'span',
+            { className: 'remark' },
+            remark
+          )
         ),
         _react2.default.createElement('input', {
           ref: function ref(input) {
@@ -213,6 +220,7 @@ NumberInput.propTypes = {
   disabled: _react.PropTypes.bool,
   focus: _react.PropTypes.bool,
   errorMessage: _react.PropTypes.string,
+  remark: _react.PropTypes.string,
   handleChange: _react.PropTypes.func,
   handleBlur: _react.PropTypes.func,
   handleKeyCode: _react.PropTypes.func

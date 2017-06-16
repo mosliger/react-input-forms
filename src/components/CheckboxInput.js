@@ -15,6 +15,7 @@ export default class CheckboxInput extends React.PureComponent {
     disabled: PropTypes.bool,
     focus: PropTypes.bool,
     errorMessage: PropTypes.string,
+    remark: PropTypes.string,
     handleChange: PropTypes.func,
     handleBlur: PropTypes.func,
   };
@@ -109,7 +110,7 @@ export default class CheckboxInput extends React.PureComponent {
   }
 
   render() {
-    const { label, value, disabled, focus, options, name, errorMessage, inputProps, handleChange, handleBlur } = this.props;
+    const { label, value, disabled, remark, focus, options, name, errorMessage, inputProps, handleChange, handleBlur } = this.props;
     
      if (this.props.customElement) {
       return this.renderCustomElement();
@@ -126,7 +127,7 @@ export default class CheckboxInput extends React.PureComponent {
     if (options.length > 0) {
       return (
         <div className={inputProps.className ? inputProps.className : 'field-group'}>
-          <label htmlFor={label}>{label}</label>
+          <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
           {options.map((detail, index) => {
             const checked = this.handleChecked(detail, index);
             return (

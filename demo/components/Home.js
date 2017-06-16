@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import InputField from 'react-input-forms';
-import InputField from '../../src';
+import InputField from 'react-input-forms';
+// import InputField from '../../src';
 
 export default class Home extends Component {
   state = {
@@ -123,7 +123,7 @@ export default class Home extends Component {
         <div className="row">
           <div className="D-6 M-12">
             <h2>Text Input</h2>
-            <InputField type="text" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode}  value={textInput} rules={rules} key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
+            <InputField type="text" remark="*" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode}  value={textInput} rules={rules} key="textInput" name="textInput" label="label Text Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
           </div>
           <div className="D-6 M-12">
             <h2>Number Input</h2>

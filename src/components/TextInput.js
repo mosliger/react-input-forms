@@ -19,6 +19,7 @@ export default class TextInput extends React.PureComponent {
     focus: PropTypes.bool,
     tabIndex: PropTypes.number,
     errorMessage: PropTypes.string,
+    remark: PropTypes.string,
     handleChange: PropTypes.func,
     handleBlur: PropTypes.func,
     handleKeyCode: PropTypes.func,
@@ -63,7 +64,7 @@ export default class TextInput extends React.PureComponent {
   }
 
   render() {
-    const { label, value, disabled, focus, placeholder, name, errorMessage, inputProps, tabIndex, handleChange, handleKeyCode, handleBlur } = this.props;
+    const { label, value, disabled, remark, focus, placeholder, name, errorMessage, inputProps, tabIndex, handleChange, handleKeyCode, handleBlur } = this.props;
 
     if (this.props.customElement) {
       return this.renderCustomElement();
@@ -78,7 +79,7 @@ export default class TextInput extends React.PureComponent {
 
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
-        <label htmlFor={label}>{label}</label>
+        <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
         <input
           ref={(input) => {
             if (input != null && focus) {

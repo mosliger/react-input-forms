@@ -18,6 +18,7 @@ export default class TextareaInput extends React.PureComponent {
     disabled: PropTypes.bool,
     focus: PropTypes.bool,
     errorMessage: PropTypes.string,
+    remark: PropTypes.string,
     handleChange: PropTypes.func,
     handleBlur: PropTypes.func,
     handleKeyCode: PropTypes.func,
@@ -66,7 +67,7 @@ export default class TextareaInput extends React.PureComponent {
   }
 
   render() {
-    const { label, value, disabled, focus, placeholder, name, rows, cols, tabIndex, errorMessage, inputProps, handleChange, handleKeyCode, handleBlur } = this.props;
+    const { label, value, disabled, focus, remark, placeholder, name, rows, cols, tabIndex, errorMessage, inputProps, handleChange, handleKeyCode, handleBlur } = this.props;
 
     if (this.props.customElement) {
       return this.renderCustomElement();
@@ -81,7 +82,7 @@ export default class TextareaInput extends React.PureComponent {
 
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
-        <label htmlFor={label}>{label}</label>
+        <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
         <textarea
           ref={(input) => {
             if (input != null && focus) {

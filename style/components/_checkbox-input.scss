@@ -40,6 +40,10 @@
       transform: translate(-50%, -50%) scale(0);
     }
   }
+  span.remark {
+    color: $fontError;
+    padding-left: 5px;
+  }
   input[type="checkbox"] {
     position: absolute;
     width: 100%;

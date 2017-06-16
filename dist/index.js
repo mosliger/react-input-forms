@@ -326,6 +326,7 @@ Index.propTypes = (_Index$propTypes = {
   errorMessage: _react.PropTypes.string,
 
   children: _react.PropTypes.string,
+  remark: _react.PropTypes.string,
 
   options: _react.PropTypes.array,
 
@@ -341,6 +342,7 @@ Index.defaultProps = {
   focus: false,
   placeholder: '',
   tabIndex: 1,
+  remark: '',
   type: 'text'
 };
 exports.default = Index;

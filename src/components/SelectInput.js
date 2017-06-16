@@ -18,6 +18,7 @@ export default class SelectInput extends React.PureComponent {
     disabled: PropTypes.bool,
     focus: PropTypes.bool,
     errorMessage: PropTypes.string,
+    remark: PropTypes.string,
     handleChange: PropTypes.func,
   };
 
@@ -81,7 +82,7 @@ export default class SelectInput extends React.PureComponent {
   }
 
   render() {
-    const { label, value, disabled, focus, placeholder, name, format, errorMessage, options, inputProps, tabIndex, handleBlur, handleKeyCode } = this.props;
+    const { label, value, disabled, remark, focus, placeholder, name, format, errorMessage, options, inputProps, tabIndex, handleBlur, handleKeyCode } = this.props;
 
     if (this.props.customElement) {
       return this.renderCustomElement();
@@ -108,7 +109,7 @@ export default class SelectInput extends React.PureComponent {
 
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
-        <label htmlFor={label}>{label}</label>
+        <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
         <select
           ref={(input) => {
             if (input != null && focus) {
