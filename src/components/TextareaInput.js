@@ -18,6 +18,7 @@ export default class TextareaInput extends React.PureComponent {
     disabled: PropTypes.bool,
     focus: PropTypes.bool,
     errorMessage: PropTypes.string,
+    maxLength: PropTypes.number,
     remark: PropTypes.string,
     handleChange: PropTypes.func,
     handleBlur: PropTypes.func,
@@ -54,6 +55,7 @@ export default class TextareaInput extends React.PureComponent {
       } }
       rows={rows}
       cols={cols}
+      maxLength={this.props.maxLength}
       disabled={disabled}
       className={classInput}
       value={value}
@@ -94,6 +96,7 @@ export default class TextareaInput extends React.PureComponent {
           disabled={disabled}
           className={classInput}
           value={value}
+          maxLength={this.props.maxLength}
           onKeyUp={(e) => handleKeyCode(e)}
           onChange={(e) => handleChange(e.target.value)}
           onBlur={(e) => handleBlur(e.target.value)}

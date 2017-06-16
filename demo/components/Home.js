@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import InputField from 'react-input-forms';
-// import InputField from '../../src';
+// import InputField from 'react-input-forms';
+import InputField from '../../src';
 
 export default class Home extends Component {
   state = {
@@ -137,7 +137,7 @@ export default class Home extends Component {
           </div>
           <div className="D-6 M-12">
             <h2>Textarea</h2>
-            <InputField type="textarea" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} rules={rules} value={textarea} key="textarea" name="textarea" label="label Textarea" rows={3} cols={4} onBlur={this.handleOnBlur} onChange={this.handleUpdateValue} />
+            <InputField type="textarea"  onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} rules={rules} value={textarea} key="textarea" name="textarea" label="label Textarea" rows={3} cols={4} onBlur={this.handleOnBlur} onChange={this.handleUpdateValue} />
           </div>
         </div>
         <div className="row">

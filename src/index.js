@@ -26,6 +26,7 @@ export default class Index extends React.Component {
     rows: PropTypes.number,
     cols: PropTypes.number,
     tabIndex: PropTypes.number,
+    maxLength: PropTypes.number,
 
     label: PropTypes.string,
     placeholder: PropTypes.string,

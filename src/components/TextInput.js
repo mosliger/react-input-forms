@@ -18,6 +18,7 @@ export default class TextInput extends React.PureComponent {
     disabled: PropTypes.bool,
     focus: PropTypes.bool,
     tabIndex: PropTypes.number,
+    maxLength: PropTypes.number,
     errorMessage: PropTypes.string,
     remark: PropTypes.string,
     handleChange: PropTypes.func,
@@ -54,6 +55,7 @@ export default class TextInput extends React.PureComponent {
       type="text"
       name={name}
       value={value}
+      maxLength={this.props.maxLength}
       placeholder={placeholder}
       disabled={disabled}
       onKeyUp={(e) => handleKeyCode(e)}
@@ -90,12 +92,13 @@ export default class TextInput extends React.PureComponent {
           type="text"
           name={name}
           value={value}
+          maxLength={this.props.maxLength}
           placeholder={placeholder}
           disabled={disabled}
           onKeyUp={(e) => handleKeyCode(e)}
           onChange={(e) => handleChange(e.target.value)}
           onBlur={(e) => handleBlur(e.target.value)}
-          />
+        />
 
         {renderErrorMessage}
         <div className="children">{this.props.children}</div>

@@ -318,6 +318,7 @@ Index.propTypes = (_Index$propTypes = {
   rows: _react.PropTypes.number,
   cols: _react.PropTypes.number,
   tabIndex: _react.PropTypes.number,
+  maxLength: _react.PropTypes.number,
 
   label: _react.PropTypes.string,
   placeholder: _react.PropTypes.string,

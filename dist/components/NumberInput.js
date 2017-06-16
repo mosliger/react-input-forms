@@ -102,6 +102,7 @@ var NumberInput = function (_React$PureComponent) {
         value: !(0, _global.isEmpey)(format) ? (0, _global.toNumeral)(value, format) : value,
         placeholder: placeholder,
         disabled: disabled,
+        maxLength: _this.props.maxLength,
         onKeyUp: function onKeyUp(e) {
           return handleKeyCode(e);
         },
@@ -189,6 +190,7 @@ var NumberInput = function (_React$PureComponent) {
           value: !(0, _global.isEmpey)(format) ? (0, _global.toNumeral)(value, format) : value,
           placeholder: placeholder,
           disabled: disabled,
+          maxLength: this.props.maxLength,
           onKeyUp: function onKeyUp(e) {
             return handleKeyCode(e);
           },
@@ -222,6 +224,7 @@ NumberInput.propTypes = {
   errorMessage: _react.PropTypes.string,
   remark: _react.PropTypes.string,
   handleChange: _react.PropTypes.func,
+  maxLength: _react.PropTypes.number,
   handleBlur: _react.PropTypes.func,
   handleKeyCode: _react.PropTypes.func
 };

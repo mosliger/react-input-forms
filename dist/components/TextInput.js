@@ -63,6 +63,7 @@ var TextInput = function (_React$PureComponent) {
         type: 'text',
         name: name,
         value: value,
+        maxLength: _this.props.maxLength,
         placeholder: placeholder,
         disabled: disabled,
         onKeyUp: function onKeyUp(e) {
@@ -137,6 +138,7 @@ var TextInput = function (_React$PureComponent) {
           type: 'text',
           name: name,
           value: value,
+          maxLength: this.props.maxLength,
           placeholder: placeholder,
           disabled: disabled,
           onKeyUp: function onKeyUp(e) {
@@ -175,6 +177,7 @@ TextInput.propTypes = {
   disabled: _react.PropTypes.bool,
   focus: _react.PropTypes.bool,
   tabIndex: _react.PropTypes.number,
+  maxLength: _react.PropTypes.number,
   errorMessage: _react.PropTypes.string,
   remark: _react.PropTypes.string,
   handleChange: _react.PropTypes.func,

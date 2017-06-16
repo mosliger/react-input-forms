@@ -66,6 +66,7 @@ var TextareaInput = function (_React$PureComponent) {
           },
           rows: rows,
           cols: cols,
+          maxLength: _this.props.maxLength,
           disabled: disabled,
           className: classInput,
           value: value,
@@ -148,6 +149,7 @@ var TextareaInput = function (_React$PureComponent) {
             disabled: disabled,
             className: classInput,
             value: value,
+            maxLength: this.props.maxLength,
             onKeyUp: function onKeyUp(e) {
               return handleKeyCode(e);
             },
@@ -182,6 +184,7 @@ TextareaInput.propTypes = {
   disabled: _react.PropTypes.bool,
   focus: _react.PropTypes.bool,
   errorMessage: _react.PropTypes.string,
+  maxLength: _react.PropTypes.number,
   remark: _react.PropTypes.string,
   handleChange: _react.PropTypes.func,
   handleBlur: _react.PropTypes.func,

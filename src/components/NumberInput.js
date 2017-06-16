@@ -19,6 +19,7 @@ export default class NumberInput extends React.PureComponent {
     errorMessage: PropTypes.string,
     remark: PropTypes.string,
     handleChange: PropTypes.func,
+    maxLength: PropTypes.number,
     handleBlur: PropTypes.func,
     handleKeyCode: PropTypes.func,
   };
@@ -95,6 +96,7 @@ export default class NumberInput extends React.PureComponent {
       value={!isEmpey(format) ? toNumeral(value, format) : value}
       placeholder={placeholder}
       disabled={disabled}
+      maxLength={this.props.maxLength}
       onKeyUp={(e) => handleKeyCode(e)}
       onChange={(e) => this.onInputChange(e.target.value)}
       onBlur={(e) => this.handleOnBlur(e.target.value)}
@@ -131,6 +133,7 @@ export default class NumberInput extends React.PureComponent {
           value={!isEmpey(format) ? toNumeral(value, format) : value}
           placeholder={placeholder}
           disabled={disabled}
+          maxLength={this.props.maxLength}
           onKeyUp={(e) => handleKeyCode(e)}
           onChange={(e) => this.onInputChange(e.target.value)}
           onBlur={(e) => this.handleOnBlur(e.target.value)}
