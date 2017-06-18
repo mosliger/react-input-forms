@@ -16,8 +16,6 @@ var _global = require('../helpers/global');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48,10 +46,28 @@ var CheckboxInput = function (_React$PureComponent) {
 
       var setValue = [];
       if (checked) {
-        setValue = [].concat(_toConsumableArray(value), [_extends({}, options[key], { key: key, value: true })]);
+        var getOptions = options.filter(function (obj) {
+          var getValue = value.find(function (item) {
+            if (item.value) return obj.value === item.value;
+            return obj.value === item;
+          });
+          if (getValue) return true;
+          return false;
+        });
+        setValue = [].concat(_toConsumableArray(getOptions), [optionDetail]);
       } else {
-        setValue = value.filter(function (option) {
-          return option.label !== optionDetail.label;
+        var _getOptions = options.filter(function (obj) {
+          var getValue = value.find(function (item) {
+            if (item.value) return obj.value === item.value;
+            return obj.value === item;
+          });
+          if (getValue) return true;
+          return false;
+        });
+
+        setValue = _getOptions.filter(function (item) {
+          if (item.value) return item.value !== optionDetail.value;
+          return item !== optionDetail.value;
         });
       }
       handleChange(setValue);
@@ -65,11 +81,11 @@ var CheckboxInput = function (_React$PureComponent) {
       var value = _this.props.value;
 
       try {
-        var filterValue = value.filter(function (optionDetail) {
-          var key = optionDetail.key ? optionDetail.key : index;
-          return option.label === optionDetail.label && key === index;
+        var filterValue = value.find(function (optionDetail) {
+          if (optionDetail.label) return option.value === optionDetail.value;
+          return optionDetail === option.value;
         });
-        if (filterValue.length === 1) return true;
+        if (filterValue) return true;
       } catch (e) {
         return false;
       }
@@ -94,10 +110,8 @@ var CheckboxInput = function (_React$PureComponent) {
       }
       if (options.length > 0) {
         var inputList = options.map(function (detail, index) {
-          var _React$createElement;
-
           var checked = _this.handleChecked(detail, index);
-          var input = _react2.default.createElement('input', (_React$createElement = {
+          var input = _react2.default.createElement('input', {
             className: classInput,
             type: 'checkbox',
             name: name,
@@ -106,12 +120,11 @@ var CheckboxInput = function (_React$PureComponent) {
             checked: checked,
             onChange: function onChange() {
               return _this.handleChangeOptions(detail, index, !checked);
+            },
+            onBlur: function onBlur() {
+              return _this.handleBlueOptions(detail, index, checked);
             }
-          }, _defineProperty(_React$createElement, 'onChange', function onChange() {
-            return _this.handleChangeOptions(detail, index, !checked);
-          }), _defineProperty(_React$createElement, 'onBlur', function onBlur() {
-            return _this.handleBlueOptions(detail, index, checked);
-          }), _React$createElement));
+          });
           return _extends({
             input: input,
             checked: checked
@@ -186,8 +199,6 @@ var CheckboxInput = function (_React$PureComponent) {
             )
           ),
           options.map(function (detail, index) {
-            var _React$createElement2;
-
             var checked = _this2.handleChecked(detail, index);
             return _react2.default.createElement(
               'div',
@@ -195,7 +206,7 @@ var CheckboxInput = function (_React$PureComponent) {
               _react2.default.createElement(
                 'div',
                 { className: 'box-input' },
-                _react2.default.createElement('input', (_React$createElement2 = {
+                _react2.default.createElement('input', {
                   className: classInput,
                   type: 'checkbox',
                   name: name,
@@ -204,12 +215,11 @@ var CheckboxInput = function (_React$PureComponent) {
                   checked: checked,
                   onChange: function onChange() {
                     return _this2.handleChangeOptions(detail, index, !checked);
+                  },
+                  onBlur: function onBlur() {
+                    return _this2.handleBlueOptions(detail, index, checked);
                   }
-                }, _defineProperty(_React$createElement2, 'onChange', function onChange() {
-                  return _this2.handleChangeOptions(detail, index, !checked);
-                }), _defineProperty(_React$createElement2, 'onBlur', function onBlur() {
-                  return _this2.handleBlueOptions(detail, index, checked);
-                }), _React$createElement2)),
+                }),
                 _react2.default.createElement('label', { className: 'icon ' + (checked ? 'checked' : '') })
               ),
               _react2.default.createElement(

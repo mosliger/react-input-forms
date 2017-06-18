@@ -37,9 +37,29 @@ export default class CheckboxInput extends React.PureComponent {
     const { options, handleChange, value } = this.props;
     let setValue = [];
     if (checked) {
-      setValue = [...value, { ...options[key], key: key, value: true }];
+      const getOptions = options.filter((obj) => {
+        const getValue = value.find((item) => {
+          if (item.value) return obj.value === item.value;
+            return obj.value === item;
+        })
+        if (getValue) return true;
+        return false;
+      })
+      setValue = [...getOptions, optionDetail];
     } else {
-      setValue = value.filter((option) => option.label !== optionDetail.label);
+      const getOptions = options.filter((obj) => {
+        const getValue = value.find((item) => {
+          if (item.value) return obj.value === item.value;
+            return obj.value === item;
+        })
+        if (getValue) return true;
+        return false;
+      })
+      
+      setValue = getOptions.filter((item) => {
+        if(item.value) return item.value !== optionDetail.value;
+        return item !== optionDetail.value;
+      });
     }
     handleChange(setValue)
   }
@@ -52,11 +72,11 @@ export default class CheckboxInput extends React.PureComponent {
   handleChecked = (option, index) => {
     const { value } = this.props;
     try {
-      const filterValue = value.filter((optionDetail) => {
-        const key = optionDetail.key ? optionDetail.key : index;
-        return option.label === optionDetail.label && key === index;
+      const filterValue = value.find((optionDetail) => {
+        if (optionDetail.label) return option.value === optionDetail.value
+        return optionDetail === option.value
       });
-      if (filterValue.length === 1) return true;
+      if (filterValue) return true;
     } catch (e) {
       return false;
     }
@@ -82,9 +102,8 @@ export default class CheckboxInput extends React.PureComponent {
             disabled={disabled ? disabled : detail.disabled}
             checked={checked}
             onChange={() => this.handleChangeOptions(detail, index, !checked)}
-            onChange={() => this.handleChangeOptions(detail, index, !checked)}
             onBlur={() => this.handleBlueOptions(detail, index, checked)}
-            />
+          />
         )
         return ({
           input: input,
@@ -140,7 +159,6 @@ export default class CheckboxInput extends React.PureComponent {
                     value={detail.value}
                     disabled={disabled ? disabled : detail.disabled}
                     checked={checked}
-                    onChange={() => this.handleChangeOptions(detail, index, !checked)}
                     onChange={() => this.handleChangeOptions(detail, index, !checked)}
                     onBlur={() => this.handleBlueOptions(detail, index, checked)}
                     />

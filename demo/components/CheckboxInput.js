@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import InputField from 'react-input-forms';
+// import InputField from 'react-input-forms';
 import getprosTypeCheckboxInput from '../helpers/checkboxInput';
+import InputField from '../../src';
 
 const optionList = [
   { label: 'one', value: '1' },
@@ -19,8 +20,16 @@ export default class CheckboxInput extends Component {
     customElementHaveOption: [],
   }
 
-  handleUpdateValue = (value, name) => {
-    this.setState({ [name]: value });
+  handleUpdateValueNotOption = (value, name) => {
+     this.setState({ [name]: value });
+  }
+
+  handleUpdateValueOption = (option, name) => {
+    this.setState({ [name]: option });
+  }
+
+  handleUpdateValue = (option, name) => {
+    this.setState({ [name]: option.map((item) => item.value) });
   }
 
   handleClearValue = (key) => {
@@ -31,7 +40,7 @@ export default class CheckboxInput extends Component {
     const { basicinput } = this.state;
     return (
       <div>
-        <InputField type="checkbox" options={optionList} value={basicinput} name="basicinput" label="basic input " onChange={this.handleUpdateValue} />
+        <InputField type="checkbox" options={optionList} value={basicinput} name="basicinput" label="basic input " onChange={this.handleUpdateValueNotOption} />
         <pre>
           <code>
             {`
@@ -215,7 +224,7 @@ const optionList = [
             ]}
             name="checkboxInput"
             label="checkbox options"
-            onChange={this.handleUpdateValue}
+            onChange={this.handleUpdateValueOption}
             />
         </div>
         <div className="box-demo-input">
@@ -250,6 +259,7 @@ const optionList = [
 
   render() {
     const prosType = getprosTypeCheckboxInput('th');
+    console.log('handleUpdateValue >', this.state);
     return (
       <div className="container">
         <h1>Input Type Checkbox</h1>
