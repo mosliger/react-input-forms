@@ -7,6 +7,7 @@ import {
   TextInput,
   CheckboxInput,
   RadioInput,
+  SelectFilterInput,
 } from './components';
 
 export default class Index extends React.Component {
@@ -206,6 +207,10 @@ export default class Index extends React.Component {
         case 'select': {
           if (this.props.children) return (<div className="select-input"><SelectInput {...propsForm}>{this.props.children}</SelectInput></div>);
           return (<div className="select-input"><SelectInput {...propsForm} /></div>);
+        }
+        case 'select-filter': {
+          if (this.props.children) return (<div className="select-filter-input"><SelectFilterInput {...propsForm}>{this.props.children}</SelectFilterInput></div>);
+          return (<div className="select-filter-input"><SelectFilterInput {...propsForm} /></div>);
         }
         case 'textarea': {
           if (this.props.children) return (<div className="textarea-input"><TextareaInput {...propsForm}>{this.props.children}</TextareaInput></div>);

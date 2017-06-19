@@ -7,6 +7,7 @@ export default class Home extends Component {
     textInput: '',
     numberInput: '',
     selectInput: '',
+    selectFilterInput: {},
     textarea: '',
     customInput: '',
     checkboxInput: [],
@@ -94,7 +95,8 @@ export default class Home extends Component {
         <div className="row">
           <div className="D-6 M-12">
             <h2>Text Input</h2>
-            <InputField type="text"
+            <InputField
+              type="text"
               customElement={this.customElementText}
               onPropsChange={this.onPropsChange}
               onKeyCode={this.getKeyCode}
@@ -106,7 +108,7 @@ export default class Home extends Component {
               label="Text Input Custom Element"
               onChange={this.handleUpdateValue}
               onBlur={this.handleOnBlur}
-              />
+            />
           </div>
         </div>
       </div>
@@ -114,7 +116,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { textInput, customerInput, numberInput, selectInput, disabledOption, textarea, customInput, checkboxInput, radioInput, checkboxInputNotOption } = this.state;
+    const { textInput, selectFilterInput, customerInput, numberInput, selectInput, disabledOption, textarea, customInput, checkboxInput, radioInput, checkboxInputNotOption } = this.state;
     let optionList = [{ label: 'select ...', value: '' }, { label: 'one', value: '1' }, { label: 'two', value: '2' }, { label: 'three', value: '3' }, { label: 'four', value: '4' }, { label: 'five', value: '5' }];
     const rules = { required: 'input is require.' };
     if (disabledOption)  optionList = [{ label: 'select ...', value: '', disabled: true }, { label: 'one', value: '1' }, { label: 'two', value: '2', disabled: true }, { label: 'three', value: '3' }, { label: 'four', value: '4', disabled: true }, { label: 'five', value: '5' }];
@@ -135,6 +137,12 @@ export default class Home extends Component {
             <h2>Select</h2>
             <InputField type="select" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} rules={rules} value={selectInput} key="selectInput" name="selectInput" label="label Select" options={optionList} onChange={this.handleUpdateValue} />
           </div>
+          <div className="D-6 M-12">
+            <h2>Select Filter</h2>
+            <InputField type="select-filter" placeholder="select filter ..." onPropsChange={this.onPropsChange} rules={rules} value={selectFilterInput} key="selectFilterInput" name="selectFilterInput" label="select filter input" options={optionList}  onChange={this.handleUpdateValue} />
+          </div>
+        </div>
+        <div className="row">
           <div className="D-6 M-12">
             <h2>Textarea</h2>
             <InputField type="textarea"  onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} rules={rules} value={textarea} key="textarea" name="textarea" label="label Textarea" rows={3} cols={4} onBlur={this.handleOnBlur} onChange={this.handleUpdateValue} />
