@@ -43,11 +43,11 @@
 
   .list-options-select {
     position: absolute;
-    background: $gary1;
+    background: $white;
     display: block;
     width: 100%;
     z-index: 3;
-    box-shadow: 2px 2px 2px $gary1;
+    box-shadow: 2px 2px 2px $borderColor;
     border: 1px solid $borderColor;
     visibility: hidden;
     max-height: 250px;
@@ -87,7 +87,8 @@
   }
 
   li.item-detail.selected a{
-    background: $gary2;
+    background: $outlineColor;
+    color: $white;
   }
 }
 

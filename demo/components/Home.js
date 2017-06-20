@@ -139,7 +139,7 @@ export default class Home extends Component {
           </div>
           <div className="D-6 M-12">
             <h2>Select Filter</h2>
-            <InputField type="select-filter" placeholder="select filter ..." onPropsChange={this.onPropsChange} rules={rules} value={selectFilterInput} key="selectFilterInput" name="selectFilterInput" label="select filter input" options={optionList}  onChange={this.handleUpdateValue} />
+            <InputField type="select-filter" optionHeight={28} placeholder="select filter ..." onPropsChange={this.onPropsChange} rules={rules} value={selectFilterInput} key="selectFilterInput" name="selectFilterInput" label="select filter input" options={[...optionList, ...optionList, ...optionList, ...optionList, ...optionList]}  onChange={this.handleUpdateValue} />
           </div>
         </div>
         <div className="row">

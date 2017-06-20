@@ -19,6 +19,7 @@ export default class SelectFilterInput extends React.PureComponent {
     focus: PropTypes.bool,
     errorMessage: PropTypes.string,
     remark: PropTypes.string,
+    optionHeight: PropTypes.number,
     handleChange: PropTypes.func,
   };
 
@@ -41,6 +42,7 @@ export default class SelectFilterInput extends React.PureComponent {
     optionFilter: [],
     showDropdown: false,
     hoverDropdown: false,
+    scrollTop: 0,
   };
 
   componentWillMount() {
@@ -53,6 +55,8 @@ export default class SelectFilterInput extends React.PureComponent {
 
   onInputKeyUp = (e) => {
     const { optionFilter, valueSelected } = this.state;
+    const { optionHeight } = this.props;
+    let scrollTop = this.state.scrollTop;
     // กดขึ้น = 38
     // กดลง = 40
     // enter = 13
@@ -60,15 +64,29 @@ export default class SelectFilterInput extends React.PureComponent {
 
     switch (keyCode) {
       case 38: {
+        if (optionHeight) {
+          scrollTop -= optionHeight;
+          if (scrollTop < 0) scrollTop = 0;
+          this.isDropdown.scrollTop = scrollTop;
+        }
         this.setState({
+          scrollTop,
           valueSelected: (valueSelected - 1) < 0 ? 0 : valueSelected - 1, // ถ้า valueSelected น้อยกว่า 0 ให้ return 0
         });
         break;
       }
       case 40: {
+        if (optionHeight) {
+          scrollTop += optionHeight;
+          if (scrollTop > ((size(optionFilter) - 3) * 30)) scrollTop = ((size(optionFilter) - 3) * 30)
+          this.isDropdown.scrollTop = scrollTop;
+        }
+        
         this.setState({
+          scrollTop,
           valueSelected: (valueSelected + 1) > (size(optionFilter) - 1) ? size(optionFilter) - 1 : valueSelected + 1, // ถ้า valueSelected น้อยกว่า 0 ให้ return 0
         });
+
         break;
       }
       case 13: {
@@ -87,8 +105,9 @@ export default class SelectFilterInput extends React.PureComponent {
     if (!hoverDropdown) {
       this.setState({
         valueSelected: 0,
-        optionFilter: [],
-        showDropdown: false,
+        // optionFilter: [],
+        // showDropdown: false,
+        // scrollTop: 0,
       });
       this.isInputFilter.value = '';
     }
@@ -120,6 +139,7 @@ export default class SelectFilterInput extends React.PureComponent {
     this.setState({
       optionFilter: filterOptions ? filterOptions : [],
       valueSelected: 0,
+      scrollTop: 0,
       showDropdown: true,
     });
   }
@@ -133,12 +153,13 @@ export default class SelectFilterInput extends React.PureComponent {
     this.setState({
       showDropdown: false,
       hoverDropdown: false,
+      scrollTop: 0,
     })
   }
 
   render() {
     const { label, value, disabled, remark, focus, placeholder, name, format, errorMessage, options, inputProps, tabIndex, handleBlur, handleKeyCode } = this.props;
-    const { optionFilter, valueSelected, showDropdown } = this.state;
+    const { optionFilter, valueSelected, showDropdown, scrollTop } = this.state;
     let valueString = '';
 
     if (typeof value === 'string') {
@@ -153,13 +174,14 @@ export default class SelectFilterInput extends React.PureComponent {
       classInput = 'form-input error';
       renderErrorMessage = (<div className="error-message">{errorMessage}</div>);
     }
+
     return (
       <div className="select-filter">
         <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
         <div className="field-group">
           <input type="text" value={valueString} placeholder={placeholder} className={classInput} onFocus={() => this.focusInputFilter()} />
         </div>
-        <div className={`list-options-select ${showDropdown ? 'show' : ''}`}>
+        <div className={`list-options-select ${showDropdown ? 'show' : ''}`} ref={(dom) => this.isDropdown = dom}>
           <div className="field-group-input">
             <input
               ref={(input) => {
@@ -182,8 +204,11 @@ export default class SelectFilterInput extends React.PureComponent {
               {
                 optionFilter.map((obj, i) => {
                   const selected = i === valueSelected;
+                  const other = {};
+                  if (i === 0) other.ref = (dom) => this.isOption = dom;
                   return (<RenderRowOption
                     key={i}
+                    {...other}
                     selected={selected}
                     handleHoverOpction={this.handleHoverOpction}
                     handleChenge={this.hendleSelect}
