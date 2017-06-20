@@ -259,7 +259,6 @@ const optionList = [
 
   render() {
     const prosType = getprosTypeCheckboxInput('th');
-    console.log('handleUpdateValue >', this.state);
     return (
       <div className="container">
         <h1>Input Type Checkbox</h1>

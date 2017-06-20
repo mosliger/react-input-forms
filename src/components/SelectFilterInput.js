@@ -105,9 +105,9 @@ export default class SelectFilterInput extends React.PureComponent {
     if (!hoverDropdown) {
       this.setState({
         valueSelected: 0,
-        // optionFilter: [],
-        // showDropdown: false,
-        // scrollTop: 0,
+        optionFilter: [],
+        showDropdown: false,
+        scrollTop: 0,
       });
       this.isInputFilter.value = '';
     }
@@ -191,7 +191,6 @@ export default class SelectFilterInput extends React.PureComponent {
                 }
               }}
               type="text"
-              placeholder="ค้นหา"
               className="input-filter"
               disabled={disabled}
               onChange={(e) => this.onInputChange(e.target.value)}
@@ -204,11 +203,8 @@ export default class SelectFilterInput extends React.PureComponent {
               {
                 optionFilter.map((obj, i) => {
                   const selected = i === valueSelected;
-                  const other = {};
-                  if (i === 0) other.ref = (dom) => this.isOption = dom;
                   return (<RenderRowOption
                     key={i}
-                    {...other}
                     selected={selected}
                     handleHoverOpction={this.handleHoverOpction}
                     handleChenge={this.hendleSelect}
@@ -220,6 +216,8 @@ export default class SelectFilterInput extends React.PureComponent {
             </ul>
           </div>
         </div>
+        {this.props.children}
+        {renderErrorMessage}
       </div>
     );
   }

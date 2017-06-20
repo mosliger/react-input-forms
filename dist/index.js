@@ -234,6 +234,23 @@ var Index = function (_React$Component) {
               _react2.default.createElement(_components.SelectInput, propsForm)
             );
           }
+        case 'select-filter':
+          {
+            if (this.props.children) return _react2.default.createElement(
+              'div',
+              { className: 'select-filter-input' },
+              _react2.default.createElement(
+                _components.SelectFilterInput,
+                propsForm,
+                this.props.children
+              )
+            );
+            return _react2.default.createElement(
+              'div',
+              { className: 'select-filter-input' },
+              _react2.default.createElement(_components.SelectFilterInput, propsForm)
+            );
+          }
         case 'textarea':
           {
             if (this.props.children) return _react2.default.createElement(

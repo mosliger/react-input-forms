@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.RadioInput = exports.CheckboxInput = exports.TextInput = exports.TextareaInput = exports.SelectInput = exports.NumberInput = undefined;
+exports.SelectFilterInput = exports.RadioInput = exports.CheckboxInput = exports.TextInput = exports.TextareaInput = exports.SelectInput = exports.NumberInput = undefined;
 
 var _NumberInput2 = require('./NumberInput');
 
@@ -29,6 +29,10 @@ var _RadioInput2 = require('./RadioInput');
 
 var _RadioInput3 = _interopRequireDefault(_RadioInput2);
 
+var _SelectFilterInput2 = require('./SelectFilterInput');
+
+var _SelectFilterInput3 = _interopRequireDefault(_SelectFilterInput2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.NumberInput = _NumberInput3.default;
@@ -37,3 +41,4 @@ exports.TextareaInput = _TextareaInput3.default;
 exports.TextInput = _TextInput3.default;
 exports.CheckboxInput = _CheckboxInput3.default;
 exports.RadioInput = _RadioInput3.default;
+exports.SelectFilterInput = _SelectFilterInput3.default;
