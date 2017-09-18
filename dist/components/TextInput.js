@@ -128,35 +128,35 @@ var TextInput = function (_React$PureComponent) {
             remark
           )
         ),
-        _react2.default.createElement('input', {
-          ref: function ref(input) {
-            if (input != null && focus) {
-              input.focus();
-            }
-          },
-          className: classInput,
-          type: 'text',
-          name: name,
-          value: value,
-          maxLength: this.props.maxLength,
-          placeholder: placeholder,
-          disabled: disabled,
-          onKeyUp: function onKeyUp(e) {
-            return handleKeyCode(e);
-          },
-          onChange: function onChange(e) {
-            return handleChange(e.target.value);
-          },
-          onBlur: function onBlur(e) {
-            return handleBlur(e.target.value);
-          }
-        }),
-        renderErrorMessage,
         _react2.default.createElement(
           'div',
-          { className: 'children' },
-          this.props.children
-        )
+          { className: 'box-input' },
+          _react2.default.createElement('input', {
+            ref: function ref(input) {
+              if (input != null && focus) {
+                input.focus();
+              }
+            },
+            className: classInput,
+            type: 'text',
+            name: name,
+            value: value,
+            maxLength: this.props.maxLength,
+            placeholder: placeholder,
+            disabled: disabled,
+            onKeyUp: function onKeyUp(e) {
+              return handleKeyCode(e);
+            },
+            onChange: function onChange(e) {
+              return handleChange(e.target.value);
+            },
+            onBlur: function onBlur(e) {
+              return handleBlur(e.target.value);
+            }
+          }),
+          renderErrorMessage
+        ),
+        this.props.children
       );
     }
   }]);

@@ -20,98 +20,69 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SelectInput = function (_React$PureComponent) {
-  _inherits(SelectInput, _React$PureComponent);
+var PasswordInput = function (_React$PureComponent) {
+  _inherits(PasswordInput, _React$PureComponent);
 
-  function SelectInput() {
+  function PasswordInput() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, SelectInput);
+    _classCallCheck(this, PasswordInput);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SelectInput.__proto__ || Object.getPrototypeOf(SelectInput)).call.apply(_ref, [this].concat(args))), _this), _this.handleSelectChange = function (e) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PasswordInput.__proto__ || Object.getPrototypeOf(PasswordInput)).call.apply(_ref, [this].concat(args))), _this), _this.renderCustomElement = function () {
       var _this$props = _this.props,
-          options = _this$props.options,
-          handleChange = _this$props.handleChange;
+          label = _this$props.label,
+          value = _this$props.value,
+          disabled = _this$props.disabled,
+          focus = _this$props.focus,
+          placeholder = _this$props.placeholder,
+          name = _this$props.name,
+          errorMessage = _this$props.errorMessage,
+          inputProps = _this$props.inputProps,
+          tabIndex = _this$props.tabIndex,
+          handleChange = _this$props.handleChange,
+          handleKeyCode = _this$props.handleKeyCode,
+          handleBlur = _this$props.handleBlur;
 
-      var value = e.target.value;
-      handleChange((0, _global.getOption)(value, options));
-    }, _this.renderCustomElement = function () {
-      var _this$props2 = _this.props,
-          label = _this$props2.label,
-          value = _this$props2.value,
-          disabled = _this$props2.disabled,
-          focus = _this$props2.focus,
-          placeholder = _this$props2.placeholder,
-          name = _this$props2.name,
-          format = _this$props2.format,
-          errorMessage = _this$props2.errorMessage,
-          options = _this$props2.options,
-          inputProps = _this$props2.inputProps,
-          tabIndex = _this$props2.tabIndex,
-          handleBlur = _this$props2.handleBlur,
-          handleKeyCode = _this$props2.handleKeyCode;
-
-
-      var renderOptions = [];
-      var renderErrorMessage = '';
       var classInput = 'form-input';
-      var valueString = '';
-
-      if (typeof value === 'string') {
-        valueString = value;
-      } else {
-        valueString = value.value ? value.value : '';
-      }
       if (!(0, _global.isEmpey)(errorMessage)) {
         classInput = 'form-input error';
       }
-
-      for (var key in options) {
-        renderOptions.push(_react2.default.createElement(
-          'option',
-          { value: options[key].value, key: key + '-' + options[key].value },
-          options[key].label
-        ));
-      }
-
-      var input = _react2.default.createElement(
-        'select',
-        {
-          ref: function ref(input) {
-            if (input != null && focus) {
-              input.focus();
-            }
-          },
-          className: classInput,
-          value: valueString,
-          onChange: function onChange(e) {
-            return _this.handleSelectChange(e);
-          },
-          onBlur: function onBlur(e) {
-            return handleBlur(e.target.value);
-          },
-          onKeyUp: function onKeyUp(e) {
-            return handleKeyCode(e);
-          },
-          disabled: disabled
+      var input = _react2.default.createElement('input', {
+        ref: function ref(input) {
+          if (input != null && focus) {
+            input.focus();
+          }
         },
-        renderOptions
-      );
+        className: classInput,
+        type: 'password',
+        name: name,
+        value: value,
+        maxLength: _this.props.maxLength,
+        placeholder: placeholder,
+        disabled: disabled,
+        onKeyUp: function onKeyUp(e) {
+          return handleKeyCode(e);
+        },
+        onChange: function onChange(e) {
+          return handleChange(e.target.value);
+        },
+        onBlur: function onBlur(e) {
+          return handleBlur(e.target.value);
+        }
+      });
       return _this.props.customElement(input, label, errorMessage);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(SelectInput, [{
+  _createClass(PasswordInput, [{
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       var _props = this.props,
           label = _props.label,
           value = _props.value,
@@ -120,29 +91,20 @@ var SelectInput = function (_React$PureComponent) {
           focus = _props.focus,
           placeholder = _props.placeholder,
           name = _props.name,
-          format = _props.format,
           errorMessage = _props.errorMessage,
-          options = _props.options,
           inputProps = _props.inputProps,
           tabIndex = _props.tabIndex,
-          handleBlur = _props.handleBlur,
-          handleKeyCode = _props.handleKeyCode;
+          handleChange = _props.handleChange,
+          handleKeyCode = _props.handleKeyCode,
+          handleBlur = _props.handleBlur;
 
 
       if (this.props.customElement) {
         return this.renderCustomElement();
       }
 
-      var renderOptions = [];
       var renderErrorMessage = '';
       var classInput = 'form-input';
-      var valueString = '';
-
-      if (typeof value === 'string') {
-        valueString = value;
-      } else {
-        valueString = value.value ? value.value : '';
-      }
       if (!(0, _global.isEmpey)(errorMessage)) {
         classInput = 'form-input error';
         renderErrorMessage = _react2.default.createElement(
@@ -150,14 +112,6 @@ var SelectInput = function (_React$PureComponent) {
           { className: 'error-message' },
           errorMessage
         );
-      }
-
-      for (var key in options) {
-        renderOptions.push(_react2.default.createElement(
-          'option',
-          { value: options[key].value, key: key + '-' + options[key].value },
-          options[key].label
-        ));
       }
 
       return _react2.default.createElement(
@@ -177,29 +131,29 @@ var SelectInput = function (_React$PureComponent) {
         _react2.default.createElement(
           'div',
           { className: 'box-input' },
-          _react2.default.createElement(
-            'select',
-            {
-              ref: function ref(input) {
-                if (input != null && focus) {
-                  input.focus();
-                }
-              },
-              className: classInput,
-              value: valueString,
-              onChange: function onChange(e) {
-                return _this2.handleSelectChange(e);
-              },
-              onBlur: function onBlur(e) {
-                return handleBlur(e.target.value);
-              },
-              onKeyUp: function onKeyUp(e) {
-                return handleKeyCode(e);
-              },
-              disabled: disabled
+          _react2.default.createElement('input', {
+            ref: function ref(input) {
+              if (input != null && focus) {
+                input.focus();
+              }
             },
-            renderOptions
-          ),
+            className: classInput,
+            type: 'password',
+            name: name,
+            value: value,
+            maxLength: this.props.maxLength,
+            placeholder: placeholder,
+            disabled: disabled,
+            onKeyUp: function onKeyUp(e) {
+              return handleKeyCode(e);
+            },
+            onChange: function onChange(e) {
+              return handleChange(e.target.value);
+            },
+            onBlur: function onBlur(e) {
+              return handleBlur(e.target.value);
+            }
+          }),
           renderErrorMessage
         ),
         this.props.children
@@ -207,30 +161,34 @@ var SelectInput = function (_React$PureComponent) {
     }
   }]);
 
-  return SelectInput;
+  return PasswordInput;
 }(_react2.default.PureComponent);
 
-SelectInput.propTypes = {
-  value: _react.PropTypes.oneOfType([_react.PropTypes.object, _react.PropTypes.string]),
-  format: _react.PropTypes.bool,
+PasswordInput.propTypes = {
+  value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+
   label: _react.PropTypes.string,
-  options: _react.PropTypes.array.isRequired,
+  placeholder: _react.PropTypes.string,
+  children: _react.PropTypes.node,
   type: _react.PropTypes.string.isRequired,
   name: _react.PropTypes.string.isRequired,
   inputProps: _react.PropTypes.object,
   labelProps: _react.PropTypes.object,
   disabled: _react.PropTypes.bool,
   focus: _react.PropTypes.bool,
+  tabIndex: _react.PropTypes.number,
+  maxLength: _react.PropTypes.number,
   errorMessage: _react.PropTypes.string,
   remark: _react.PropTypes.string,
-  handleChange: _react.PropTypes.func
+  handleChange: _react.PropTypes.func,
+  handleBlur: _react.PropTypes.func,
+  handleKeyCode: _react.PropTypes.func
 };
-SelectInput.defaultProps = {
+PasswordInput.defaultProps = {
   name: 'input',
   tabIndex: 0,
   label: '',
   value: '',
-  options: [],
   inputProps: {},
   labelProps: {},
   disabled: false,
@@ -238,4 +196,4 @@ SelectInput.defaultProps = {
   placeholder: '',
   type: 'text'
 };
-exports.default = SelectInput;
+exports.default = PasswordInput;

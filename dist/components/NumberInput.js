@@ -178,30 +178,34 @@ var NumberInput = function (_React$PureComponent) {
             remark
           )
         ),
-        _react2.default.createElement('input', {
-          ref: function ref(input) {
-            if (input != null && focus) {
-              input.focus();
+        _react2.default.createElement(
+          'div',
+          { className: 'box-input' },
+          _react2.default.createElement('input', {
+            ref: function ref(input) {
+              if (input != null && focus) {
+                input.focus();
+              }
+            },
+            className: classInput,
+            type: 'text',
+            name: name,
+            value: !(0, _global.isEmpey)(format) ? (0, _global.toNumeral)(value, format) : value,
+            placeholder: placeholder,
+            disabled: disabled,
+            maxLength: this.props.maxLength,
+            onKeyUp: function onKeyUp(e) {
+              return handleKeyCode(e);
+            },
+            onChange: function onChange(e) {
+              return _this2.onInputChange(e.target.value);
+            },
+            onBlur: function onBlur(e) {
+              return _this2.handleOnBlur(e.target.value);
             }
-          },
-          className: classInput,
-          type: 'text',
-          name: name,
-          value: !(0, _global.isEmpey)(format) ? (0, _global.toNumeral)(value, format) : value,
-          placeholder: placeholder,
-          disabled: disabled,
-          maxLength: this.props.maxLength,
-          onKeyUp: function onKeyUp(e) {
-            return handleKeyCode(e);
-          },
-          onChange: function onChange(e) {
-            return _this2.onInputChange(e.target.value);
-          },
-          onBlur: function onBlur(e) {
-            return _this2.handleOnBlur(e.target.value);
-          }
-        }),
-        renderErrorMessage,
+          }),
+          renderErrorMessage
+        ),
         this.props.children
       );
     }

@@ -137,33 +137,37 @@ var TextareaInput = function (_React$PureComponent) {
           )
         ),
         _react2.default.createElement(
-          'textarea',
-          {
-            ref: function ref(input) {
-              if (input != null && focus) {
-                input.focus();
+          'div',
+          { className: 'box-input' },
+          _react2.default.createElement(
+            'textarea',
+            {
+              ref: function ref(input) {
+                if (input != null && focus) {
+                  input.focus();
+                }
+              },
+              rows: rows,
+              cols: cols,
+              disabled: disabled,
+              className: classInput,
+              value: value,
+              maxLength: this.props.maxLength,
+              onKeyUp: function onKeyUp(e) {
+                return handleKeyCode(e);
+              },
+              onChange: function onChange(e) {
+                return handleChange(e.target.value);
+              },
+              onBlur: function onBlur(e) {
+                return handleBlur(e.target.value);
               }
             },
-            rows: rows,
-            cols: cols,
-            disabled: disabled,
-            className: classInput,
-            value: value,
-            maxLength: this.props.maxLength,
-            onKeyUp: function onKeyUp(e) {
-              return handleKeyCode(e);
-            },
-            onChange: function onChange(e) {
-              return handleChange(e.target.value);
-            },
-            onBlur: function onBlur(e) {
-              return handleBlur(e.target.value);
-            }
-          },
-          value
+            value
+          ),
+          renderErrorMessage
         ),
-        this.props.children,
-        renderErrorMessage
+        this.props.children
       );
     }
   }]);

@@ -234,21 +234,21 @@ var Index = function (_React$Component) {
               _react2.default.createElement(_components.SelectInput, propsForm)
             );
           }
-        case 'select-filter':
+        case 'password':
           {
             if (this.props.children) return _react2.default.createElement(
               'div',
-              { className: 'select-filter-input' },
+              { className: 'password-input' },
               _react2.default.createElement(
-                _components.SelectFilterInput,
+                _components.PasswordInput,
                 propsForm,
                 this.props.children
               )
             );
             return _react2.default.createElement(
               'div',
-              { className: 'select-filter-input' },
-              _react2.default.createElement(_components.SelectFilterInput, propsForm)
+              { className: 'password-input' },
+              _react2.default.createElement(_components.PasswordInput, propsForm)
             );
           }
         case 'textarea':
