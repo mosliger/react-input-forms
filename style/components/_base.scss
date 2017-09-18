@@ -1,0 +1,51 @@
+.field-group {
+  margin: 10px 0;
+  label {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    color: $fontColor;
+  }
+}
+
+.box-input {
+  position: relative;
+}
+
+input:focus ~ .error-message, select:focus ~ .error-message {  
+  display: inline-block;
+}
+
+textarea:focus ~ .error-message {
+  display: inline-block;
+  bottom: 108%;
+}
+
+
+.error-message {
+  background: $borderError;
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 40px;
+  padding: 4px 10px;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 3px;
+}
+.error-message:after {
+  border-top: 6px solid $borderError;
+  content: '';
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-top: 6px solid $borderError;
+  position: absolute;
+  bottom: -4px;
+  right: 11px;
+}
+
+
+span.remark {
+  color: $fontError;
+  padding-left: 5px;
+}

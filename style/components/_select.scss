@@ -1,46 +1,28 @@
-.select-input {
-  .field-group {
-    margin: 10px 0;
-    label {
-      display: block;
-      width: 100%;
-      margin: 5px 0;
-      color: $fontColor;
-    }
-  }
-  span.remark {
-    color: $fontError;
-    padding-left: 5px;
-  }
-  select.form-input {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid $borderColor;
-    color: $fontColor;
-    transition: all .2s ease-in-out;
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0);
+select.form-input {
+  width: 100%;
+  padding: $paddingInput;
+  border: 1px solid $borderColor;
+  color: $fontColor;
+  transition: all .2s ease-in-out;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0);
+  outline: none;
+  border-radius: $borderRadius;
+  &:focus {
+    box-shadow: 0px 0px 1px 1px  $outlineColor;
+    border: 1px solid $outlineColor;
     outline: none;
-    &:focus {
-      box-shadow: 0px 0px 1px 1px  $outlineColor;
-      border: 1px solid $outlineColor;
-      outline: none;
-    }
-    &:disabled {
-      background: $bgDisabled;
-      opacity: 0.9;
-    }
   }
-  select.form-input.error {
-    border: 1px solid $borderError;
-    &:focus {
-      box-shadow: 0px 0px 1px 1px  $borderError;
-      outline: none;
-    }
-  }
-  .error-message {
-    margin: 5px 0;
-    font-size: 12px;
-    color: $fontError;
+  &:disabled {
+    background: $bgDisabled;
+    opacity: 0.9;
   }
 }
+select.form-input.error {
+  border: 1px solid $borderError;
+  &:focus {
+    box-shadow: 0px 0px 1px 1px  $borderError;
+    outline: none;
+  }
+}
+
 

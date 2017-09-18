@@ -121,24 +121,27 @@ export default class NumberInput extends React.PureComponent {
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
         <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
-        <input
-          ref={(input) => {
-            if (input != null && focus) {
-              input.focus();
-            }
-          } }
-          className={classInput}
-          type="text"
-          name={name}
-          value={!isEmpey(format) ? toNumeral(value, format) : value}
-          placeholder={placeholder}
-          disabled={disabled}
-          maxLength={this.props.maxLength}
-          onKeyUp={(e) => handleKeyCode(e)}
-          onChange={(e) => this.onInputChange(e.target.value)}
-          onBlur={(e) => this.handleOnBlur(e.target.value)}
-          />
-        {renderErrorMessage}
+        <div className="box-input">
+          <input
+            ref={(input) => {
+              if (input != null && focus) {
+                input.focus();
+              }
+            } }
+            className={classInput}
+            type="text"
+            name={name}
+            value={!isEmpey(format) ? toNumeral(value, format) : value}
+            placeholder={placeholder}
+            disabled={disabled}
+            maxLength={this.props.maxLength}
+            onKeyUp={(e) => handleKeyCode(e)}
+            onChange={(e) => this.onInputChange(e.target.value)}
+            onBlur={(e) => this.handleOnBlur(e.target.value)}
+            />
+          {renderErrorMessage}
+        </div>
+
         {this.props.children}
       </div>
     );

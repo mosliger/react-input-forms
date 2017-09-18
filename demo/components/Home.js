@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import InputField from 'react-input-forms';
-// import InputField from '../../src';
+// import InputField from 'react-input-forms';
+import InputField from '../../src';
 
 export default class Home extends Component {
   state = {
     textInput: '',
     numberInput: '',
     selectInput: '',
-    selectFilterInput: {},
+    password: '',
     textarea: '',
     customInput: '',
     checkboxInput: [],
@@ -116,7 +116,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { textInput, selectFilterInput, customerInput, numberInput, selectInput, disabledOption, textarea, customInput, checkboxInput, radioInput, checkboxInputNotOption } = this.state;
+    const { textInput, password, customerInput, numberInput, selectInput, disabledOption, textarea, customInput, checkboxInput, radioInput, checkboxInputNotOption } = this.state;
     let optionList = [{ label: 'select ...', value: '' }, { label: 'one', value: '1' }, { label: 'two', value: '2' }, { label: 'three', value: '3' }, { label: 'four', value: '4' }, { label: 'five', value: '5' }];
     const rules = { required: 'input is require.' };
     if (disabledOption)  optionList = [{ label: 'select ...', value: '', disabled: true }, { label: 'one', value: '1' }, { label: 'two', value: '2', disabled: true }, { label: 'three', value: '3' }, { label: 'four', value: '4', disabled: true }, { label: 'five', value: '5' }];
@@ -129,17 +129,17 @@ export default class Home extends Component {
           </div>
           <div className="D-6 M-12">
             <h2>Number Input</h2>
-            <InputField type="number" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} value={numberInput} rules={{ ...rules, number: 'กรุณากรอกตัวเลย' }} key="numberInput" format="0,000.0000" name="numberInput" label="label Number Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
+            <InputField type="number" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} value={numberInput} rules={{ ...rules, number: 'กรุณากรอกตัวเลย' }} key="numberInput" format="0,000.00" name="numberInput" label="label Number Input" onChange={this.handleUpdateValue} onBlur={this.handleOnBlur} />
           </div>
         </div>
         <div className="row">
           <div className="D-6 M-12">
-            <h2>Select</h2>
-            <InputField type="select" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} rules={rules} value={selectInput} key="selectInput" name="selectInput" label="label Select" options={optionList} onChange={this.handleUpdateValue} />
+            <h2>Password</h2>
+            <InputField type="password" placeholder="password ..." onPropsChange={this.onPropsChange} rules={rules} value={password} key="password" name="password" label="Password" onChange={this.handleUpdateValue} />
           </div>
           <div className="D-6 M-12">
-            <h2>Select Filter</h2>
-            <InputField type="select-filter" optionHeight={28} placeholder="select filter ..." onPropsChange={this.onPropsChange} rules={rules} value={selectFilterInput} key="selectFilterInput" name="selectFilterInput" label="select filter input" options={[...optionList, ...optionList, ...optionList, ...optionList, ...optionList]}  onChange={this.handleUpdateValue} />
+            <h2>Select</h2>
+            <InputField type="select" onPropsChange={this.onPropsChange} onKeyCode={this.getKeyCode} rules={rules} value={selectInput} key="selectInput" name="selectInput" label="label Select" options={optionList} onChange={this.handleUpdateValue} />
           </div>
         </div>
         <div className="row">

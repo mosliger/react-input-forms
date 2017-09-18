@@ -110,23 +110,25 @@ export default class SelectInput extends React.PureComponent {
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
         <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
-        <select
-          ref={(input) => {
-            if (input != null && focus) {
-              input.focus();
-            }
-          } }
-          className={classInput}
-          value={valueString}
-          onChange={e => this.handleSelectChange(e)}
-          onBlur={(e) => handleBlur(e.target.value)}
-          onKeyUp={(e) => handleKeyCode(e)}
-          disabled={disabled}
-          >
-          {renderOptions}
-        </select>
+        <div className="box-input">
+          <select
+            ref={(input) => {
+              if (input != null && focus) {
+                input.focus();
+              }
+            } }
+            className={classInput}
+            value={valueString}
+            onChange={e => this.handleSelectChange(e)}
+            onBlur={(e) => handleBlur(e.target.value)}
+            onKeyUp={(e) => handleKeyCode(e)}
+            disabled={disabled}
+            >
+            {renderOptions}
+          </select>
+          {renderErrorMessage}
+        </div>
         {this.props.children}
-        {renderErrorMessage}
       </div>
     );
   }

@@ -82,26 +82,27 @@ export default class TextInput extends React.PureComponent {
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
         <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
-        <input
-          ref={(input) => {
-            if (input != null && focus) {
-              input.focus();
-            }
-          } }
-          className={classInput}
-          type="text"
-          name={name}
-          value={value}
-          maxLength={this.props.maxLength}
-          placeholder={placeholder}
-          disabled={disabled}
-          onKeyUp={(e) => handleKeyCode(e)}
-          onChange={(e) => handleChange(e.target.value)}
-          onBlur={(e) => handleBlur(e.target.value)}
-        />
-
-        {renderErrorMessage}
-        <div className="children">{this.props.children}</div>
+        <div className="box-input">
+          <input
+            ref={(input) => {
+              if (input != null && focus) {
+                input.focus();
+              }
+            } }
+            className={classInput}
+            type="text"
+            name={name}
+            value={value}
+            maxLength={this.props.maxLength}
+            placeholder={placeholder}
+            disabled={disabled}
+            onKeyUp={(e) => handleKeyCode(e)}
+            onChange={(e) => handleChange(e.target.value)}
+            onBlur={(e) => handleBlur(e.target.value)}
+          />
+          {renderErrorMessage}
+        </div>
+        {this.props.children}
       </div>
     );
   }

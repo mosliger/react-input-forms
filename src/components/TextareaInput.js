@@ -85,26 +85,28 @@ export default class TextareaInput extends React.PureComponent {
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
         <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
-        <textarea
-          ref={(input) => {
-            if (input != null && focus) {
-              input.focus();
-            }
-          } }
-          rows={rows}
-          cols={cols}
-          disabled={disabled}
-          className={classInput}
-          value={value}
-          maxLength={this.props.maxLength}
-          onKeyUp={(e) => handleKeyCode(e)}
-          onChange={(e) => handleChange(e.target.value)}
-          onBlur={(e) => handleBlur(e.target.value)}
-          >
-          {value}
-        </textarea>
-        {this.props.children}
-        {renderErrorMessage}
+        <div className="box-input">
+          <textarea
+            ref={(input) => {
+              if (input != null && focus) {
+                input.focus();
+              }
+            } }
+            rows={rows}
+            cols={cols}
+            disabled={disabled}
+            className={classInput}
+            value={value}
+            maxLength={this.props.maxLength}
+            onKeyUp={(e) => handleKeyCode(e)}
+            onChange={(e) => handleChange(e.target.value)}
+            onBlur={(e) => handleBlur(e.target.value)}
+            >
+            {value}
+          </textarea>
+          {renderErrorMessage}
+        </div>
+        {this.props.children}        
       </div>
     );
   }
