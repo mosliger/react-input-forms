@@ -7,7 +7,7 @@ import TextareaInput from './TextareaInput';
 import RadioInput from './RadioInput';
 import CheckboxInput from './CheckboxInput';
 import CustomInput from './CustomInput';
-import SelectFilterInput from './SelectFilterInput';
+import PasswordInput from './PasswordInput';
 
 export default class Index extends React.Component {
   state = {
@@ -17,7 +17,7 @@ export default class Index extends React.Component {
       { name: 'Text', key: 'text'},
       { name: 'Number', key: 'number'},
       { name: 'Select', key: 'select'},
-      { name: 'Select Filter', key: 'select-filter'},
+      { name: 'Password', key: 'password'},
       { name: 'Textarea', key: 'textarea'},
       { name: 'Radio', key: 'radio'},
       { name: 'Checkbox', key: 'checkbox'},
@@ -52,7 +52,7 @@ export default class Index extends React.Component {
             <li key="page-text" className={currentMenu === 'text' ? 'item active' : 'item'}><TextInput /></li>
             <li key="page-number" className={currentMenu === 'number' ? 'item active' : 'item'}><NumberInput /></li>
             <li key="page-select" className={currentMenu === 'select' ? 'item active' : 'item'}><SelectInput /></li>
-            <li key="page-select-filter" className={currentMenu === 'select-filter' ? 'item active' : 'item'}><SelectFilterInput /></li>
+            <li key="page-password" className={currentMenu === 'password' ? 'item active' : 'item'}><PasswordInput /></li>
             <li key="page-textarea" className={currentMenu === 'textarea' ? 'item active' : 'item'}><TextareaInput /></li>
             <li key="page-radio" className={currentMenu === 'radio' ? 'item active' : 'item'}><RadioInput /></li>
             <li key="page-checkbox" className={currentMenu === 'checkbox' ? 'item active' : 'item'}><CheckboxInput /></li>

@@ -10,9 +10,17 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _global = require('../helpers/global');
+var _reactInputForms = require('react-input-forms');
+
+var _reactInputForms2 = _interopRequireDefault(_reactInputForms);
+
+var _selectInput = require('../helpers/selectInput');
+
+var _selectInput2 = _interopRequireDefault(_selectInput);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -20,8 +28,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SelectInput = function (_React$PureComponent) {
-  _inherits(SelectInput, _React$PureComponent);
+var optionList = [{ label: 'select ...', value: '' }, { label: 'one', value: '1' }, { label: 'two', value: '2' }, { label: 'three', value: '3' }, { label: 'four', value: '4' }, { label: 'five', value: '5' }];
+
+var SelectInput = function (_Component) {
+  _inherits(SelectInput, _Component);
 
   function SelectInput() {
     var _ref;
@@ -34,208 +44,249 @@ var SelectInput = function (_React$PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SelectInput.__proto__ || Object.getPrototypeOf(SelectInput)).call.apply(_ref, [this].concat(args))), _this), _this.handleSelectChange = function (e) {
-      var _this$props = _this.props,
-          options = _this$props.options,
-          handleChange = _this$props.handleChange;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SelectInput.__proto__ || Object.getPrototypeOf(SelectInput)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      selectInput: '',
+      selectInputRules: '',
+      selectInputChildren: '',
+      basicinput: '',
+      customElement: ''
+    }, _this.handleUpdateValue = function (value, name) {
+      _this.setState(_defineProperty({}, name, value));
+    }, _this.renderBasicInput = function () {
+      var basicinput = _this.state.basicinput;
 
-      var value = e.target.value;
-      handleChange((0, _global.getOption)(value, options));
-    }, _this.renderCustomElement = function () {
-      var _this$props2 = _this.props,
-          label = _this$props2.label,
-          value = _this$props2.value,
-          disabled = _this$props2.disabled,
-          focus = _this$props2.focus,
-          placeholder = _this$props2.placeholder,
-          name = _this$props2.name,
-          format = _this$props2.format,
-          errorMessage = _this$props2.errorMessage,
-          options = _this$props2.options,
-          inputProps = _this$props2.inputProps,
-          tabIndex = _this$props2.tabIndex,
-          handleBlur = _this$props2.handleBlur,
-          handleKeyCode = _this$props2.handleKeyCode;
-
-
-      var renderOptions = [];
-      var renderErrorMessage = '';
-      var classInput = 'form-input';
-      var valueString = '';
-
-      if (typeof value === 'string') {
-        valueString = value;
-      } else {
-        valueString = value.value ? value.value : '';
-      }
-      if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
-      }
-
-      for (var key in options) {
-        renderOptions.push(_react2.default.createElement(
-          'option',
-          { value: options[key].value, key: key + '-' + options[key].value },
-          options[key].label
-        ));
-      }
-
-      var input = _react2.default.createElement(
-        'select',
-        {
-          ref: function ref(input) {
-            if (input != null && focus) {
-              input.focus();
-            }
-          },
-          className: classInput,
-          value: valueString,
-          onChange: function onChange(e) {
-            return _this.handleSelectChange(e);
-          },
-          onBlur: function onBlur(e) {
-            return handleBlur(e.target.value);
-          },
-          onKeyUp: function onKeyUp(e) {
-            return handleKeyCode(e);
-          },
-          disabled: disabled
-        },
-        renderOptions
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_reactInputForms2.default, { type: 'select', options: optionList, value: basicinput, name: 'basicinput', label: 'basic input ', onChange: _this.handleUpdateValue }),
+        _react2.default.createElement(
+          'pre',
+          null,
+          _react2.default.createElement(
+            'code',
+            null,
+            '\nconst optionList = [\n  { label: \'select ...\', value: \'\' },\n  { label: \'one\', value: \'1\' },\n  { label: \'two\', value: \'2\' },\n  { label: \'three\', value: \'3\' },\n  { label: \'four\', value: \'4\' },\n  { label: \'five\', value: \'5\' },\n];\n\n...\n\n<InputField\n  type="text"\n  options={optionList}\n  value={value}\n  name="input-text"\n  label="basic input"\n  onChange={this.handleUpdateValue}\n/>\n          '
+          )
+        )
       );
-      return _this.props.customElement(input, label, errorMessage);
+    }, _this.customElementSelect = function (input, label, errorMessage) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'custom-element' },
+        _react2.default.createElement(
+          'label',
+          null,
+          label
+        ),
+        input,
+        _react2.default.createElement(
+          'div',
+          { className: 'error-message' },
+          errorMessage
+        )
+      );
+    }, _this.renderCustomElement = function () {
+      var customElement = _this.state.customElement;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_reactInputForms2.default, { type: 'select', options: optionList, customElement: _this.customElementSelect, value: customElement, name: 'customElement', label: 'custom element', onChange: _this.handleUpdateValue }),
+        _react2.default.createElement(
+          'pre',
+          null,
+          _react2.default.createElement(
+            'code',
+            null,
+            '\ncustomElementSelect = (input, label, errorMessage) => {\n  return (\n    <div className="custom-element">\n      <label>{label}</label>\n      {input}\n      <div className="error-message">{errorMessage}</div>\n    </div>\n  )\n}\n\n...\n\nconst optionList = [\n  { label: \'select ...\', value: \'\' },\n  { label: \'one\', value: \'1\' },\n  { label: \'two\', value: \'2\' },\n  { label: \'three\', value: \'3\' },\n  { label: \'four\', value: \'4\' },\n  { label: \'five\', value: \'5\' },\n];\n\n...\n\n<InputField\n  type="select"\n  customElement={this.customElementSelect}\n  value={value}\n  name="input-select"\n  label="custom element"\n  onChange={this.handleUpdateValue}\n/>\n            '
+          )
+        )
+      );
+    }, _this.renderDemo = function () {
+      var _this$state = _this.state,
+          selectInput = _this$state.selectInput,
+          selectInputRules = _this$state.selectInputRules,
+          selectInputChildren = _this$state.selectInputChildren;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'box-demo-input' },
+          _react2.default.createElement(_reactInputForms2.default, {
+            type: 'select',
+            value: selectInput,
+            options: optionList,
+            name: 'selectInput',
+            label: 'label',
+            onChange: _this.handleUpdateValue
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'box-demo-input' },
+          _react2.default.createElement(_reactInputForms2.default, {
+            type: 'select',
+            value: selectInputRules,
+            options: optionList,
+            rules: {
+              required: 'value is require'
+            },
+            name: 'selectInputRules',
+            label: 'Input verify field',
+            onChange: _this.handleUpdateValue
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'box-demo-input' },
+          _react2.default.createElement(
+            _reactInputForms2.default,
+            {
+              type: 'select',
+              value: selectInputChildren,
+              options: optionList,
+              name: 'selectInputChildren',
+              label: 'Children',
+              onChange: _this.handleUpdateValue
+            },
+            _react2.default.createElement(
+              'button',
+              null,
+              'search'
+            )
+          )
+        )
+      );
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(SelectInput, [{
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          label = _props.label,
-          value = _props.value,
-          disabled = _props.disabled,
-          remark = _props.remark,
-          focus = _props.focus,
-          placeholder = _props.placeholder,
-          name = _props.name,
-          format = _props.format,
-          errorMessage = _props.errorMessage,
-          options = _props.options,
-          inputProps = _props.inputProps,
-          tabIndex = _props.tabIndex,
-          handleBlur = _props.handleBlur,
-          handleKeyCode = _props.handleKeyCode;
-
-
-      if (this.props.customElement) {
-        return this.renderCustomElement();
-      }
-
-      var renderOptions = [];
-      var renderErrorMessage = '';
-      var classInput = 'form-input';
-      var valueString = '';
-
-      if (typeof value === 'string') {
-        valueString = value;
-      } else {
-        valueString = value.value ? value.value : '';
-      }
-      if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
-        renderErrorMessage = _react2.default.createElement(
-          'div',
-          { className: 'error-message' },
-          errorMessage
-        );
-      }
-
-      for (var key in options) {
-        renderOptions.push(_react2.default.createElement(
-          'option',
-          { value: options[key].value, key: key + '-' + options[key].value },
-          options[key].label
-        ));
-      }
-
+      var prosType = (0, _selectInput2.default)('th');
       return _react2.default.createElement(
         'div',
-        { className: inputProps.className ? inputProps.className : 'field-group' },
+        { className: 'container' },
         _react2.default.createElement(
-          'label',
-          { htmlFor: label },
-          label,
-          ' ',
-          !(0, _global.isEmpey)(remark) && _react2.default.createElement(
-            'span',
-            { className: 'remark' },
-            remark
+          'h1',
+          null,
+          'Input Type Select'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'D-6 M-12' },
+            this.renderDemo()
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'D-6 M-12' },
+            _react2.default.createElement(
+              'pre',
+              null,
+              _react2.default.createElement(
+                'code',
+                { className: 'html' },
+                '\nimport React, { Component } from \'react\'\nimport InputField from \'react-input-forms\'\n\nexport default class Demo extends Component {\n  state = {\n    value: {},\n  }\n\n  handleUpdateValue = (value) => {\n    this.setState({ value: value });\n  }\n\n  render() {\n    const { value } = this.state;\n    const optionList = [\n      { label: \'select ...\', value: \'\' },\n      { label: \'one\', value: \'1\' },\n      { label: \'two\', value: \'2\' },\n      { label: \'three\', value: \'3\' },\n      { label: \'four\', value: \'4\' },\n      { label: \'five\', value: \'5\' },\n    ];\n    return (\n      <div className="container">\n        <InputField\n          type="select"\n          value={value}\n          options={optionList}\n          name="input-select"\n          label="label"\n          onChange={this.handleUpdateValue}\n        />\n      </div>\n    )\n  }\n}'
+              )
+            )
           )
         ),
         _react2.default.createElement(
           'div',
-          { className: 'box-input' },
+          { className: 'pros-type' },
           _react2.default.createElement(
-            'select',
-            {
-              ref: function ref(input) {
-                if (input != null && focus) {
-                  input.focus();
-                }
-              },
-              className: classInput,
-              value: valueString,
-              onChange: function onChange(e) {
-                return _this2.handleSelectChange(e);
-              },
-              onBlur: function onBlur(e) {
-                return handleBlur(e.target.value);
-              },
-              onKeyUp: function onKeyUp(e) {
-                return handleKeyCode(e);
-              },
-              disabled: disabled
-            },
-            renderOptions
+            'div',
+            { className: 'title' },
+            prosType.title
           ),
-          renderErrorMessage
+          _react2.default.createElement(
+            'table',
+            null,
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'th',
+                null,
+                prosType.header.property
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                prosType.header.type
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                prosType.header.default
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                prosType.header.description
+              )
+            ),
+            prosType.detail.map(function (obj, index) {
+              return _react2.default.createElement(
+                'tr',
+                { key: index },
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  obj.property
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  obj.type
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  obj.default
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  obj.description
+                )
+              );
+            })
+          )
         ),
-        this.props.children
+        _react2.default.createElement(
+          'div',
+          { className: 'demo' },
+          _react2.default.createElement(
+            'h2',
+            null,
+            ' Demo input type select'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'D-6 M-12' },
+              this.renderBasicInput()
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'D-6 M-12' },
+              this.renderCustomElement()
+            )
+          )
+        )
       );
     }
   }]);
 
   return SelectInput;
-}(_react2.default.PureComponent);
+}(_react.Component);
 
-SelectInput.propTypes = {
-  value: _react.PropTypes.oneOfType([_react.PropTypes.object, _react.PropTypes.string]),
-  format: _react.PropTypes.bool,
-  label: _react.PropTypes.string,
-  options: _react.PropTypes.array.isRequired,
-  type: _react.PropTypes.string.isRequired,
-  name: _react.PropTypes.string.isRequired,
-  inputProps: _react.PropTypes.object,
-  labelProps: _react.PropTypes.object,
-  disabled: _react.PropTypes.bool,
-  focus: _react.PropTypes.bool,
-  errorMessage: _react.PropTypes.string,
-  remark: _react.PropTypes.string,
-  handleChange: _react.PropTypes.func
-};
-SelectInput.defaultProps = {
-  name: 'input',
-  tabIndex: 0,
-  label: '',
-  value: '',
-  options: [],
-  inputProps: {},
-  labelProps: {},
-  disabled: false,
-  focus: false,
-  placeholder: '',
-  type: 'text'
-};
 exports.default = SelectInput;

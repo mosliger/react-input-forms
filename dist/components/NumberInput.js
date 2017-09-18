@@ -10,9 +10,17 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _global = require('../helpers/global');
+var _reactInputForms = require('react-input-forms');
+
+var _reactInputForms2 = _interopRequireDefault(_reactInputForms);
+
+var _numberInput = require('../helpers/numberInput');
+
+var _numberInput2 = _interopRequireDefault(_numberInput);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -20,227 +28,278 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var NumberInput = function (_React$PureComponent) {
-  _inherits(NumberInput, _React$PureComponent);
+var TextInput = function (_Component) {
+  _inherits(TextInput, _Component);
 
-  function NumberInput() {
+  function TextInput() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, NumberInput);
+    _classCallCheck(this, TextInput);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NumberInput.__proto__ || Object.getPrototypeOf(NumberInput)).call.apply(_ref, [this].concat(args))), _this), _this.getValueFormat = function (value) {
-      var format = _this.props.format;
-
-      var valueTopNumber = (0, _global.toNumber)(value);
-      var splitFormat = format.split('.');
-      var splitValue = valueTopNumber.split('.');
-      var decimalFormat = splitFormat[1] ? splitFormat[1] : '';
-      var decimalValue = splitValue[1] ? splitValue[1] : '';
-      if (decimalFormat !== '' && decimalFormat.length !== decimalValue.length) {
-        var decimal = decimalValue;
-        for (var i = 1; i <= decimalFormat.length - decimalValue.length; i++) {
-          decimal += '0';
-        }return (0, _global.isEmpey)(value) ? '' : splitValue[0] + '.' + decimal;
-      } else {
-        return valueTopNumber;
-      }
-    }, _this.onInputChange = function (value) {
-      var _this$props = _this.props,
-          handleChange = _this$props.handleChange,
-          format = _this$props.format;
-
-      var valueToNumber = (0, _global.toNumber)(value);
-      var emptyValue = value === '';
-      if (emptyValue) {
-        handleChange(value);
-      } else if ((0, _global.checkNumberFormat)(valueToNumber, format)) {
-        handleChange(valueToNumber);
-      } else if (/^-?\d+(\.)?(\d+)?$/.test(value)) {
-        handleChange(valueToNumber);
-      } else if ((0, _global.size)(valueToNumber) < (0, _global.size)(_this.props.value)) {
-        handleChange(valueToNumber);
-      }
-    }, _this.handleOnBlur = function (value) {
-      var handleBlur = _this.props.handleBlur;
-
-      if (handleBlur) handleBlur(_this.getValueFormat(value));
-    }, _this.renderCustomElement = function () {
-      var _this$props2 = _this.props,
-          label = _this$props2.label,
-          value = _this$props2.value,
-          disabled = _this$props2.disabled,
-          focus = _this$props2.focus,
-          format = _this$props2.format,
-          placeholder = _this$props2.placeholder,
-          name = _this$props2.name,
-          errorMessage = _this$props2.errorMessage,
-          inputProps = _this$props2.inputProps,
-          tabIndex = _this$props2.tabIndex,
-          handleChange = _this$props2.handleChange,
-          handleKeyCode = _this$props2.handleKeyCode,
-          handleBlur = _this$props2.handleBlur;
-
-      var classInput = 'form-input';
-      if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
-      }
-      var input = _react2.default.createElement('input', {
-        ref: function ref(input) {
-          if (input != null && focus) {
-            input.focus();
-          }
-        },
-        className: classInput,
-        type: 'text',
-        name: name,
-        value: !(0, _global.isEmpey)(format) ? (0, _global.toNumeral)(value, format) : value,
-        placeholder: placeholder,
-        disabled: disabled,
-        maxLength: _this.props.maxLength,
-        onKeyUp: function onKeyUp(e) {
-          return handleKeyCode(e);
-        },
-        onChange: function onChange(e) {
-          return _this.onInputChange(e.target.value);
-        },
-        onBlur: function onBlur(e) {
-          return _this.handleOnBlur(e.target.value);
-        }
-      });
-      return _this.props.customElement(input, label, errorMessage);
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(NumberInput, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _props = this.props,
-          value = _props.value,
-          format = _props.format,
-          handleBlur = _props.handleBlur;
-
-      var numberValue = Number((0, _global.toNumber)(value));
-      if (!(0, _global.isEmpey)(value) && !(0, _global.isEmpey)(format) && isFinite((0, _global.toNumber)(value))) handleBlur(this.getValueFormat((0, _global.toNumeral)(numberValue.toString(), format)));
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props2 = this.props,
-          label = _props2.label,
-          value = _props2.value,
-          disabled = _props2.disabled,
-          remark = _props2.remark,
-          focus = _props2.focus,
-          placeholder = _props2.placeholder,
-          name = _props2.name,
-          format = _props2.format,
-          tabIndex = _props2.tabIndex,
-          errorMessage = _props2.errorMessage,
-          inputProps = _props2.inputProps,
-          handleChange = _props2.handleChange,
-          handleKeyCode = _props2.handleKeyCode;
-
-
-      if (this.props.customElement) {
-        return this.renderCustomElement();
-      }
-
-      var renderErrorMessage = '';
-      var classInput = 'form-input';
-      if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
-        renderErrorMessage = _react2.default.createElement(
-          'div',
-          { className: 'error-message' },
-          errorMessage
-        );
-      }
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextInput.__proto__ || Object.getPrototypeOf(TextInput)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      numberInput: '',
+      numberInputRules: '',
+      numberInputChildren: '',
+      basicinput: '',
+      numberInputFormat: '',
+      customElement: ''
+    }, _this.handleUpdateValue = function (value, name) {
+      _this.setState(_defineProperty({}, name, value));
+    }, _this.handleClearValue = function (key) {
+      _this.setState(_defineProperty({}, key, ''));
+    }, _this.renderBasicInput = function () {
+      var basicinput = _this.state.basicinput;
 
       return _react2.default.createElement(
         'div',
-        { className: inputProps.className ? inputProps.className : 'field-group' },
+        null,
+        _react2.default.createElement(_reactInputForms2.default, { type: 'number', value: basicinput, name: 'basicinput', label: 'basic input', onChange: _this.handleUpdateValue }),
+        _react2.default.createElement(
+          'pre',
+          null,
+          _react2.default.createElement(
+            'code',
+            null,
+            '\n<InputField\n  type="number"\n  value={value}\n  name="input-text"\n  label="basic input"\n  onChange={this.handleUpdateValue}\n/>\n          '
+          )
+        )
+      );
+    }, _this.customElementNumber = function (input, label, errorMessage) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'custom-element' },
         _react2.default.createElement(
           'label',
-          { htmlFor: label },
-          label,
-          ' ',
-          !(0, _global.isEmpey)(remark) && _react2.default.createElement(
-            'span',
-            { className: 'remark' },
-            remark
+          null,
+          label
+        ),
+        input,
+        _react2.default.createElement(
+          'div',
+          { className: 'error-message' },
+          errorMessage
+        )
+      );
+    }, _this.renderCustomElement = function () {
+      var customElement = _this.state.customElement;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_reactInputForms2.default, { type: 'number', customElement: _this.customElementNumber, value: customElement, name: 'customElement', label: 'custom element', onChange: _this.handleUpdateValue }),
+        _react2.default.createElement(
+          'pre',
+          null,
+          _react2.default.createElement(
+            'code',
+            null,
+            '\ncustomElementNumber = (input, label, errorMessage) => {\n  return (\n    <div className="custom-element">\n      <label>{label}</label>\n      {input}\n      <div className="error-message">{errorMessage}</div>\n    </div>\n  )\n}\n\n...\n\n<InputField\n  type="number"\n  customElement={this.customElementNumber}\n  value={value}\n  name="input-number"\n  label="custom element"\n  onChange={this.handleUpdateValue}\n/>\n            '
+          )
+        )
+      );
+    }, _this.renderDemo = function () {
+      var _this$state = _this.state,
+          numberInput = _this$state.numberInput,
+          numberInputRules = _this$state.numberInputRules,
+          numberInputFormat = _this$state.numberInputFormat,
+          numberInputChildren = _this$state.numberInputChildren;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'box-demo-input' },
+          _react2.default.createElement(_reactInputForms2.default, {
+            type: 'number',
+            value: numberInput,
+            name: 'numberInput',
+            label: 'label',
+            onChange: _this.handleUpdateValue
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'box-demo-input' },
+          _react2.default.createElement(_reactInputForms2.default, {
+            type: 'number',
+            value: numberInputRules,
+            rules: {
+              required: 'value is require'
+            },
+            name: 'numberInputRules',
+            label: 'Input verify field',
+            onChange: _this.handleUpdateValue
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'box-demo-input' },
+          _react2.default.createElement(_reactInputForms2.default, {
+            type: 'number',
+            value: numberInputFormat,
+            name: 'numberInputFormat',
+            label: 'Input number format',
+            format: '0,000.00',
+            onChange: _this.handleUpdateValue
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'box-demo-input' },
+          _react2.default.createElement(
+            _reactInputForms2.default,
+            {
+              type: 'number',
+              value: numberInputChildren,
+              name: 'numberInputChildren',
+              label: 'Children',
+              onChange: _this.handleUpdateValue
+            },
+            _react2.default.createElement(
+              'button',
+              { onClick: function onClick() {
+                  return _this.handleClearValue('numberInputChildren');
+                } },
+              'clear'
+            )
+          )
+        )
+      );
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(TextInput, [{
+    key: 'render',
+    value: function render() {
+      var prosType = (0, _numberInput2.default)('th');
+      return _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Input Type Number'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'D-6 M-12' },
+            this.renderDemo()
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'D-6 M-12' },
+            _react2.default.createElement(
+              'pre',
+              null,
+              _react2.default.createElement(
+                'code',
+                { className: 'html' },
+                '\nimport React, { Component } from \'react\'\nimport InputField from \'react-input-forms\'\n\nexport default class Demo extends Component {\n  state = {\n    value: \'\',\n  }\n\n  handleUpdateValue = (value) => {\n    this.setState({ value: value });\n  }\n\n  render() {\n    const { value } = this.state;\n    return (\n      <div className="container">\n        <InputField\n          type="number"\n          value={value}\n          name="input-text"\n          label="label"\n          onChange={this.handleUpdateValue}\n        />\n      </div>\n    )\n  }\n}'
+              )
+            )
           )
         ),
         _react2.default.createElement(
           'div',
-          { className: 'box-input' },
-          _react2.default.createElement('input', {
-            ref: function ref(input) {
-              if (input != null && focus) {
-                input.focus();
-              }
-            },
-            className: classInput,
-            type: 'text',
-            name: name,
-            value: !(0, _global.isEmpey)(format) ? (0, _global.toNumeral)(value, format) : value,
-            placeholder: placeholder,
-            disabled: disabled,
-            maxLength: this.props.maxLength,
-            onKeyUp: function onKeyUp(e) {
-              return handleKeyCode(e);
-            },
-            onChange: function onChange(e) {
-              return _this2.onInputChange(e.target.value);
-            },
-            onBlur: function onBlur(e) {
-              return _this2.handleOnBlur(e.target.value);
-            }
-          }),
-          renderErrorMessage
+          { className: 'pros-type' },
+          _react2.default.createElement(
+            'div',
+            { className: 'title' },
+            prosType.title
+          ),
+          _react2.default.createElement(
+            'table',
+            null,
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'th',
+                null,
+                prosType.header.property
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                prosType.header.type
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                prosType.header.default
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                prosType.header.description
+              )
+            ),
+            prosType.detail.map(function (obj, index) {
+              return _react2.default.createElement(
+                'tr',
+                { key: index },
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  obj.property
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  obj.type
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  obj.default
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  obj.description
+                )
+              );
+            })
+          )
         ),
-        this.props.children
+        _react2.default.createElement(
+          'div',
+          { className: 'demo' },
+          _react2.default.createElement(
+            'h2',
+            null,
+            ' Demo input type text'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'D-6 M-12' },
+              this.renderBasicInput()
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'D-6 M-12' },
+              this.renderCustomElement()
+            )
+          )
+        )
       );
     }
   }]);
 
-  return NumberInput;
-}(_react2.default.PureComponent);
+  return TextInput;
+}(_react.Component);
 
-NumberInput.propTypes = {
-  value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
-  format: _react.PropTypes.string,
-  label: _react.PropTypes.string,
-  placeholder: _react.PropTypes.string,
-  type: _react.PropTypes.string.isRequired,
-  name: _react.PropTypes.string.isRequired,
-  inputProps: _react.PropTypes.object,
-  labelProps: _react.PropTypes.object,
-  disabled: _react.PropTypes.bool,
-  focus: _react.PropTypes.bool,
-  errorMessage: _react.PropTypes.string,
-  remark: _react.PropTypes.string,
-  handleChange: _react.PropTypes.func,
-  maxLength: _react.PropTypes.number,
-  handleBlur: _react.PropTypes.func,
-  handleKeyCode: _react.PropTypes.func
-};
-NumberInput.defaultProps = {
-  name: 'input',
-  format: '',
-  tabIndex: 0,
-  label: '',
-  value: '',
-  inputProps: {},
-  labelProps: {},
-  disabled: false,
-  type: 'text'
-};
-exports.default = NumberInput;
+exports.default = TextInput;

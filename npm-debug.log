@@ -2,14 +2,14 @@
 1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'install',
-1 verbose cli   'react-input-forms@1.4.0',
-1 verbose cli   '--save' ]
+1 verbose cli   'react-input-forms',
+1 verbose cli   '--D' ]
 2 info using npm@3.10.10
 3 info using node@v6.10.1
 4 silly loadCurrentTree Starting
 5 silly install loadCurrentTree
 6 silly install readLocalPackageData
-7 silly fetchPackageMetaData react-input-forms@1.4.0
+7 silly fetchPackageMetaData react-input-forms
 8 silly fetchNamedPackageData react-input-forms
 9 silly mapToRegistry name react-input-forms
 10 silly mapToRegistry using default registry
@@ -25,9 +25,9 @@
 13 silly mapToRegistry uri https://registry.npmjs.org/react-input-forms
 14 verbose request uri https://registry.npmjs.org/react-input-forms
 15 verbose request no auth needed
-16 info attempt registry request try #1 at 1:44:52 PM
+16 info attempt registry request try #1 at 2:03:46 PM
 17 verbose request using bearer token for auth
-18 verbose request id 1722be545c668806
+18 verbose request id 2b3e0c82f7712a43
 19 verbose etag W/"59bf6ab2-985a"
 20 verbose lastModified Mon, 18 Sep 2017 06:41:54 GMT
 21 http request GET https://registry.npmjs.org/react-input-forms
@@ -37,13 +37,13 @@
 23 verbose headers   etag: '"59bf6ab2-985a"',
 23 verbose headers   'cache-control': 'max-age=300',
 23 verbose headers   'accept-ranges': 'bytes',
-23 verbose headers   date: 'Mon, 18 Sep 2017 06:44:53 GMT',
+23 verbose headers   date: 'Mon, 18 Sep 2017 07:03:47 GMT',
 23 verbose headers   via: '1.1 varnish',
 23 verbose headers   connection: 'keep-alive',
-23 verbose headers   'x-served-by': 'cache-sin18033-SIN',
+23 verbose headers   'x-served-by': 'cache-sin18022-SIN',
 23 verbose headers   'x-cache': 'MISS',
 23 verbose headers   'x-cache-hits': '0',
-23 verbose headers   'x-timer': 'S1505717093.805051,VS0,VE205',
+23 verbose headers   'x-timer': 'S1505718227.046155,VS0,VE208',
 23 verbose headers   vary: 'Accept-Encoding, Accept' }
 24 silly get cb [ 304,
 24 silly get   { server: 'nginx/1.10.3',
@@ -51,13 +51,13 @@
 24 silly get     etag: '"59bf6ab2-985a"',
 24 silly get     'cache-control': 'max-age=300',
 24 silly get     'accept-ranges': 'bytes',
-24 silly get     date: 'Mon, 18 Sep 2017 06:44:53 GMT',
+24 silly get     date: 'Mon, 18 Sep 2017 07:03:47 GMT',
 24 silly get     via: '1.1 varnish',
 24 silly get     connection: 'keep-alive',
-24 silly get     'x-served-by': 'cache-sin18033-SIN',
+24 silly get     'x-served-by': 'cache-sin18022-SIN',
 24 silly get     'x-cache': 'MISS',
 24 silly get     'x-cache-hits': '0',
-24 silly get     'x-timer': 'S1505717093.805051,VS0,VE205',
+24 silly get     'x-timer': 'S1505718227.046155,VS0,VE208',
 24 silly get     vary: 'Accept-Encoding, Accept' } ]
 25 verbose etag https://registry.npmjs.org/react-input-forms from cache
 26 verbose get saving react-input-forms to C:\Users\Mos\AppData\Roaming\npm-cache\registry.npmjs.org\react-input-forms\.cache.json
@@ -91,7 +91,7 @@
 44 verbose stack     at asyncMap (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:51:8)
 45 verbose cwd C:\xampp\htdocs\react-input-forms
 46 error Windows_NT 10.0.15063
-47 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "react-input-forms@1.4.0" "--save"
+47 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "react-input-forms" "--D"
 48 error node v6.10.1
 49 error npm  v3.10.10
 50 error code ENOSELF

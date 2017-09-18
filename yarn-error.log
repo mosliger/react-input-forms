@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-input-forms -D
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-input-forms --D
 
 PATH: 
-  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Git\cmd;C:\Program Files\TortoiseGit\bin;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Java\jdk1.7.0_79\bin;C:\Program Files (x86)\apache-maven-3.3.9\bin;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\MongoDB\Server\3.2\bin;C:\Users\Mos\AppData\Local\atom\bin;C:\Users\Mos\AppData\Local\Microsoft\WindowsApps;C:\Users\Mos\AppData\Local\Yarn\.bin;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Program Files\Heroku\bin;C:\Users\Mos\AppData\Roaming\npm
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Git\cmd;C:\Program Files\TortoiseGit\bin;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Java\jdk1.7.0_79\bin;C:\Program Files (x86)\apache-maven-3.3.9\bin;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\MongoDB\Server\3.2\bin;C:\Users\Mos\AppData\Local\atom\bin;C:\Users\Mos\AppData\Local\Microsoft\WindowsApps;C:\Users\Mos\AppData\Local\Yarn\.bin;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Program Files\Heroku\bin;C:\Users\Mos\AppData\Roaming\npm;
 
 Yarn version: 
   0.18.1
@@ -16,7 +16,7 @@ Platform:
 npm manifest: 
   {
     "name": "react-input-forms",
-    "version": "1.3.1",
+    "version": "1.4.0",
     "description": "",
     "main": "./dist/index.js",
     "repository": {
@@ -29,7 +29,6 @@ npm manifest:
       "build:demo": "webpack --progress --hide-modules --config ./configs/webpack.config.production.js",
       "build": "cross-env BABEL_ENV=production babel src --out-dir dist"
     },
-  
     "author": "",
     "license": "ISC",
     "files": [
@@ -57,7 +56,6 @@ npm manifest:
       "extract-text-webpack-plugin": "^2.1.0",
       "file-loader": "^0.11.1",
       "mocha": "^3.4.1",
-      "react-input-forms": "^1.2.9",
       "sass-loader": "^6.0.3",
       "style-loader": "^0.16.1",
       "webpack": "^2.3.3",
@@ -4681,9 +4679,9 @@ Lockfile:
       object-assign "^4.1.0"
       prop-types "~15.5.7"
   
-  react-input-forms@^1.2.9:
-    version "1.2.9"
-    resolved "https://registry.yarnpkg.com/react-input-forms/-/react-input-forms-1.2.9.tgz#6fdf59eea07ab3f7e79311f813aa73e2950e92ce"
+  react-input-forms@^1.4.0:
+    version "1.4.0"
+    resolved "https://registry.yarnpkg.com/react-input-forms/-/react-input-forms-1.4.0.tgz#040e333399c28051ad217072890aabd6f2b7c51c"
     dependencies:
       node-sass "^4.5.3"
       npm "^4.6.1"
@@ -6001,5 +5999,5 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: ENOENT: no such file or directory, chmod 'C:\xampp\htdocs\react-input-forms\node_modules\.bin\babel-external-helpers'
+  Error: ENOENT: no such file or directory, chmod 'C:\xampp\htdocs\react-input-forms\node_modules\.bin\babel-node'
       at Error (native)
