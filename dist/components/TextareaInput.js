@@ -10,17 +10,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactInputForms = require('react-input-forms');
-
-var _reactInputForms2 = _interopRequireDefault(_reactInputForms);
-
-var _textareaInput = require('../helpers/textareaInput');
-
-var _textareaInput2 = _interopRequireDefault(_textareaInput);
+var _global = require('../helpers/global');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -28,8 +20,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var TextareaInput = function (_Component) {
-  _inherits(TextareaInput, _Component);
+var TextareaInput = function (_React$PureComponent) {
+  _inherits(TextareaInput, _React$PureComponent);
 
   function TextareaInput() {
     var _ref;
@@ -42,251 +34,178 @@ var TextareaInput = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextareaInput.__proto__ || Object.getPrototypeOf(TextareaInput)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      textareaInput: '',
-      textareaInputRules: '',
-      textareaInputChildren: '',
-      basicinput: ''
-    }, _this.handleUpdateValue = function (value, name) {
-      _this.setState(_defineProperty({}, name, value));
-    }, _this.renderBasicInput = function () {
-      var basicinput = _this.state.basicinput;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextareaInput.__proto__ || Object.getPrototypeOf(TextareaInput)).call.apply(_ref, [this].concat(args))), _this), _this.renderCustomElement = function () {
+      var _this$props = _this.props,
+          label = _this$props.label,
+          value = _this$props.value,
+          disabled = _this$props.disabled,
+          focus = _this$props.focus,
+          placeholder = _this$props.placeholder,
+          name = _this$props.name,
+          rows = _this$props.rows,
+          cols = _this$props.cols,
+          tabIndex = _this$props.tabIndex,
+          errorMessage = _this$props.errorMessage,
+          inputProps = _this$props.inputProps,
+          handleChange = _this$props.handleChange,
+          handleKeyCode = _this$props.handleKeyCode,
+          handleBlur = _this$props.handleBlur;
 
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_reactInputForms2.default, { type: 'textarea',
-          rows: 4, value: basicinput, name: 'basicinput', label: 'basic input', onChange: _this.handleUpdateValue }),
-        _react2.default.createElement(
-          'pre',
-          null,
-          _react2.default.createElement(
-            'code',
-            null,
-            '\n<InputField\n  type="textarea"\n  rows={4}\n  value={value}\n  name="input-text"\n  label="basic input"\n  onChange={this.handleUpdateValue}\n/>\n          '
-          )
-        )
-      );
-    }, _this.customElementTextarea = function (input, label, errorMessage) {
-      return _react2.default.createElement(
-        'div',
-        { className: 'custom-element' },
-        _react2.default.createElement(
-          'label',
-          null,
-          label
-        ),
-        input,
-        _react2.default.createElement(
-          'div',
-          { className: 'error-message' },
-          errorMessage
-        )
-      );
-    }, _this.renderCustomElement = function () {
-      var customElement = _this.state.customElement;
 
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_reactInputForms2.default, { type: 'textarea', customElement: _this.customElementTextarea, value: customElement, name: 'customElement', label: 'custom element', onChange: _this.handleUpdateValue }),
-        _react2.default.createElement(
-          'pre',
-          null,
-          _react2.default.createElement(
-            'code',
-            null,
-            '\ncustomElementTextarea = (input, label, errorMessage) => {\n  return (\n    <div className="custom-element">\n      <label>{label}</label>\n      {input}\n      <div className="error-message">{errorMessage}</div>\n    </div>\n  )\n}\n\n...\n\n<InputField\n  type="textarea"\n  customElement={this.customElementTextarea}\n  value={value}\n  name="input-textarea"\n  label="custom element"\n  onChange={this.handleUpdateValue}\n/>\n            '
-          )
-        )
+      var classInput = 'form-input';
+      if (!(0, _global.isEmpey)(errorMessage)) {
+        classInput = 'form-input error';
+      }
+      var input = _react2.default.createElement(
+        'textarea',
+        {
+          ref: function ref(input) {
+            if (input != null && focus) {
+              input.focus();
+            }
+          },
+          rows: rows,
+          cols: cols,
+          maxLength: _this.props.maxLength,
+          disabled: disabled,
+          className: classInput,
+          value: value,
+          onKeyUp: function onKeyUp(e) {
+            return handleKeyCode(e);
+          },
+          onChange: function onChange(e) {
+            return handleChange(e.target.value);
+          },
+          onBlur: function onBlur(e) {
+            return handleBlur(e.target.value);
+          }
+        },
+        value
       );
-    }, _this.renderDemo = function () {
-      var _this$state = _this.state,
-          textareaInput = _this$state.textareaInput,
-          textareaInputRules = _this$state.textareaInputRules,
-          textareaInputChildren = _this$state.textareaInputChildren;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'div',
-          { className: 'box-demo-input' },
-          _react2.default.createElement(_reactInputForms2.default, {
-            type: 'textarea',
-            rows: 4,
-            value: textareaInput,
-            name: 'textareaInput',
-            label: 'label',
-            onChange: _this.handleUpdateValue
-          })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'box-demo-input' },
-          _react2.default.createElement(_reactInputForms2.default, {
-            type: 'textarea',
-            rows: 4,
-            value: textareaInputRules,
-            rules: {
-              required: 'value is require',
-              email: 'รูปแบบ email ไม่ถูกต้อง'
-            },
-            name: 'textareaInputRules',
-            label: 'Input verify field',
-            placeholder: 'E-mail',
-            onChange: _this.handleUpdateValue
-          })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'box-demo-input' },
-          _react2.default.createElement(
-            _reactInputForms2.default,
-            {
-              type: 'textarea',
-              rows: 4,
-              value: textareaInputChildren,
-              name: 'textareaInputChildren',
-              label: 'Children',
-              onChange: _this.handleUpdateValue
-            },
-            _react2.default.createElement(
-              'button',
-              null,
-              'search'
-            )
-          )
-        )
-      );
+      return _this.props.customElement(input, label, errorMessage);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(TextareaInput, [{
     key: 'render',
     value: function render() {
-      var prosType = (0, _textareaInput2.default)('th');
+      var _props = this.props,
+          label = _props.label,
+          value = _props.value,
+          disabled = _props.disabled,
+          focus = _props.focus,
+          remark = _props.remark,
+          placeholder = _props.placeholder,
+          name = _props.name,
+          rows = _props.rows,
+          cols = _props.cols,
+          tabIndex = _props.tabIndex,
+          errorMessage = _props.errorMessage,
+          inputProps = _props.inputProps,
+          handleChange = _props.handleChange,
+          handleKeyCode = _props.handleKeyCode,
+          handleBlur = _props.handleBlur;
+
+
+      if (this.props.customElement) {
+        return this.renderCustomElement();
+      }
+
+      var renderErrorMessage = '';
+      var classInput = 'form-input';
+      if (!(0, _global.isEmpey)(errorMessage)) {
+        classInput = 'form-input error';
+        renderErrorMessage = _react2.default.createElement(
+          'div',
+          { className: 'error-message' },
+          errorMessage
+        );
+      }
+
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
+        { className: inputProps.className ? inputProps.className : 'field-group' },
         _react2.default.createElement(
-          'h1',
-          null,
-          'Input Type Textarea'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'D-6 M-12' },
-            this.renderDemo()
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'D-6 M-12' },
-            _react2.default.createElement(
-              'pre',
-              null,
-              _react2.default.createElement(
-                'code',
-                { className: 'html' },
-                '\nimport React, { Component } from \'react\'\nimport InputField from \'react-input-forms\'\n\nexport default class Demo extends Component {\n  state = {\n    value: \'\',\n  }\n\n  handleUpdateValue = (value) => {\n    this.setState({ value: value });\n  }\n\n  render() {\n    const { value } = this.state;\n    return (\n      <div className="container">\n        <InputField\n          type="textarea"\n          rows={4}\n          value={value}\n          name="input-text"\n          label="label"\n          onChange={this.handleUpdateValue}\n        />\n      </div>\n    )\n  }\n}'
-              )
-            )
+          'label',
+          { htmlFor: label },
+          label,
+          ' ',
+          !(0, _global.isEmpey)(remark) && _react2.default.createElement(
+            'span',
+            { className: 'remark' },
+            remark
           )
         ),
         _react2.default.createElement(
           'div',
-          { className: 'pros-type' },
+          { className: 'box-input' },
           _react2.default.createElement(
-            'div',
-            { className: 'title' },
-            prosType.title
+            'textarea',
+            {
+              ref: function ref(input) {
+                if (input != null && focus) {
+                  input.focus();
+                }
+              },
+              rows: rows,
+              cols: cols,
+              disabled: disabled,
+              className: classInput,
+              value: value,
+              maxLength: this.props.maxLength,
+              onKeyUp: function onKeyUp(e) {
+                return handleKeyCode(e);
+              },
+              onChange: function onChange(e) {
+                return handleChange(e.target.value);
+              },
+              onBlur: function onBlur(e) {
+                return handleBlur(e.target.value);
+              }
+            },
+            value
           ),
-          _react2.default.createElement(
-            'table',
-            null,
-            _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'th',
-                null,
-                prosType.header.property
-              ),
-              _react2.default.createElement(
-                'th',
-                null,
-                prosType.header.type
-              ),
-              _react2.default.createElement(
-                'th',
-                null,
-                prosType.header.default
-              ),
-              _react2.default.createElement(
-                'th',
-                null,
-                prosType.header.description
-              )
-            ),
-            prosType.detail.map(function (obj, index) {
-              return _react2.default.createElement(
-                'tr',
-                { key: index },
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  obj.property
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  obj.type
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  obj.default
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  obj.description
-                )
-              );
-            })
-          )
+          renderErrorMessage
         ),
-        _react2.default.createElement(
-          'div',
-          { className: 'demo' },
-          _react2.default.createElement(
-            'h2',
-            null,
-            ' Demo input type textarea'
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'D-6 M-12' },
-              this.renderBasicInput()
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'D-6 M-12' },
-              this.renderCustomElement()
-            )
-          )
-        )
+        this.props.children
       );
     }
   }]);
 
   return TextareaInput;
-}(_react.Component);
+}(_react2.default.PureComponent);
 
+TextareaInput.propTypes = {
+  value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+  rows: _react.PropTypes.number,
+  cols: _react.PropTypes.number,
+  label: _react.PropTypes.string,
+  placeholder: _react.PropTypes.string,
+  type: _react.PropTypes.string.isRequired,
+  name: _react.PropTypes.string.isRequired,
+  inputProps: _react.PropTypes.object,
+  labelProps: _react.PropTypes.object,
+  disabled: _react.PropTypes.bool,
+  focus: _react.PropTypes.bool,
+  errorMessage: _react.PropTypes.string,
+  maxLength: _react.PropTypes.number,
+  remark: _react.PropTypes.string,
+  handleChange: _react.PropTypes.func,
+  handleBlur: _react.PropTypes.func,
+  handleKeyCode: _react.PropTypes.func
+};
+TextareaInput.defaultProps = {
+  name: 'input',
+  rows: 3,
+  cols: 4,
+  tabIndex: 0,
+  label: '',
+  value: '',
+  inputProps: {},
+  labelProps: {},
+  disabled: false,
+  focus: false,
+  placeholder: '',
+  type: 'text'
+};
 exports.default = TextareaInput;

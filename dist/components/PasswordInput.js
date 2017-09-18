@@ -10,17 +10,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactInputForms = require('react-input-forms');
-
-var _reactInputForms2 = _interopRequireDefault(_reactInputForms);
-
-var _passwordInput = require('../helpers/passwordInput');
-
-var _passwordInput2 = _interopRequireDefault(_passwordInput);
+var _global = require('../helpers/global');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -28,8 +20,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var PasswordInput = function (_Component) {
-  _inherits(PasswordInput, _Component);
+var PasswordInput = function (_React$PureComponent) {
+  _inherits(PasswordInput, _React$PureComponent);
 
   function PasswordInput() {
     var _ref;
@@ -42,247 +34,166 @@ var PasswordInput = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PasswordInput.__proto__ || Object.getPrototypeOf(PasswordInput)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      passwordInput: '',
-      passwordInputRules: '',
-      passwordInputChildren: '',
-      basicinput: '',
-      customElement: ''
-    }, _this.handleUpdateValue = function (value, name) {
-      _this.setState(_defineProperty({}, name, value));
-    }, _this.renderBasicInput = function () {
-      var basicinput = _this.state.basicinput;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PasswordInput.__proto__ || Object.getPrototypeOf(PasswordInput)).call.apply(_ref, [this].concat(args))), _this), _this.renderCustomElement = function () {
+      var _this$props = _this.props,
+          label = _this$props.label,
+          value = _this$props.value,
+          disabled = _this$props.disabled,
+          focus = _this$props.focus,
+          placeholder = _this$props.placeholder,
+          name = _this$props.name,
+          errorMessage = _this$props.errorMessage,
+          inputProps = _this$props.inputProps,
+          tabIndex = _this$props.tabIndex,
+          handleChange = _this$props.handleChange,
+          handleKeyCode = _this$props.handleKeyCode,
+          handleBlur = _this$props.handleBlur;
 
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_reactInputForms2.default, { type: 'password', value: basicinput, name: 'basicinput', label: 'basic input', onChange: _this.handleUpdateValue }),
-        _react2.default.createElement(
-          'pre',
-          null,
-          _react2.default.createElement(
-            'code',
-            null,
-            '\n<InputField\n  type="password"\n  value={value}\n  name="input-text"\n  label="basic input"\n  onChange={this.handleUpdateValue}\n/>\n          '
-          )
-        )
-      );
-    }, _this.customElementText = function (input, label, errorMessage) {
-      return _react2.default.createElement(
-        'div',
-        { className: 'custom-element' },
-        _react2.default.createElement(
-          'label',
-          null,
-          label
-        ),
-        input,
-        _react2.default.createElement(
-          'div',
-          { className: 'message' },
-          errorMessage
-        )
-      );
-    }, _this.renderCustomElement = function () {
-      var customElement = _this.state.customElement;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_reactInputForms2.default, { type: 'password', customElement: _this.customElementText, value: customElement, name: 'customElement', label: 'custom element', onChange: _this.handleUpdateValue }),
-        _react2.default.createElement(
-          'pre',
-          null,
-          _react2.default.createElement(
-            'code',
-            null,
-            '\ncustomElementText = (input, label, errorMessage) => {\n  return (\n    <div className="custom-element">\n      <label>{label}</label>\n      {input}\n      <div className="error-message">{errorMessage}</div>\n    </div>\n  )\n}\n\n...\n\n<InputField\n  type="password"\n  customElement={this.customElementText}\n  value={value}\n  name="input-text"\n  label="custom element"\n  onChange={this.handleUpdateValue}\n/>\n            '
-          )
-        )
-      );
-    }, _this.renderDemo = function () {
-      var _this$state = _this.state,
-          passwordInput = _this$state.passwordInput,
-          passwordInputRules = _this$state.passwordInputRules,
-          passwordInputChildren = _this$state.passwordInputChildren;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'div',
-          { className: 'box-demo-input' },
-          _react2.default.createElement(_reactInputForms2.default, {
-            type: 'password',
-            value: passwordInput,
-            name: 'passwordInput',
-            label: 'label',
-            onChange: _this.handleUpdateValue
-          })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'box-demo-input' },
-          _react2.default.createElement(_reactInputForms2.default, {
-            type: 'password',
-            value: passwordInputRules,
-            rules: {
-              required: 'value is require'
-            },
-            name: 'passwordInputRules',
-            label: 'Input verify field',
-            placeholder: 'require field',
-            onChange: _this.handleUpdateValue
-          })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'box-demo-input' },
-          _react2.default.createElement(
-            _reactInputForms2.default,
-            {
-              type: 'password',
-              value: passwordInputChildren,
-              name: 'passwordInputChildren',
-              label: 'Children',
-              onChange: _this.handleUpdateValue
-            },
-            _react2.default.createElement(
-              'button',
-              null,
-              'button'
-            )
-          )
-        )
-      );
+      var classInput = 'form-input';
+      if (!(0, _global.isEmpey)(errorMessage)) {
+        classInput = 'form-input error';
+      }
+      var input = _react2.default.createElement('input', {
+        ref: function ref(input) {
+          if (input != null && focus) {
+            input.focus();
+          }
+        },
+        className: classInput,
+        type: 'password',
+        name: name,
+        value: value,
+        maxLength: _this.props.maxLength,
+        placeholder: placeholder,
+        disabled: disabled,
+        onKeyUp: function onKeyUp(e) {
+          return handleKeyCode(e);
+        },
+        onChange: function onChange(e) {
+          return handleChange(e.target.value);
+        },
+        onBlur: function onBlur(e) {
+          return handleBlur(e.target.value);
+        }
+      });
+      return _this.props.customElement(input, label, errorMessage);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PasswordInput, [{
     key: 'render',
     value: function render() {
-      var prosType = (0, _passwordInput2.default)('th');
+      var _props = this.props,
+          label = _props.label,
+          value = _props.value,
+          disabled = _props.disabled,
+          remark = _props.remark,
+          focus = _props.focus,
+          placeholder = _props.placeholder,
+          name = _props.name,
+          errorMessage = _props.errorMessage,
+          inputProps = _props.inputProps,
+          tabIndex = _props.tabIndex,
+          handleChange = _props.handleChange,
+          handleKeyCode = _props.handleKeyCode,
+          handleBlur = _props.handleBlur;
+
+
+      if (this.props.customElement) {
+        return this.renderCustomElement();
+      }
+
+      var renderErrorMessage = '';
+      var classInput = 'form-input';
+      if (!(0, _global.isEmpey)(errorMessage)) {
+        classInput = 'form-input error';
+        renderErrorMessage = _react2.default.createElement(
+          'div',
+          { className: 'error-message' },
+          errorMessage
+        );
+      }
+
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
+        { className: inputProps.className ? inputProps.className : 'field-group' },
         _react2.default.createElement(
-          'h1',
-          null,
-          'Input Type Text'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'D-6 M-12' },
-            this.renderDemo()
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'D-6 M-12' },
-            _react2.default.createElement(
-              'pre',
-              null,
-              _react2.default.createElement(
-                'code',
-                { className: 'html' },
-                '\nimport React, { Component } from \'react\'\nimport InputField from \'react-input-forms\'\n\nexport default class Demo extends Component {\n  state = {\n    value: \'\',\n  }\n\n  handleUpdateValue = (value) => {\n    this.setState({ value: value });\n  }\n\n  render() {\n    const { value } = this.state;\n    return (\n      <div className="container">\n        <InputField\n          type="password"\n          value={value}\n          name="input-text"\n          label="label"\n          onChange={this.handleUpdateValue}\n        />\n      </div>\n    )\n  }\n}'
-              )
-            )
+          'label',
+          { htmlFor: label },
+          label,
+          ' ',
+          !(0, _global.isEmpey)(remark) && _react2.default.createElement(
+            'span',
+            { className: 'remark' },
+            remark
           )
         ),
         _react2.default.createElement(
           'div',
-          { className: 'pros-type' },
-          _react2.default.createElement(
-            'div',
-            { className: 'title' },
-            prosType.title
-          ),
-          _react2.default.createElement(
-            'table',
-            null,
-            _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'th',
-                null,
-                prosType.header.property
-              ),
-              _react2.default.createElement(
-                'th',
-                null,
-                prosType.header.type
-              ),
-              _react2.default.createElement(
-                'th',
-                null,
-                prosType.header.default
-              ),
-              _react2.default.createElement(
-                'th',
-                null,
-                prosType.header.description
-              )
-            ),
-            prosType.detail.map(function (obj, index) {
-              return _react2.default.createElement(
-                'tr',
-                { key: index },
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  obj.property
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  obj.type
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  obj.default
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  obj.description
-                )
-              );
-            })
-          )
+          { className: 'box-input' },
+          _react2.default.createElement('input', {
+            ref: function ref(input) {
+              if (input != null && focus) {
+                input.focus();
+              }
+            },
+            className: classInput,
+            type: 'password',
+            name: name,
+            value: value,
+            maxLength: this.props.maxLength,
+            placeholder: placeholder,
+            disabled: disabled,
+            onKeyUp: function onKeyUp(e) {
+              return handleKeyCode(e);
+            },
+            onChange: function onChange(e) {
+              return handleChange(e.target.value);
+            },
+            onBlur: function onBlur(e) {
+              return handleBlur(e.target.value);
+            }
+          }),
+          renderErrorMessage
         ),
-        _react2.default.createElement(
-          'div',
-          { className: 'demo' },
-          _react2.default.createElement(
-            'h2',
-            null,
-            ' Demo input type text'
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'D-6 M-12' },
-              this.renderBasicInput()
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'D-6 M-12' },
-              this.renderCustomElement()
-            )
-          )
-        )
+        this.props.children
       );
     }
   }]);
 
   return PasswordInput;
-}(_react.Component);
+}(_react2.default.PureComponent);
 
+PasswordInput.propTypes = {
+  value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+
+  label: _react.PropTypes.string,
+  placeholder: _react.PropTypes.string,
+  children: _react.PropTypes.node,
+  type: _react.PropTypes.string.isRequired,
+  name: _react.PropTypes.string.isRequired,
+  inputProps: _react.PropTypes.object,
+  labelProps: _react.PropTypes.object,
+  disabled: _react.PropTypes.bool,
+  focus: _react.PropTypes.bool,
+  tabIndex: _react.PropTypes.number,
+  maxLength: _react.PropTypes.number,
+  errorMessage: _react.PropTypes.string,
+  remark: _react.PropTypes.string,
+  handleChange: _react.PropTypes.func,
+  handleBlur: _react.PropTypes.func,
+  handleKeyCode: _react.PropTypes.func
+};
+PasswordInput.defaultProps = {
+  name: 'input',
+  tabIndex: 0,
+  label: '',
+  value: '',
+  inputProps: {},
+  labelProps: {},
+  disabled: false,
+  focus: false,
+  placeholder: '',
+  type: 'text'
+};
 exports.default = PasswordInput;
