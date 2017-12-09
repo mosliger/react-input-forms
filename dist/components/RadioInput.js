@@ -49,16 +49,11 @@ var RadioInput = function (_React$PureComponent) {
           handleChange = _this$props.handleChange,
           handleBlur = _this$props.handleBlur;
 
-
-      var classInput = 'form-input';
-      if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
-      }
       var inputList = options.map(function (detail, index) {
         var getValue = value.value ? value.value : value;
         var checked = getValue === detail.value;
         var input = _react2.default.createElement('input', {
-          className: classInput,
+          className: 'form-input',
           type: 'radio',
           name: name,
           value: detail.value,
@@ -101,18 +96,18 @@ var RadioInput = function (_React$PureComponent) {
       }
 
       var renderErrorMessage = '';
-      var classInput = 'form-input';
+      var classInput = 'wrap-form-input';
       if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
+        classInput = 'wrap-form-input error';
         renderErrorMessage = _react2.default.createElement(
           'div',
-          { className: 'error-message' },
+          { className: 'validation-label' },
           errorMessage
         );
       }
       return _react2.default.createElement(
         'div',
-        { className: inputProps.className ? inputProps.className : 'field-group' },
+        { className: inputProps.className ? inputProps.className : 'field-group-radio' },
         _react2.default.createElement(
           'label',
           { htmlFor: label },
@@ -132,9 +127,9 @@ var RadioInput = function (_React$PureComponent) {
             { className: 'radio-list', key: name + '-' + index },
             _react2.default.createElement(
               'div',
-              { className: 'box-input' },
+              { className: classInput },
               _react2.default.createElement('input', {
-                className: classInput,
+                className: 'form-input',
                 type: 'radio',
                 name: name,
                 value: detail.value,

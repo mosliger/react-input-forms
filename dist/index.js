@@ -186,121 +186,65 @@ var Index = function (_React$Component) {
         case 'text':
           {
             if (this.props.children) return _react2.default.createElement(
-              'div',
-              { className: 'text-input' },
-              _react2.default.createElement(
-                _components.TextInput,
-                propsForm,
-                this.props.children
-              )
+              _components.TextInput,
+              propsForm,
+              this.props.children
             );
-            return _react2.default.createElement(
-              'div',
-              { className: 'text-input' },
-              _react2.default.createElement(_components.TextInput, propsForm)
-            );
+            return _react2.default.createElement(_components.TextInput, propsForm);
           }
         case 'number':
           {
             if (this.props.children) return _react2.default.createElement(
-              'div',
-              { className: 'number-input' },
-              _react2.default.createElement(
-                _components.NumberInput,
-                propsForm,
-                this.props.children
-              )
+              _components.NumberInput,
+              propsForm,
+              this.props.children
             );
-            return _react2.default.createElement(
-              'div',
-              { className: 'number-input' },
-              _react2.default.createElement(_components.NumberInput, propsForm)
-            );
+            return _react2.default.createElement(_components.NumberInput, propsForm);
           }
         case 'select':
           {
             if (this.props.children) return _react2.default.createElement(
-              'div',
-              { className: 'select-input' },
-              _react2.default.createElement(
-                _components.SelectInput,
-                propsForm,
-                this.props.children
-              )
+              _components.SelectInput,
+              propsForm,
+              this.props.children
             );
-            return _react2.default.createElement(
-              'div',
-              { className: 'select-input' },
-              _react2.default.createElement(_components.SelectInput, propsForm)
-            );
+            return _react2.default.createElement(_components.SelectInput, propsForm);
           }
         case 'password':
           {
             if (this.props.children) return _react2.default.createElement(
-              'div',
-              { className: 'password-input' },
-              _react2.default.createElement(
-                _components.PasswordInput,
-                propsForm,
-                this.props.children
-              )
+              _components.PasswordInput,
+              propsForm,
+              this.props.children
             );
-            return _react2.default.createElement(
-              'div',
-              { className: 'password-input' },
-              _react2.default.createElement(_components.PasswordInput, propsForm)
-            );
+            return _react2.default.createElement(_components.PasswordInput, propsForm);
           }
         case 'textarea':
           {
             if (this.props.children) return _react2.default.createElement(
-              'div',
-              { className: 'textarea-input' },
-              _react2.default.createElement(
-                _components.TextareaInput,
-                propsForm,
-                this.props.children
-              )
+              _components.TextareaInput,
+              propsForm,
+              this.props.children
             );
-            return _react2.default.createElement(
-              'div',
-              { className: 'textarea-input' },
-              _react2.default.createElement(_components.TextareaInput, propsForm)
-            );
+            return _react2.default.createElement(_components.TextareaInput, propsForm);
           }
         case 'radio':
           {
             if (this.props.children) return _react2.default.createElement(
-              'div',
-              { className: 'radio-input' },
-              _react2.default.createElement(
-                _components.RadioInput,
-                propsForm,
-                this.props.children
-              )
+              _components.RadioInput,
+              propsForm,
+              this.props.children
             );
-            return _react2.default.createElement(
-              'div',
-              { className: 'radio-input' },
-              _react2.default.createElement(_components.RadioInput, propsForm)
-            );
+            return _react2.default.createElement(_components.RadioInput, propsForm);
           }
         case 'checkbox':
           {
             if (this.props.children) return _react2.default.createElement(
-              'div',
-              { className: 'checkbox-input' },
-              _react2.default.createElement(
-                _components.CheckboxInput,
-                propsForm,
-                this.props.children
-              )
+              _components.CheckboxInput,
+              propsForm,
+              this.props.children
             );
-            return _react2.default.createElement(
-              'div',
-              { className: 'checkbox-input' },
-              _react2.default.createElement(_components.CheckboxInput, propsForm)
-            );
+            return _react2.default.createElement(_components.CheckboxInput, propsForm);
           }
         case 'custom':
           {
@@ -308,19 +252,11 @@ var Index = function (_React$Component) {
           }
         default:
           if (this.props.children) return _react2.default.createElement(
-            'div',
-            { className: 'text-input' },
-            _react2.default.createElement(
-              _components.TextInput,
-              propsForm,
-              this.props.children
-            )
+            _components.TextInput,
+            propsForm,
+            this.props.children
           );
-          return _react2.default.createElement(
-            'div',
-            { className: 'text-input' },
-            _react2.default.createElement(_components.TextInput, propsForm)
-          );
+          return _react2.default.createElement(_components.TextInput, propsForm);
       }
     }
   }]);
@@ -361,6 +297,7 @@ Index.defaultProps = {
   placeholder: '',
   tabIndex: 1,
   remark: '',
-  type: 'text'
+  type: 'text',
+  rules: undefined
 };
 exports.default = Index;

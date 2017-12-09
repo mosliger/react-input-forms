@@ -67,6 +67,7 @@ export default class Index extends React.Component {
     tabIndex: 1,
     remark: '',
     type: 'text',
+    rules: undefined,
   }
 
   state = {
@@ -197,39 +198,39 @@ export default class Index extends React.Component {
 
       switch (type) {
         case 'text': {
-          if (this.props.children) return (<div className="text-input"><TextInput {...propsForm} >{this.props.children}</TextInput></div>);
-          return (<div className="text-input"><TextInput {...propsForm} /></div>);
+          if (this.props.children) return (<TextInput {...propsForm} >{this.props.children}</TextInput>);
+          return (<TextInput {...propsForm} />);
         }
         case 'number': {
-          if (this.props.children) return (<div className="number-input"><NumberInput {...propsForm}>{this.props.children}</NumberInput></div>);
-          return (<div className="number-input"><NumberInput {...propsForm} /></div>);
+          if (this.props.children) return (<NumberInput {...propsForm}>{this.props.children}</NumberInput>);
+          return (<NumberInput {...propsForm} />);
         }
         case 'select': {
-          if (this.props.children) return (<div className="select-input"><SelectInput {...propsForm}>{this.props.children}</SelectInput></div>);
-          return (<div className="select-input"><SelectInput {...propsForm} /></div>);
+          if (this.props.children) return (<SelectInput {...propsForm}>{this.props.children}</SelectInput>);
+          return (<SelectInput {...propsForm} />);
         }
         case 'password': {
-          if (this.props.children) return (<div className="password-input"><PasswordInput {...propsForm}>{this.props.children}</PasswordInput></div>);
-          return (<div className="password-input"><PasswordInput {...propsForm} /></div>);
+          if (this.props.children) return (<PasswordInput {...propsForm}>{this.props.children}</PasswordInput>);
+          return (<PasswordInput {...propsForm} />);
         }
         case 'textarea': {
-          if (this.props.children) return (<div className="textarea-input"><TextareaInput {...propsForm}>{this.props.children}</TextareaInput></div>);
-          return (<div className="textarea-input"><TextareaInput {...propsForm} /></div>);
+          if (this.props.children) return (<TextareaInput {...propsForm}>{this.props.children}</TextareaInput>);
+          return (<TextareaInput {...propsForm} />);
         }
         case 'radio': {
-          if (this.props.children) return (<div className="radio-input"><RadioInput {...propsForm}>{this.props.children}</RadioInput></div>);
-          return (<div className="radio-input"><RadioInput {...propsForm} /></div>);
+          if (this.props.children) return (<RadioInput {...propsForm}>{this.props.children}</RadioInput>);
+          return (<RadioInput {...propsForm} />);
         }
         case 'checkbox': {
-          if (this.props.children) return (<div className="checkbox-input"><CheckboxInput {...propsForm}>{this.props.children}</CheckboxInput></div>);
-          return (<div className="checkbox-input"><CheckboxInput {...propsForm} /></div>);
+          if (this.props.children) return (<CheckboxInput {...propsForm}>{this.props.children}</CheckboxInput>);
+          return (<CheckboxInput {...propsForm} />);
         }
         case 'custom': {
           return this.props.renderComponent ? this.props.renderComponent(propsForm) : '';
         }
         default:
-          if (this.props.children) return (<div className="text-input"><TextInput {...propsForm}>{this.props.children}</TextInput></div>);
-          return (<div className="text-input"><TextInput {...propsForm} /></div>);
+          if (this.props.children) return (<TextInput {...propsForm}>{this.props.children}</TextInput>);
+          return (<TextInput {...propsForm} />);
       }
     }
 }

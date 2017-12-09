@@ -42,11 +42,6 @@ export default class TextareaInput extends React.PureComponent {
 
   renderCustomElement = () => {
     const { label, value, disabled, focus, placeholder, name, rows, cols, tabIndex, errorMessage, inputProps, handleChange, handleKeyCode, handleBlur } = this.props;
-
-    let classInput = 'form-input';
-    if (!isEmpey(errorMessage)) {
-      classInput = 'form-input error';
-    }
     const input = (<textarea
       ref={(input) => {
         if (input != null && focus) {
@@ -57,7 +52,7 @@ export default class TextareaInput extends React.PureComponent {
       cols={cols}
       maxLength={this.props.maxLength}
       disabled={disabled}
-      className={classInput}
+      className="form-input"
       value={value}
       onKeyUp={(e) => handleKeyCode(e)}
       onChange={(e) => handleChange(e.target.value)}
@@ -76,16 +71,16 @@ export default class TextareaInput extends React.PureComponent {
     }
 
     let renderErrorMessage = '';
-    let classInput = 'form-input';
+    let classInput = 'wrap-form-input';
     if (!isEmpey(errorMessage)) {
-      classInput = 'form-input error';
-      renderErrorMessage = (<div className="error-message">{errorMessage}</div>);
+      classInput = 'wrap-form-input error';
+      renderErrorMessage = (<div className="validation-label">{errorMessage}</div>);
     }
 
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
         <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
-        <div className="box-input">
+        <div className={classInput}>
           <textarea
             ref={(input) => {
               if (input != null && focus) {
@@ -95,7 +90,7 @@ export default class TextareaInput extends React.PureComponent {
             rows={rows}
             cols={cols}
             disabled={disabled}
-            className={classInput}
+            className="form-input"
             value={value}
             maxLength={this.props.maxLength}
             onKeyUp={(e) => handleKeyCode(e)}

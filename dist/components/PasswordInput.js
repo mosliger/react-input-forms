@@ -49,17 +49,13 @@ var PasswordInput = function (_React$PureComponent) {
           handleKeyCode = _this$props.handleKeyCode,
           handleBlur = _this$props.handleBlur;
 
-      var classInput = 'form-input';
-      if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
-      }
       var input = _react2.default.createElement('input', {
         ref: function ref(input) {
           if (input != null && focus) {
             input.focus();
           }
         },
-        className: classInput,
+        className: 'form-input',
         type: 'password',
         name: name,
         value: value,
@@ -104,12 +100,12 @@ var PasswordInput = function (_React$PureComponent) {
       }
 
       var renderErrorMessage = '';
-      var classInput = 'form-input';
+      var classInput = 'wrap-form-input';
       if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
+        classInput = 'wrap-form-input error';
         renderErrorMessage = _react2.default.createElement(
           'div',
-          { className: 'error-message' },
+          { className: 'validation-label' },
           errorMessage
         );
       }
@@ -130,14 +126,14 @@ var PasswordInput = function (_React$PureComponent) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'box-input' },
+          { className: classInput },
           _react2.default.createElement('input', {
             ref: function ref(input) {
               if (input != null && focus) {
                 input.focus();
               }
             },
-            className: classInput,
+            className: 'form-input',
             type: 'password',
             name: name,
             value: value,

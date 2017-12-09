@@ -86,17 +86,13 @@ var NumberInput = function (_React$PureComponent) {
           handleKeyCode = _this$props2.handleKeyCode,
           handleBlur = _this$props2.handleBlur;
 
-      var classInput = 'form-input';
-      if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
-      }
       var input = _react2.default.createElement('input', {
         ref: function ref(input) {
           if (input != null && focus) {
             input.focus();
           }
         },
-        className: classInput,
+        className: 'form-input',
         type: 'text',
         name: name,
         value: !(0, _global.isEmpey)(format) ? (0, _global.toNumeral)(value, format) : value,
@@ -154,12 +150,12 @@ var NumberInput = function (_React$PureComponent) {
       }
 
       var renderErrorMessage = '';
-      var classInput = 'form-input';
+      var classInput = 'wrap-form-input';
       if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
+        classInput = 'wrap-form-input error';
         renderErrorMessage = _react2.default.createElement(
           'div',
-          { className: 'error-message' },
+          { className: 'validation-label' },
           errorMessage
         );
       }
@@ -180,14 +176,14 @@ var NumberInput = function (_React$PureComponent) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'box-input' },
+          { className: classInput },
           _react2.default.createElement('input', {
             ref: function ref(input) {
               if (input != null && focus) {
                 input.focus();
               }
             },
-            className: classInput,
+            className: 'form-input',
             type: 'text',
             name: name,
             value: !(0, _global.isEmpey)(format) ? (0, _global.toNumeral)(value, format) : value,

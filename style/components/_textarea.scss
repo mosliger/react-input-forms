@@ -1,24 +1,5 @@
 
 textarea.form-input {
-  width: 100%;
-  padding: $paddingInput;
-  border: 1px solid $borderColor;
-  color: $fontColor;
-  transition: all .2s ease-in-out;
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0);
-  outline: none;
-  border-radius: $borderRadius;
-  &:focus {
-    box-shadow: 0px 0px 1px 1px  $outlineColor;
-    border: 1px solid $outlineColor;
-    outline: none;
-  }
-}
-textarea.form-input.error {
-  border: 1px solid $borderError;
-  &:focus {
-    box-shadow: 0px 0px 1px 1px  $borderError;
-    outline: none;
-  }
+  height: auto;
 }
 

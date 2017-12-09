@@ -41,17 +41,13 @@ export default class TextInput extends React.PureComponent {
 
   renderCustomElement = () => {
     const { label, value, disabled, focus, placeholder, name, errorMessage, inputProps, tabIndex, handleChange, handleKeyCode, handleBlur } = this.props;
-    let classInput = 'form-input';
-    if (!isEmpey(errorMessage)) {
-      classInput = 'form-input error';
-    }
     const input = (<input
       ref={(input) => {
         if (input != null && focus) {
           input.focus();
         }
       } }
-      className={classInput}
+      className="form-input"
       type="text"
       name={name}
       value={value}
@@ -73,23 +69,23 @@ export default class TextInput extends React.PureComponent {
     }
 
     let renderErrorMessage = '';
-    let classInput = 'form-input';
+    let classInput = 'wrap-form-input';
     if (!isEmpey(errorMessage)) {
-      classInput = 'form-input error';
-      renderErrorMessage = (<div className="error-message">{errorMessage}</div>);
+      classInput = 'wrap-form-input error';
+      renderErrorMessage = (<div className="validation-label">{errorMessage}</div>);
     }
 
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
         <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
-        <div className="box-input">
+        <div className={classInput}>
           <input
             ref={(input) => {
               if (input != null && focus) {
                 input.focus();
               }
             } }
-            className={classInput}
+            className="form-input"
             type="text"
             name={name}
             value={value}

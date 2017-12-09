@@ -186,7 +186,7 @@ var CheckboxInput = function (_React$PureComponent) {
       if (options.length > 0) {
         return _react2.default.createElement(
           'div',
-          { className: inputProps.className ? inputProps.className : 'field-group' },
+          { className: inputProps.className ? inputProps.className : 'field-group-checkbox' },
           _react2.default.createElement(
             'label',
             { htmlFor: label },
@@ -236,7 +236,7 @@ var CheckboxInput = function (_React$PureComponent) {
 
       return _react2.default.createElement(
         'div',
-        { className: inputProps.className ? inputProps.className : 'field-group' },
+        { className: inputProps.className ? inputProps.className : 'field-group-checkbox' },
         _react2.default.createElement(
           'div',
           { className: 'box-input' },

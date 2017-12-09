@@ -47,16 +47,12 @@ export default class SelectInput extends React.PureComponent {
 
     const renderOptions = [];
     let renderErrorMessage = '';
-    let classInput = 'form-input';
     let valueString = '';
 
     if (typeof value === 'string') {
       valueString = value;
     } else {
       valueString = value.value ? value.value : '';
-    }
-    if (!isEmpey(errorMessage)) {
-      classInput = 'form-input error';
     }
 
     for (var key in options) {
@@ -69,7 +65,7 @@ export default class SelectInput extends React.PureComponent {
           input.focus();
         }
       } }
-      className={classInput}
+      className="form-input"
       value={valueString}
       onChange={e => this.handleSelectChange(e)}
       onBlur={(e) => handleBlur(e.target.value)}
@@ -89,8 +85,6 @@ export default class SelectInput extends React.PureComponent {
     }
 
     const renderOptions = [];
-    let renderErrorMessage = '';
-    let classInput = 'form-input';
     let valueString = '';
 
     if (typeof value === 'string') {
@@ -98,9 +92,12 @@ export default class SelectInput extends React.PureComponent {
     } else {
       valueString = value.value ? value.value : '';
     }
+
+    let renderErrorMessage = '';
+    let classInput = 'wrap-form-input';
     if (!isEmpey(errorMessage)) {
-      classInput = 'form-input error';
-      renderErrorMessage = (<div className="error-message">{errorMessage}</div>);
+      classInput = 'wrap-form-input error';
+      renderErrorMessage = (<div className="validation-label">{errorMessage}</div>);
     }
 
     for (var key in options) {
@@ -110,14 +107,14 @@ export default class SelectInput extends React.PureComponent {
     return (
       <div className={inputProps.className ? inputProps.className : 'field-group'}>
         <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
-        <div className="box-input">
+        <div className={classInput}>
           <select
             ref={(input) => {
               if (input != null && focus) {
                 input.focus();
               }
             } }
-            className={classInput}
+            className="form-input"
             value={valueString}
             onChange={e => this.handleSelectChange(e)}
             onBlur={(e) => handleBlur(e.target.value)}

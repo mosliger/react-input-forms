@@ -145,7 +145,7 @@ export default class CheckboxInput extends React.PureComponent {
 
     if (options.length > 0) {
       return (
-        <div className={inputProps.className ? inputProps.className : 'field-group'}>
+        <div className={inputProps.className ? inputProps.className : 'field-group-checkbox'}>
           <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
           {options.map((detail, index) => {
             const checked = this.handleChecked(detail, index);
@@ -176,7 +176,7 @@ export default class CheckboxInput extends React.PureComponent {
     }
 
     return (
-      <div className={inputProps.className ? inputProps.className : 'field-group'}>
+      <div className={inputProps.className ? inputProps.className : 'field-group-checkbox'}>
         <div className="box-input">
           <input
             className={classInput}

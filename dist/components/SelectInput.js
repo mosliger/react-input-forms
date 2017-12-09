@@ -60,16 +60,12 @@ var SelectInput = function (_React$PureComponent) {
 
       var renderOptions = [];
       var renderErrorMessage = '';
-      var classInput = 'form-input';
       var valueString = '';
 
       if (typeof value === 'string') {
         valueString = value;
       } else {
         valueString = value.value ? value.value : '';
-      }
-      if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
       }
 
       for (var key in options) {
@@ -88,7 +84,7 @@ var SelectInput = function (_React$PureComponent) {
               input.focus();
             }
           },
-          className: classInput,
+          className: 'form-input',
           value: valueString,
           onChange: function onChange(e) {
             return _this.handleSelectChange(e);
@@ -134,8 +130,6 @@ var SelectInput = function (_React$PureComponent) {
       }
 
       var renderOptions = [];
-      var renderErrorMessage = '';
-      var classInput = 'form-input';
       var valueString = '';
 
       if (typeof value === 'string') {
@@ -143,11 +137,14 @@ var SelectInput = function (_React$PureComponent) {
       } else {
         valueString = value.value ? value.value : '';
       }
+
+      var renderErrorMessage = '';
+      var classInput = 'wrap-form-input';
       if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
+        classInput = 'wrap-form-input error';
         renderErrorMessage = _react2.default.createElement(
           'div',
-          { className: 'error-message' },
+          { className: 'validation-label' },
           errorMessage
         );
       }
@@ -176,7 +173,7 @@ var SelectInput = function (_React$PureComponent) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'box-input' },
+          { className: classInput },
           _react2.default.createElement(
             'select',
             {
@@ -185,7 +182,7 @@ var SelectInput = function (_React$PureComponent) {
                   input.focus();
                 }
               },
-              className: classInput,
+              className: 'form-input',
               value: valueString,
               onChange: function onChange(e) {
                 return _this2.handleSelectChange(e);

@@ -34,7 +34,6 @@ textarea:focus ~ .error-message {
   border-radius: 3px;
 }
 .error-message:after {
-  border-top: 6px solid $borderError;
   content: '';
   border-right: 5px solid transparent;
   border-left: 5px solid transparent;

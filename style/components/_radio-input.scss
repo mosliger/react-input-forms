@@ -1,4 +1,4 @@
-.radio-input {
+.field-group-radio {
   display: inline-block;
   width: 100%;
   .radio-list {
@@ -12,7 +12,7 @@
   }
 }
 
-.radio-input .box-input {
+.field-group-radio .wrap-form-input {
   display: inline-block;
   width: 20px;
   position: relative;

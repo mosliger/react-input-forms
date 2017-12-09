@@ -51,11 +51,6 @@ var TextareaInput = function (_React$PureComponent) {
           handleKeyCode = _this$props.handleKeyCode,
           handleBlur = _this$props.handleBlur;
 
-
-      var classInput = 'form-input';
-      if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
-      }
       var input = _react2.default.createElement(
         'textarea',
         {
@@ -68,7 +63,7 @@ var TextareaInput = function (_React$PureComponent) {
           cols: cols,
           maxLength: _this.props.maxLength,
           disabled: disabled,
-          className: classInput,
+          className: 'form-input',
           value: value,
           onKeyUp: function onKeyUp(e) {
             return handleKeyCode(e);
@@ -112,12 +107,12 @@ var TextareaInput = function (_React$PureComponent) {
       }
 
       var renderErrorMessage = '';
-      var classInput = 'form-input';
+      var classInput = 'wrap-form-input';
       if (!(0, _global.isEmpey)(errorMessage)) {
-        classInput = 'form-input error';
+        classInput = 'wrap-form-input error';
         renderErrorMessage = _react2.default.createElement(
           'div',
-          { className: 'error-message' },
+          { className: 'validation-label' },
           errorMessage
         );
       }
@@ -138,7 +133,7 @@ var TextareaInput = function (_React$PureComponent) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'box-input' },
+          { className: classInput },
           _react2.default.createElement(
             'textarea',
             {
@@ -150,7 +145,7 @@ var TextareaInput = function (_React$PureComponent) {
               rows: rows,
               cols: cols,
               disabled: disabled,
-              className: classInput,
+              className: 'form-input',
               value: value,
               maxLength: this.props.maxLength,
               onKeyUp: function onKeyUp(e) {

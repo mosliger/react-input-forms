@@ -1,0 +1,143 @@
+
+// ===========================
+// Wrapper
+// ===========================
+.wrap-form-input{
+  position: relative;
+  .form-input:focus ~ .validation-label{
+    display: inline-block;
+  }
+  .validation-label{
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 40px;
+    background: $borderColor;
+    padding: 4px 10px;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 3px;
+  }
+  .validation-label:after{
+    content: '';
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-top: 6px solid $borderColor;
+    position: absolute;
+    bottom: -4px;
+    right: 11px;
+  }
+  &.show-icon:after{
+    display: inline-block;
+  }
+  // ERROR
+  &.error{
+    .form-input, input{
+      border: 1px solid $borderError;
+      &:focus{
+        border: 1px solid $borderError;
+        outline: none;
+        box-shadow: 0 0 3px $borderError;
+      }
+    }
+  }
+  &.error .validation-label{
+    background: $fontError;
+  }
+  &.error .validation-label:after{
+    border-top: 6px solid $fontError;
+  }
+}
+// ===========================
+// label
+// ===========================
+.form-label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: normal;
+  min-height: 13px;
+  font-size: 13px;
+}
+// ===========================
+// Input
+// ===========================
+.form-input {
+  line-height: 14px;
+  height: 34px;
+  border-radius: 3px;
+  width: 100%;
+  padding: 6px 12px;
+  color: $fontColor;
+  font-size: 14px;
+  line-height: 14px;
+  background: #fff;
+  // box-shadow: none;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  border: 1px solid $borderColor;
+  &:focus{
+    border: 1px solid $outlineColor;
+    outline: none;
+    box-shadow: 0 0 3px $outlineColor;
+  }
+  &[disabled]{
+    background: #eee;
+  }
+}
+input.form-input{
+  line-height: 14px;
+  // height: 34px;
+}
+// ===========================
+// Box form input
+// ===========================
+
+.box-form-input {
+  position: relative;
+  margin-bottom: 20px;
+  // &.has-error input.form-input,&.has-error select.form-select {
+  //   border: 1px solid red;
+  // }
+
+  .helper-label{
+    font-size: 11px;
+    margin-top: -1px;
+    background: #eee;
+    padding: 6px 10px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    color: #999;
+  }
+  &.inline{
+    .wrap-form-input, .form-label{
+      display: inline-block;
+      vertical-align: middle;
+      width: auto;
+      margin-left: 5px;
+      margin-bottom: 0;
+    }
+    .wrap-form-input:first-child, .form-label:first-child{
+      margin-left: 0;
+    }
+  }
+}
+// ===========================
+// Marker
+// ===========================
+.marker {
+  color: $fontError;
+  margin-left: 5px;
+}
+// ===========================
+// Text required
+// ===========================
+.text-required{
+  font-size: 14px;
+  color: $borderColor;
+  line-height: 16px;
+}
+
+.input-inline {
+  width: 100%;
+  margin-left: -2px;
+}

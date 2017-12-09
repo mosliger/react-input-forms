@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import InputField from 'react-input-forms';
+// import InputField from 'react-input-forms';
+import InputField from '../../src';
 import getprosTypePasswordInput from '../helpers/passwordInput';
 
 export default class PasswordInput extends Component {
@@ -13,6 +14,11 @@ export default class PasswordInput extends Component {
 
   handleUpdateValue = (value, name) => {
     this.setState({ [name]: value });
+  }
+
+  handleVerifyPassword = (value, rules) => {
+    console.log('handleVerifyPassword >>', value, rules)
+    return ''
   }
 
   renderBasicInput = () => {
@@ -92,6 +98,13 @@ customElementText = (input, label, errorMessage) => {
             value={passwordInput}
             name="passwordInput"
             label="label"
+            rules={{
+              required: 'password is required',
+              maxLength: 6,
+              minLength: 3,
+            }}
+            handleVerify={this.handleVerifyPassword}
+            maxLength={12}
             onChange={this.handleUpdateValue}
             />
         </div>

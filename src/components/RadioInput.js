@@ -38,17 +38,12 @@ export default class RadioInput extends React.PureComponent {
 
   renderCustomElement = () => {
     const { label, value, disabled, focus, options, name, errorMessage, inputProps, handleChange, handleBlur } = this.props;
-
-    let classInput = 'form-input';
-    if (!isEmpey(errorMessage)) {
-      classInput = 'form-input error';
-    }
     const inputList = options.map((detail, index) => {
       const getValue = value.value ? value.value : value;
       const checked = getValue === detail.value;
       const input = (
         <input
-          className={classInput}
+          className="form-input"
           type="radio"
           name={name}
           value={detail.value}
@@ -74,22 +69,22 @@ export default class RadioInput extends React.PureComponent {
     }
 
     let renderErrorMessage = '';
-    let classInput = 'form-input';
+    let classInput = 'wrap-form-input';
     if (!isEmpey(errorMessage)) {
-      classInput = 'form-input error';
-      renderErrorMessage = (<div className="error-message">{errorMessage}</div>);
+      classInput = 'wrap-form-input error';
+      renderErrorMessage = (<div className="validation-label">{errorMessage}</div>);
     }
     return (
-      <div className={inputProps.className ? inputProps.className : 'field-group'}>
+      <div className={inputProps.className ? inputProps.className : 'field-group-radio'}>
         <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
         {options.map((detail, index) => {
           const getValue = value.value ? value.value : value;
           const checked = getValue === detail.value;
           return (
             <div className="radio-list" key={`${name}-${index}`}>
-              <div className="box-input">
+              <div className={classInput}>
                 <input
-                  className={classInput}
+                  className="form-input"
                   type="radio"
                   name={name}
                   value={detail.value}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import InputField from 'react-input-forms';
+import InputField from '../../src';
+
 import getprosTypeSelectInput from '../helpers/selectInput';
 
 const optionList = [
