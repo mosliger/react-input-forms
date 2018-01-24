@@ -135,7 +135,6 @@ export default class Index extends React.Component {
   }
 
   handleChange = (value) => {
-    console.log('handleChange >>', value)
     const { name, onChange } = this.props;
     const errorMessage = this.handleValidation(value);
     try {
