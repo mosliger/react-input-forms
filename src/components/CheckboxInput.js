@@ -3,11 +3,9 @@ import { isEmpey, pick } from '../helpers/global';
 
 export default class CheckboxInput extends React.PureComponent {
   static propTypes = {
-    value: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.array,
-    ]),
+    value: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
     label: PropTypes.string,
+    className: PropTypes.string,
     type: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     inputProps: PropTypes.object,
@@ -23,6 +21,7 @@ export default class CheckboxInput extends React.PureComponent {
   static defaultProps = {
     name: 'input',
     tabIndex: 0,
+    className: 'field-group-checkbox',
     label: '',
     value: '',
     options: [],
@@ -31,60 +30,72 @@ export default class CheckboxInput extends React.PureComponent {
     disabled: false,
     focus: false,
     type: 'text',
-  }
+  };
 
   handleChangeOptions = (optionDetail, key, checked) => {
     const { options, handleChange, value } = this.props;
     let setValue = [];
     if (checked) {
-      const getOptions = options.filter((obj) => {
-        const getValue = value.find((item) => {
+      const getOptions = options.filter(obj => {
+        const getValue = value.find(item => {
           if (item.value) return obj.value === item.value;
-            return obj.value === item;
-        })
+          return obj.value === item;
+        });
         if (getValue) return true;
         return false;
-      })
+      });
       setValue = [...getOptions, optionDetail];
     } else {
-      const getOptions = options.filter((obj) => {
-        const getValue = value.find((item) => {
+      const getOptions = options.filter(obj => {
+        const getValue = value.find(item => {
           if (item.value) return obj.value === item.value;
-            return obj.value === item;
-        })
+          return obj.value === item;
+        });
         if (getValue) return true;
         return false;
-      })
-      
-      setValue = getOptions.filter((item) => {
-        if(item.value) return item.value !== optionDetail.value;
+      });
+
+      setValue = getOptions.filter(item => {
+        if (item.value) return item.value !== optionDetail.value;
         return item !== optionDetail.value;
       });
     }
-    handleChange(setValue)
-  }
+    handleChange(setValue);
+  };
 
   handleBlueOptions = (optionDetail, key, checked) => {
     const { handleBlur, value } = this.props;
-    handleBlur(value)
-  }
+    handleBlur(value);
+  };
 
   handleChecked = (option, index) => {
     const { value } = this.props;
     try {
-      const filterValue = value.find((optionDetail) => {
-        if (optionDetail.label) return option.value === optionDetail.value
-        return optionDetail === option.value
+      const filterValue = value.find(optionDetail => {
+        if (optionDetail.label) return option.value === optionDetail.value;
+        return optionDetail === option.value;
       });
       if (filterValue) return true;
     } catch (e) {
       return false;
     }
     return false;
-  }
+  };
 
   renderCustomElement = () => {
-    const { label, value, disabled, focus, options, name, errorMessage, inputProps, handleChange, handleBlur } = this.props;
+    const {
+      label,
+      value,
+      disabled,
+      focus,
+      options,
+      name,
+      errorMessage,
+      inputProps,
+      className,
+      handleChange,
+      handleBlur,
+    } = this.props;
 
     let classInput = 'form-input';
     if (!isEmpey(errorMessage)) {
@@ -95,7 +106,8 @@ export default class CheckboxInput extends React.PureComponent {
         const checked = this.handleChecked(detail, index);
         const input = (
           <input
-            className={classInput}
+            {...inputProps}
+            className="form-input"
             type="checkbox"
             name={name}
             value={detail.value}
@@ -104,56 +116,71 @@ export default class CheckboxInput extends React.PureComponent {
             onChange={() => this.handleChangeOptions(detail, index, !checked)}
             onBlur={() => this.handleBlueOptions(detail, index, checked)}
           />
-        )
-        return ({
+        );
+        return {
           input: input,
           checked,
-          ...detail
-        })
+          ...detail,
+        };
       });
       return this.props.customElement(inputList, label, errorMessage);
     }
     const inputCheckbox = (
       <input
-        className={classInput}
+        {...inputProps}
+        className="form-input"
         type="checkbox"
         name={name}
         disabled={disabled}
         checked={value}
         onClick={() => handleChange(!value)}
         onBlur={() => handleBlur(value)}
-        />
-    )
+      />
+    );
     return this.props.customElement(inputCheckbox, label, errorMessage);
-
-  }
+  };
 
   render() {
-    const { label, value, disabled, remark, focus, options, name, errorMessage, inputProps, handleChange, handleBlur } = this.props;
-    
-     if (this.props.customElement) {
+    const {
+      label,
+      value,
+      disabled,
+      remark,
+      focus,
+      options,
+      name,
+      errorMessage,
+      className,
+      inputProps,
+      handleChange,
+      handleBlur,
+    } = this.props;
+
+    if (this.props.customElement) {
       return this.renderCustomElement();
     }
 
-    
     let renderErrorMessage = '';
     let classInput = 'form-input';
     if (!isEmpey(errorMessage)) {
       classInput = 'form-input error';
-      renderErrorMessage = (<div className="error-message">{errorMessage}</div>);
+      renderErrorMessage = <div className="error-message">{errorMessage}</div>;
     }
 
     if (options.length > 0) {
       return (
-        <div className={inputProps.className ? inputProps.className : 'field-group-checkbox'}>
-          <label htmlFor={label}>{label} {!isEmpey(remark) && (<span className="remark">{remark}</span>)}</label>
+        <div className={className}>
+          <label htmlFor={label}>
+            {label} {!isEmpey(remark) && <span className="remark">{remark}</span>}
+          </label>
           {options.map((detail, index) => {
             const checked = this.handleChecked(detail, index);
             return (
               <div className="checkbox-list" key={`${name}-${index}`}>
                 <div className="box-input">
                   <input
-                    className={classInput}
+                    {...inputProps}
+                    className="form-input"
                     type="checkbox"
                     name={name}
                     value={detail.value}
@@ -161,14 +188,13 @@ export default class CheckboxInput extends React.PureComponent {
                     checked={checked}
                     onChange={() => this.handleChangeOptions(detail, index, !checked)}
                     onBlur={() => this.handleBlueOptions(detail, index, checked)}
-                    />
-                  <label className={`icon ${checked ? 'checked' : ''}`}></label>
+                  />
+                  <label className={`icon ${checked ? 'checked' : ''}`} />
                 </div>
                 <label htmlFor={label}>{detail.label}</label>
               </div>
-            )
-          })
-          }
+            );
+          })}
           {this.props.children}
           {renderErrorMessage}
         </div>
@@ -186,8 +212,8 @@ export default class CheckboxInput extends React.PureComponent {
             checked={value}
             onClick={() => handleChange(!value)}
             onBlur={() => handleBlur(value)}
-            />
-          <label className={`icon ${value ? 'checked' : ''}`}></label>
+          />
+          <label className={`icon ${value ? 'checked' : ''}`} />
         </div>
         <label htmlFor={label}>{label}</label>
         {this.props.children}

@@ -1,0 +1,84 @@
+input.form-input {
+  &:focus ~ .box-calendar{
+    display: block;
+  };
+}
+
+.box-calendar {
+  display: none;
+  position: absolute;
+  background: #fff;
+  z-index: 2;
+  max-width: 250px;
+  right: 0;
+  width: 100%;
+  height: auto;
+  font-size: 10px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  > .control {
+  	display: flex;
+  	justify-content: center;
+    align-items: center;
+  	padding: 10px 5px;
+    position: relative;
+  }
+  > .control > .previous {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    a {
+      padding: 5px 10px;
+      &:before {
+        content: "\003c";
+      };
+    }
+  }
+  > .control > .next {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    a {
+      padding: 5px 10px;
+      &:before {
+        content: "\003e";
+      }
+    }
+  }
+  > table {
+    width: 100%;
+    border-collapse: collapse;
+	}
+	> table tr {
+		border: none;
+	}
+	> table tr th {
+    padding: 8px;
+    text-align: center;
+    border: none;
+	}
+	> table tr td {
+		padding: 8px;
+		cursor: pointer;
+		text-align: center;
+		border: none;
+		&:hover {
+			background: #ccc;
+		};
+	}
+  td.current {
+    color: #000;
+  }
+  td.previous, td.next {
+    color: #ddd;
+    pointer-events: none;
+    cursor: default;
+  }
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+}
