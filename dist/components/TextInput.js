@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -43,13 +45,13 @@ var TextInput = function (_React$PureComponent) {
           placeholder = _this$props.placeholder,
           name = _this$props.name,
           errorMessage = _this$props.errorMessage,
-          inputProps = _this$props.inputProps,
           tabIndex = _this$props.tabIndex,
           handleChange = _this$props.handleChange,
           handleKeyCode = _this$props.handleKeyCode,
-          handleBlur = _this$props.handleBlur;
+          handleBlur = _this$props.handleBlur,
+          inputProps = _this$props.inputProps;
 
-      var input = _react2.default.createElement('input', {
+      var input = _react2.default.createElement('input', _extends({}, inputProps, {
         ref: function ref(input) {
           if (input != null && focus) {
             input.focus();
@@ -71,7 +73,7 @@ var TextInput = function (_React$PureComponent) {
         onBlur: function onBlur(e) {
           return handleBlur(e.target.value);
         }
-      });
+      }));
       return _this.props.customElement(input, label, errorMessage);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -81,6 +83,7 @@ var TextInput = function (_React$PureComponent) {
     value: function render() {
       var _props = this.props,
           label = _props.label,
+          className = _props.className,
           value = _props.value,
           disabled = _props.disabled,
           remark = _props.remark,
@@ -88,11 +91,12 @@ var TextInput = function (_React$PureComponent) {
           placeholder = _props.placeholder,
           name = _props.name,
           errorMessage = _props.errorMessage,
-          inputProps = _props.inputProps,
           tabIndex = _props.tabIndex,
           handleChange = _props.handleChange,
           handleKeyCode = _props.handleKeyCode,
-          handleBlur = _props.handleBlur;
+          handleBlur = _props.handleBlur,
+          labelProps = _props.labelProps,
+          inputProps = _props.inputProps;
 
 
       if (this.props.customElement) {
@@ -112,10 +116,10 @@ var TextInput = function (_React$PureComponent) {
 
       return _react2.default.createElement(
         'div',
-        { className: inputProps.className ? inputProps.className : 'field-group' },
+        { className: className },
         _react2.default.createElement(
           'label',
-          { htmlFor: label },
+          _extends({}, labelProps, { htmlFor: label }),
           label,
           ' ',
           !(0, _global.isEmpey)(remark) && _react2.default.createElement(
@@ -127,7 +131,7 @@ var TextInput = function (_React$PureComponent) {
         _react2.default.createElement(
           'div',
           { className: classInput },
-          _react2.default.createElement('input', {
+          _react2.default.createElement('input', _extends({}, inputProps, {
             ref: function ref(input) {
               if (input != null && focus) {
                 input.focus();
@@ -149,7 +153,7 @@ var TextInput = function (_React$PureComponent) {
             onBlur: function onBlur(e) {
               return handleBlur(e.target.value);
             }
-          }),
+          })),
           renderErrorMessage
         ),
         this.props.children
@@ -164,6 +168,7 @@ TextInput.propTypes = {
   value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
 
   label: _react.PropTypes.string,
+  className: _react.PropTypes.string,
   placeholder: _react.PropTypes.string,
   children: _react.PropTypes.node,
   type: _react.PropTypes.string.isRequired,
@@ -183,6 +188,7 @@ TextInput.propTypes = {
 TextInput.defaultProps = {
   name: 'input',
   tabIndex: 0,
+  className: 'field-group',
   label: '',
   value: '',
   inputProps: {},

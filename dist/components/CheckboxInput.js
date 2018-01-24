@@ -100,6 +100,7 @@ var CheckboxInput = function (_React$PureComponent) {
           name = _this$props3.name,
           errorMessage = _this$props3.errorMessage,
           inputProps = _this$props3.inputProps,
+          className = _this$props3.className,
           handleChange = _this$props3.handleChange,
           handleBlur = _this$props3.handleBlur;
 
@@ -111,8 +112,8 @@ var CheckboxInput = function (_React$PureComponent) {
       if (options.length > 0) {
         var inputList = options.map(function (detail, index) {
           var checked = _this.handleChecked(detail, index);
-          var input = _react2.default.createElement('input', {
-            className: classInput,
+          var input = _react2.default.createElement('input', _extends({}, inputProps, {
+            className: 'form-input',
             type: 'checkbox',
             name: name,
             value: detail.value,
@@ -124,7 +125,7 @@ var CheckboxInput = function (_React$PureComponent) {
             onBlur: function onBlur() {
               return _this.handleBlueOptions(detail, index, checked);
             }
-          });
+          }));
           return _extends({
             input: input,
             checked: checked
@@ -132,8 +133,8 @@ var CheckboxInput = function (_React$PureComponent) {
         });
         return _this.props.customElement(inputList, label, errorMessage);
       }
-      var inputCheckbox = _react2.default.createElement('input', {
-        className: classInput,
+      var inputCheckbox = _react2.default.createElement('input', _extends({}, inputProps, {
+        className: 'form-input',
         type: 'checkbox',
         name: name,
         disabled: disabled,
@@ -144,7 +145,7 @@ var CheckboxInput = function (_React$PureComponent) {
         onBlur: function onBlur() {
           return handleBlur(value);
         }
-      });
+      }));
       return _this.props.customElement(inputCheckbox, label, errorMessage);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -163,6 +164,7 @@ var CheckboxInput = function (_React$PureComponent) {
           options = _props.options,
           name = _props.name,
           errorMessage = _props.errorMessage,
+          className = _props.className,
           inputProps = _props.inputProps,
           handleChange = _props.handleChange,
           handleBlur = _props.handleBlur;
@@ -186,7 +188,7 @@ var CheckboxInput = function (_React$PureComponent) {
       if (options.length > 0) {
         return _react2.default.createElement(
           'div',
-          { className: inputProps.className ? inputProps.className : 'field-group-checkbox' },
+          { className: className },
           _react2.default.createElement(
             'label',
             { htmlFor: label },
@@ -206,8 +208,8 @@ var CheckboxInput = function (_React$PureComponent) {
               _react2.default.createElement(
                 'div',
                 { className: 'box-input' },
-                _react2.default.createElement('input', {
-                  className: classInput,
+                _react2.default.createElement('input', _extends({}, inputProps, {
+                  className: 'form-input',
                   type: 'checkbox',
                   name: name,
                   value: detail.value,
@@ -219,7 +221,7 @@ var CheckboxInput = function (_React$PureComponent) {
                   onBlur: function onBlur() {
                     return _this2.handleBlueOptions(detail, index, checked);
                   }
-                }),
+                })),
                 _react2.default.createElement('label', { className: 'icon ' + (checked ? 'checked' : '') })
               ),
               _react2.default.createElement(
@@ -272,6 +274,7 @@ var CheckboxInput = function (_React$PureComponent) {
 CheckboxInput.propTypes = {
   value: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.array]),
   label: _react.PropTypes.string,
+  className: _react.PropTypes.string,
   type: _react.PropTypes.string.isRequired,
   name: _react.PropTypes.string.isRequired,
   inputProps: _react.PropTypes.object,
@@ -286,6 +289,7 @@ CheckboxInput.propTypes = {
 CheckboxInput.defaultProps = {
   name: 'input',
   tabIndex: 0,
+  className: 'field-group-checkbox',
   label: '',
   value: '',
   options: [],

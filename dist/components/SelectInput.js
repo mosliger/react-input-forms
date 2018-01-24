@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -78,7 +80,7 @@ var SelectInput = function (_React$PureComponent) {
 
       var input = _react2.default.createElement(
         'select',
-        {
+        _extends({}, inputProps, {
           ref: function ref(input) {
             if (input != null && focus) {
               input.focus();
@@ -96,7 +98,7 @@ var SelectInput = function (_React$PureComponent) {
             return handleKeyCode(e);
           },
           disabled: disabled
-        },
+        }),
         renderOptions
       );
       return _this.props.customElement(input, label, errorMessage);
@@ -118,9 +120,11 @@ var SelectInput = function (_React$PureComponent) {
           name = _props.name,
           format = _props.format,
           errorMessage = _props.errorMessage,
+          className = _props.className,
           options = _props.options,
           inputProps = _props.inputProps,
           tabIndex = _props.tabIndex,
+          labelProps = _props.labelProps,
           handleBlur = _props.handleBlur,
           handleKeyCode = _props.handleKeyCode;
 
@@ -159,10 +163,10 @@ var SelectInput = function (_React$PureComponent) {
 
       return _react2.default.createElement(
         'div',
-        { className: inputProps.className ? inputProps.className : 'field-group' },
+        { className: className },
         _react2.default.createElement(
           'label',
-          { htmlFor: label },
+          _extends({}, labelProps, { htmlFor: label }),
           label,
           ' ',
           !(0, _global.isEmpey)(remark) && _react2.default.createElement(
@@ -176,7 +180,7 @@ var SelectInput = function (_React$PureComponent) {
           { className: classInput },
           _react2.default.createElement(
             'select',
-            {
+            _extends({}, inputProps, {
               ref: function ref(input) {
                 if (input != null && focus) {
                   input.focus();
@@ -194,7 +198,7 @@ var SelectInput = function (_React$PureComponent) {
                 return handleKeyCode(e);
               },
               disabled: disabled
-            },
+            }),
             renderOptions
           ),
           renderErrorMessage
@@ -218,6 +222,7 @@ SelectInput.propTypes = {
   labelProps: _react.PropTypes.object,
   disabled: _react.PropTypes.bool,
   focus: _react.PropTypes.bool,
+  className: _react.PropTypes.string,
   errorMessage: _react.PropTypes.string,
   remark: _react.PropTypes.string,
   handleChange: _react.PropTypes.func
@@ -227,6 +232,7 @@ SelectInput.defaultProps = {
   tabIndex: 0,
   label: '',
   value: '',
+  className: 'field-group',
   options: [],
   inputProps: {},
   labelProps: {},

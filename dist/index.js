@@ -51,9 +51,9 @@ var Index = function (_React$Component) {
 
       var validation = '';
       if (_this.props.handleVerify) {
-        validation = _this.props.handleVerify(value, rules);
+        validation = _this.props.handleVerify(value, rules, _this.props);
       } else {
-        validation = (0, _global.verifyField)(value, rules);
+        validation = (0, _global.verifyField)(value, rules, _this.props);
       }
       return _this.props.errorMessage ? _this.props.errorMessage : validation;
     }, _this.handleUpdateValue = function (value) {
@@ -191,6 +191,15 @@ var Index = function (_React$Component) {
               this.props.children
             );
             return _react2.default.createElement(_components.TextInput, propsForm);
+          }
+        case 'date':
+          {
+            if (this.props.children) return _react2.default.createElement(
+              _components.DateInput,
+              propsForm,
+              this.props.children
+            );
+            return _react2.default.createElement(_components.DateInput, propsForm);
           }
         case 'number':
           {

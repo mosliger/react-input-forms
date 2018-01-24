@@ -14,6 +14,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _global = require('../helpers/global');
 
+var _reactDatetime = require('react-datetime');
+
+var _reactDatetime2 = _interopRequireDefault(_reactDatetime);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22,93 +26,78 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var TextareaInput = function (_React$PureComponent) {
-  _inherits(TextareaInput, _React$PureComponent);
+var DateInput = function (_React$PureComponent) {
+  _inherits(DateInput, _React$PureComponent);
 
-  function TextareaInput() {
+  function DateInput() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, TextareaInput);
+    _classCallCheck(this, DateInput);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextareaInput.__proto__ || Object.getPrototypeOf(TextareaInput)).call.apply(_ref, [this].concat(args))), _this), _this.renderCustomElement = function () {
-      var _this$props = _this.props,
-          label = _this$props.label,
-          value = _this$props.value,
-          disabled = _this$props.disabled,
-          focus = _this$props.focus,
-          placeholder = _this$props.placeholder,
-          name = _this$props.name,
-          rows = _this$props.rows,
-          cols = _this$props.cols,
-          tabIndex = _this$props.tabIndex,
-          errorMessage = _this$props.errorMessage,
-          inputProps = _this$props.inputProps,
-          handleChange = _this$props.handleChange,
-          handleKeyCode = _this$props.handleKeyCode,
-          handleBlur = _this$props.handleBlur;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = DateInput.__proto__ || Object.getPrototypeOf(DateInput)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      open: false,
+      hoverDate: false,
+      focusState: false
+    }, _this.handleFocus = function () {
+      _this.setState({ open: true, focusState: true });
+    }, _this.handleInputChange = function (value) {
+      var handleChange = _this.props.handleChange;
 
-      var input = _react2.default.createElement(
-        'textarea',
-        _extends({}, inputProps, {
-          ref: function ref(input) {
-            if (input != null && focus) {
-              input.focus();
-            }
-          },
-          rows: rows,
-          cols: cols,
-          maxLength: _this.props.maxLength,
-          disabled: disabled,
-          className: 'form-input',
-          value: value,
-          onKeyUp: function onKeyUp(e) {
-            return handleKeyCode(e);
-          },
-          onChange: function onChange(e) {
-            return handleChange(e.target.value);
-          },
-          onBlur: function onBlur(e) {
-            return handleBlur(e.target.value);
-          }
-        }),
-        value
-      );
-      return _this.props.customElement(input, label, errorMessage);
+      handleChange(value);
+    }, _this.handleBlurInput = function (value) {
+      var handleBlur = _this.props.handleBlur;
+
+      _this.setState({ focusState: false });
+      if (handleBlur) handleBlur(value);
+      _this.handleCloseDate();
+    }, _this.handleCloseDate = function () {
+      var hoverDate = _this.state.hoverDate;
+
+      if (!hoverDate) _this.setState({ open: false, focusState: false, hoverDate: false });
+    }, _this.handleSelectDate = function (value) {
+      var _this$props = _this.props,
+          handleChange = _this$props.handleChange,
+          format = _this$props.format;
+
+      handleChange(value.format(format));
+      _this.handleCloseDate();
+    }, _this.handleClickDate = function () {
+      _this.setState({ focusState: true });
+    }, _this.handleHoverDate = function (status) {
+      _this.setState({ hoverDate: status });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(TextareaInput, [{
+  _createClass(DateInput, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          open = _state.open,
+          focusState = _state.focusState;
       var _props = this.props,
           label = _props.label,
           className = _props.className,
           value = _props.value,
           disabled = _props.disabled,
-          focus = _props.focus,
           remark = _props.remark,
+          focus = _props.focus,
           placeholder = _props.placeholder,
           name = _props.name,
-          rows = _props.rows,
-          cols = _props.cols,
-          tabIndex = _props.tabIndex,
           errorMessage = _props.errorMessage,
-          inputProps = _props.inputProps,
-          labelProps = _props.labelProps,
-          handleChange = _props.handleChange,
+          tabIndex = _props.tabIndex,
           handleKeyCode = _props.handleKeyCode,
-          handleBlur = _props.handleBlur;
+          labelProps = _props.labelProps,
+          inputProps = _props.inputProps,
+          format = _props.format;
 
-
-      if (this.props.customElement) {
-        return this.renderCustomElement();
-      }
 
       var renderErrorMessage = '';
       var classInput = 'wrap-form-input';
@@ -138,68 +127,86 @@ var TextareaInput = function (_React$PureComponent) {
         _react2.default.createElement(
           'div',
           { className: classInput },
-          _react2.default.createElement(
-            'textarea',
-            _extends({}, inputProps, {
-              ref: function ref(input) {
-                if (input != null && focus) {
-                  input.focus();
-                }
-              },
-              rows: rows,
-              cols: cols,
-              disabled: disabled,
-              className: 'form-input',
-              value: value,
-              maxLength: this.props.maxLength,
-              onKeyUp: function onKeyUp(e) {
-                return handleKeyCode(e);
-              },
-              onChange: function onChange(e) {
-                return handleChange(e.target.value);
-              },
-              onBlur: function onBlur(e) {
-                return handleBlur(e.target.value);
+          _react2.default.createElement('input', _extends({}, inputProps, {
+            ref: function ref(input) {
+              if (input != null && (focus || focusState)) {
+                input.focus();
               }
-            }),
-            value
-          ),
-          renderErrorMessage
+            },
+            className: 'form-input',
+            type: 'text',
+            name: name,
+            value: value,
+            maxLength: this.props.maxLength,
+            placeholder: placeholder,
+            disabled: disabled,
+            onKeyUp: function onKeyUp(e) {
+              return handleKeyCode(e);
+            },
+            onChange: function onChange(e) {
+              return _this2.handleInputChange(e.target.value);
+            },
+            onBlur: function onBlur(e) {
+              return _this2.handleBlurInput(e.target.value);
+            },
+            onFocus: this.handleFocus
+          })),
+          renderErrorMessage,
+          _react2.default.createElement(
+            'span',
+            {
+              onClick: this.handleClickDate,
+              onMouseOver: function onMouseOver() {
+                return _this2.handleHoverDate(true);
+              },
+              onMouseOut: function onMouseOut() {
+                return _this2.handleHoverDate(false);
+              }
+            },
+            _react2.default.createElement(_reactDatetime2.default, {
+              dateFormat: format,
+              value: value,
+              timeFormat: false,
+              open: open,
+              input: false,
+              onChange: this.handleSelectDate
+            })
+          )
         ),
         this.props.children
       );
     }
   }]);
 
-  return TextareaInput;
+  return DateInput;
 }(_react2.default.PureComponent);
 
-TextareaInput.propTypes = {
+DateInput.propTypes = {
   value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
-  rows: _react.PropTypes.number,
-  cols: _react.PropTypes.number,
   label: _react.PropTypes.string,
-  placeholder: _react.PropTypes.string,
   className: _react.PropTypes.string,
+  placeholder: _react.PropTypes.string,
+  format: _react.PropTypes.string,
+  children: _react.PropTypes.node,
   type: _react.PropTypes.string.isRequired,
   name: _react.PropTypes.string.isRequired,
   inputProps: _react.PropTypes.object,
   labelProps: _react.PropTypes.object,
   disabled: _react.PropTypes.bool,
   focus: _react.PropTypes.bool,
-  errorMessage: _react.PropTypes.string,
+  tabIndex: _react.PropTypes.number,
   maxLength: _react.PropTypes.number,
+  errorMessage: _react.PropTypes.string,
   remark: _react.PropTypes.string,
   handleChange: _react.PropTypes.func,
   handleBlur: _react.PropTypes.func,
   handleKeyCode: _react.PropTypes.func
 };
-TextareaInput.defaultProps = {
+DateInput.defaultProps = {
   name: 'input',
-  className: 'field-group',
-  rows: 3,
-  cols: 4,
   tabIndex: 0,
+  className: 'field-group',
+  format: 'DD/MM/YYYY',
   label: '',
   value: '',
   inputProps: {},
@@ -209,4 +216,4 @@ TextareaInput.defaultProps = {
   placeholder: '',
   type: 'text'
 };
-exports.default = TextareaInput;
+exports.default = DateInput;

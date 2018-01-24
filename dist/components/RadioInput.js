@@ -52,7 +52,7 @@ var RadioInput = function (_React$PureComponent) {
       var inputList = options.map(function (detail, index) {
         var getValue = value.value ? value.value : value;
         var checked = getValue === detail.value;
-        var input = _react2.default.createElement('input', {
+        var input = _react2.default.createElement('input', _extends({}, inputProps, {
           className: 'form-input',
           type: 'radio',
           name: name,
@@ -65,7 +65,7 @@ var RadioInput = function (_React$PureComponent) {
           onBlur: function onBlur(e) {
             return handleBlur(detail.value);
           }
-        });
+        }));
         return _extends({
           input: input
         }, detail);
@@ -85,8 +85,10 @@ var RadioInput = function (_React$PureComponent) {
           focus = _props.focus,
           options = _props.options,
           name = _props.name,
+          className = _props.className,
           errorMessage = _props.errorMessage,
           inputProps = _props.inputProps,
+          labelProps = _props.labelProps,
           handleChange = _props.handleChange,
           handleBlur = _props.handleBlur;
 
@@ -107,10 +109,10 @@ var RadioInput = function (_React$PureComponent) {
       }
       return _react2.default.createElement(
         'div',
-        { className: inputProps.className ? inputProps.className : 'field-group-radio' },
+        { className: className },
         _react2.default.createElement(
           'label',
-          { htmlFor: label },
+          _extends({}, labelProps, { htmlFor: label }),
           label,
           ' ',
           !(0, _global.isEmpey)(remark) && _react2.default.createElement(
@@ -128,7 +130,7 @@ var RadioInput = function (_React$PureComponent) {
             _react2.default.createElement(
               'div',
               { className: classInput },
-              _react2.default.createElement('input', {
+              _react2.default.createElement('input', _extends({}, inputProps, {
                 className: 'form-input',
                 type: 'radio',
                 name: name,
@@ -141,7 +143,7 @@ var RadioInput = function (_React$PureComponent) {
                 onBlur: function onBlur(e) {
                   return handleBlur(detail.value);
                 }
-              }),
+              })),
               _react2.default.createElement('label', { className: 'icon ' + (checked ? 'checked' : '') })
             ),
             _react2.default.createElement(
@@ -173,6 +175,7 @@ RadioInput.propTypes = {
   inputProps: _react.PropTypes.object,
   labelProps: _react.PropTypes.object,
   disabled: _react.PropTypes.bool,
+  className: _react.PropTypes.string,
   focus: _react.PropTypes.bool,
   errorMessage: _react.PropTypes.string,
   remark: _react.PropTypes.string,
@@ -183,6 +186,7 @@ RadioInput.propTypes = {
 RadioInput.defaultProps = {
   name: 'input',
   tabIndex: 0,
+  className: 'field-group-radio',
   label: '',
   value: '',
   options: [],

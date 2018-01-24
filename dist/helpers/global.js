@@ -3,11 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.verifyField = exports.isDateFormat = exports.isEmail = exports.isRequired = exports.checkNumberFormat = exports.toNumber = exports.getOption = exports.remove = exports.pick = exports.size = exports.isEmpey = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 exports.toNumeral = toNumeral;
 exports.isNumber = isNumber;
+
+var _moment = require('moment');
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var isEmpey = exports.isEmpey = function isEmpey() {
   var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
@@ -113,27 +121,25 @@ function toNumeral(value) {
     // not NaN
     if (isNaN(Number(valueToNumber))) {
       return Number(valueToNumber);
-    } else {
-      try {
-        var splitValue = valueToNumber.split('.');
-        var comma = decimalFormat.length > 0 && value.indexOf('.') >= 0 ? '.' : '';
-        var decimal = decimalFormat.length > 0 && splitValue[1] ? splitValue[1].substring(0, decimalFormat.length) : '';
-        var number = splitValue[0] ? splitValue[0].toString() : '';
-        number = number.length < 10 && number.length > 0 ? Number(number).toString() : number;
-        if (integerFormat.indexOf(',') >= 0) {
-          var splitIntegerFormat = integerFormat.split(',');
-          var getcomma = splitIntegerFormat[splitIntegerFormat.length - 1] ? splitIntegerFormat[splitIntegerFormat.length - 1].length : 3;
-          var pattern = new RegExp('(-?\\d+)(\\d{' + getcomma + '})'); // /(-?\d+)(\d{3})/;
+    }
+    try {
+      var splitValue = valueToNumber.split('.');
+      var comma = decimalFormat.length > 0 && value.indexOf('.') >= 0 ? '.' : '';
+      var decimal = decimalFormat.length > 0 && splitValue[1] ? splitValue[1].substring(0, decimalFormat.length) : '';
+      var number = splitValue[0] ? splitValue[0].toString() : '';
+      number = number.length < 10 && number.length > 0 ? Number(number).toString() : number;
+      if (integerFormat.indexOf(',') >= 0) {
+        var splitIntegerFormat = integerFormat.split(',');
+        var getcomma = splitIntegerFormat[splitIntegerFormat.length - 1] ? splitIntegerFormat[splitIntegerFormat.length - 1].length : 3;
+        var pattern = new RegExp('(-?\\d+)(\\d{' + getcomma + '})'); // /(-?\d+)(\d{3})/;
 
-          while (pattern.test(number)) {
-            number = number.replace(pattern, '$1,$2');
-          }return '' + number + comma + decimal;
-        } else {
-          return '' + number + comma + decimal;
-        }
-      } catch (e) {
-        return valueToNumber;
+        while (pattern.test(number)) {
+          number = number.replace(pattern, '$1,$2');
+        }return '' + number + comma + decimal;
       }
+      return '' + number + comma + decimal;
+    } catch (e) {
+      return valueToNumber;
     }
   } else {
     return value;
@@ -155,9 +161,19 @@ var isEmail = exports.isEmail = function isEmail(value) {
   return re.test(value);
 };
 
+var isDateFormat = exports.isDateFormat = function isDateFormat(value, props) {
+  var format = props.format;
+
+  if (format) {
+    return !(0, _moment2.default)(value, format, true).isValid();
+  }
+  return false;
+};
+
 var verifyField = exports.verifyField = function verifyField() {
   var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   var rules = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var props = arguments[2];
 
   if (value !== '' || rules.required) {
     for (var key in rules) {
@@ -167,6 +183,11 @@ var verifyField = exports.verifyField = function verifyField() {
           case 'required':
             {
               if (isEmpey(value)) return rules[key];
+              break;
+            }
+          case 'dateFormat':
+            {
+              if (isDateFormat(value, props)) return rules[key];
               break;
             }
           case 'number':
