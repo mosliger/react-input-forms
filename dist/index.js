@@ -66,7 +66,6 @@ var Index = function (_React$Component) {
         _this.props.onBlue(value, name, errorMessage);
       }
     }, _this.handleChange = function (value) {
-      console.log('handleChange >>', value);
       var _this$props = _this.props,
           name = _this$props.name,
           onChange = _this$props.onChange;
