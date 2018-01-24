@@ -48,9 +48,11 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
+    "moment": "^2.20.1",
     "node-sass": "^4.5.3",
     "npm": "^4.6.1",
     "react": "^15.4.2",
+    "react-datetime": "^2.11.1",
     "react-dom": "^15.4.2"
   }
 }

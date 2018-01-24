@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const isEmpey = (value = '') => {
   switch (typeof value) {
     case 'object': {
@@ -87,26 +89,29 @@ export function toNumeral(value, format = '') {
     // not NaN
     if (isNaN(Number(valueToNumber))) {
       return Number(valueToNumber);
-    } else {
-      try {
-        const splitValue = valueToNumber.split('.');
-        const comma = decimalFormat.length > 0 && value.indexOf('.') >= 0 ? '.' : '';
-        const decimal = decimalFormat.length > 0 && splitValue[1] ? splitValue[1].substring(0, decimalFormat.length) : '';
-        let number = splitValue[0] ? splitValue[0].toString() : '';
-        number = number.length < 10 && number.length > 0 ? Number(number).toString() : number;
-        if (integerFormat.indexOf(',') >= 0) {
-          const splitIntegerFormat = integerFormat.split(',');
-          const getcomma = splitIntegerFormat[splitIntegerFormat.length - 1] ? splitIntegerFormat[splitIntegerFormat.length - 1].length : 3;
-          const pattern = new RegExp(`(-?\\d+)(\\d{${getcomma}})`);// /(-?\d+)(\d{3})/;
+    }
+    try {
+      const splitValue = valueToNumber.split('.');
+      const comma = decimalFormat.length > 0 && value.indexOf('.') >= 0 ? '.' : '';
+      const decimal =
+          decimalFormat.length > 0 && splitValue[1]
+            ? splitValue[1].substring(0, decimalFormat.length)
+            : '';
+      let number = splitValue[0] ? splitValue[0].toString() : '';
+      number = number.length < 10 && number.length > 0 ? Number(number).toString() : number;
+      if (integerFormat.indexOf(',') >= 0) {
+        const splitIntegerFormat = integerFormat.split(',');
+        const getcomma = splitIntegerFormat[splitIntegerFormat.length - 1]
+            ? splitIntegerFormat[splitIntegerFormat.length - 1].length
+            : 3;
+        const pattern = new RegExp(`(-?\\d+)(\\d{${getcomma}})`); // /(-?\d+)(\d{3})/;
 
-          while (pattern.test(number)) number = number.replace(pattern, '$1,$2');
-          return `${number}${comma}${decimal}`;
-        } else {
-          return `${number}${comma}${decimal}`;
-        }
-      } catch (e) {
-        return valueToNumber;
+        while (pattern.test(number)) number = number.replace(pattern, '$1,$2');
+        return `${number}${comma}${decimal}`;
       }
+      return `${number}${comma}${decimal}`;
+    } catch (e) {
+      return valueToNumber;
     }
   } else {
     return value;
@@ -125,7 +130,15 @@ export const isEmail = (value) => {
   return re.test(value);
 };
 
-export const verifyField = (value = '', rules = {}) => {
+export const isDateFormat = (value, props) => {
+  const { format } = props;
+  if (format) {
+    return !moment(value, format, true).isValid();
+  }
+  return false;
+};
+
+export const verifyField = (value = '', rules = {}, props) => {
   if (value !== '' || rules.required) {
     for (const key in rules) {
       const typeofRules = typeof rules[key];
@@ -133,6 +146,10 @@ export const verifyField = (value = '', rules = {}) => {
         switch (key) {
           case 'required': {
             if (isEmpey(value)) return rules[key];
+            break;
+          }
+          case 'dateFormat': {
+            if (isDateFormat(value, props)) return rules[key];
             break;
           }
           case 'number': {

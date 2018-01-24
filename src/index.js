@@ -8,6 +8,7 @@ import {
   CheckboxInput,
   RadioInput,
   PasswordInput,
+  DateInput,
 } from './components';
 
 export default class Index extends React.Component {
@@ -116,9 +117,9 @@ export default class Index extends React.Component {
     const { rules } = this.props;
     let validation = '';
     if (this.props.handleVerify) {
-      validation = this.props.handleVerify(value, rules);
+      validation = this.props.handleVerify(value, rules, this.props);
     } else {
-      validation = verifyField(value, rules);
+      validation = verifyField(value, rules, this.props);
     }
     return this.props.errorMessage ? this.props.errorMessage : validation;
   }
@@ -134,6 +135,7 @@ export default class Index extends React.Component {
   }
 
   handleChange = (value) => {
+    console.log('handleChange >>', value)
     const { name, onChange } = this.props;
     const errorMessage = this.handleValidation(value);
     try {
@@ -200,6 +202,10 @@ export default class Index extends React.Component {
         case 'text': {
           if (this.props.children) return (<TextInput {...propsForm} >{this.props.children}</TextInput>);
           return (<TextInput {...propsForm} />);
+        }
+        case 'date': {
+          if (this.props.children) return (<DateInput {...propsForm} >{this.props.children}</DateInput>);
+          return (<DateInput {...propsForm} />);
         }
         case 'number': {
           if (this.props.children) return (<NumberInput {...propsForm}>{this.props.children}</NumberInput>);
