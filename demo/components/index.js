@@ -1,64 +1,292 @@
-import React from 'react';
-import Home from './Home';
-import TextInput from './TextInput';
-import NumberInput from './NumberInput';
-import SelectInput from './SelectInput';
-import TextareaInput from './TextareaInput';
-import RadioInput from './RadioInput';
-import CheckboxInput from './CheckboxInput';
-import CustomInput from './CustomInput';
-import PasswordInput from './PasswordInput';
+import React, { Component } from 'react';
+// import InputField from 'react-input-forms';
+import InputField from '../../src';
 
-export default class Index extends React.Component {
+export default class Home extends Component {
   state = {
-    currentMenu: 'home',
-    menuList: [
-      { name: 'Home', key: 'home'},
-      { name: 'Text', key: 'text'},
-      { name: 'Number', key: 'number'},
-      { name: 'Select', key: 'select'},
-      { name: 'Password', key: 'password'},
-      { name: 'Textarea', key: 'textarea'},
-      { name: 'Radio', key: 'radio'},
-      { name: 'Checkbox', key: 'checkbox'},
-      { name: 'Custom', key: 'custom'},
-    ],
-  }
+    textInput: '',
+    numberInput: '',
+    selectInput: '',
+    password: '',
+    textarea: '',
+    checkboxInput: [],
+    radioInput: {},
+    dateInput: '',
+    customerInput: '',
+    textInputCustomElement: '',
+    checkboxInputNotOption: false,
+    disabledOption: false,
+  };
 
-  selectMenu = (keyMenu) => {
+  handleUpdateValue = (value, name, error) => {
+    this.setState({ [name]: value });
+  };
+
+  handleOnBlur = (value, name, error) => {
+    this.setState({ [name]: value });
+  };
+
+  handleDisabledOption = () => {
+    const { disabledOption } = this.state;
+    this.setState({ disabledOption: !disabledOption });
+  };
+
+  getKeyCode = (keyCode, value, name, e) => {
+    // console.log('getKeyCode >>', keyCode, value, name, e)
+  };
+
+  onPropsChange = (value, name, error) => {
+    // console.log('onPropsChange >>', value, name, error)
+  };
+
+  clearForms = () => {
     this.setState({
-      currentMenu: keyMenu,
-    })
-  }
+      textInput: '',
+      numberInput: '',
+      selectInput: '',
+      textarea: '',
+      password: '',
+      dateInput: '',
+      checkboxInput: [],
+      radioInput: {},
+      customerInput: '',
+      textInputCustomElement: '',
+      checkboxInputNotOption: false,
+    });
+  };
 
-  render() {
-    const { menuList, currentMenu } = this.state;
+  customElementText = (input, label, errorMessage) => {
+    return (
+      <div className="custom-element">
+        <label>{label}</label>
+        {input}
+        <div className="error-message">{errorMessage}</div>
+      </div>
+    );
+  };
+
+  customElementRadio = (inputList, label, errorMessage) => {
+    return (
+      <div className={'field-group'}>
+        <label htmlFor={label}>{label}</label>
+        {inputList.map((detail, index) => {
+          return (
+            <div className="radio-list" key={`${name}-${index}`}>
+              <div className="box-input">
+                {detail.input}
+                <label className="icon" />
+              </div>
+              <label htmlFor={label}>{detail.label}</label>
+            </div>
+          );
+        })}
+        {errorMessage}
+      </div>
+    );
+  };
+
+  customElement = rules => {
+    const { textInputCustomElement, customerInput } = this.state;
+    const optionList = [
+      { label: 'select ...', value: '', disabled: true },
+      { label: 'one', value: '1' },
+      { label: 'two', value: '2', disabled: true },
+      { label: 'three', value: '3' },
+      { label: 'four', value: '4', disabled: true },
+      { label: 'five', value: '5' },
+    ];
 
     return (
-      <div className="demo-input-fields">
-        <div className="main-menu">
-          <h2>Menu</h2>
-          <ul className="menu-list">
-            {menuList.map((item) => {
-              return (<li key={item.key} className={`item ${currentMenu === item.key ? 'active' : ''}`}>
-              <a href="Javascript:;" onClick={() => this.selectMenu(item.key)}> {item.name} </a>
-              </li>);
-            })}
-          </ul>
+      <div>
+        <h2>Custom Element</h2>
+        <div className="row">
+          <div className="D-6 M-12">
+            <h2>Text Input</h2>
+            <InputField
+              type="text"
+              customElement={this.customElementText}
+              onPropsChange={this.onPropsChange}
+              onKeyCode={this.getKeyCode}
+              value={textInputCustomElement}
+              rules={rules}
+              type="text"
+              key="textInputCustomElement"
+              name="textInputCustomElement"
+              label="Text Input Custom Element"
+              onChange={this.handleUpdateValue}
+              onBlur={this.handleOnBlur}
+            />
+          </div>
         </div>
-        <div className="main-page">
-          <ul className="page-list">
-            <li key="page-home" className={currentMenu === 'home' ? 'item active' : 'item'}><Home /></li>
-            <li key="page-text" className={currentMenu === 'text' ? 'item active' : 'item'}><TextInput /></li>
-            <li key="page-number" className={currentMenu === 'number' ? 'item active' : 'item'}><NumberInput /></li>
-            <li key="page-select" className={currentMenu === 'select' ? 'item active' : 'item'}><SelectInput /></li>
-            <li key="page-password" className={currentMenu === 'password' ? 'item active' : 'item'}><PasswordInput /></li>
-            <li key="page-textarea" className={currentMenu === 'textarea' ? 'item active' : 'item'}><TextareaInput /></li>
-            <li key="page-radio" className={currentMenu === 'radio' ? 'item active' : 'item'}><RadioInput /></li>
-            <li key="page-checkbox" className={currentMenu === 'checkbox' ? 'item active' : 'item'}><CheckboxInput /></li>
-            <li key="page-custom" className={currentMenu === 'custom' ? 'item active' : 'item'}><CustomInput /></li>
-          </ul>
+      </div>
+    );
+  };
+
+  render() {
+    const {
+      textInput,
+      password,
+      customerInput,
+      numberInput,
+      selectInput,
+      disabledOption,
+      textarea,
+      checkboxInput,
+      dateInput,
+      radioInput,
+      checkboxInputNotOption,
+    } = this.state;
+    let optionList = [
+      { label: 'select ...', value: '' },
+      { label: 'one', value: '1' },
+      { label: 'two', value: '2' },
+      { label: 'three', value: '3' },
+      { label: 'four', value: '4' },
+      { label: 'five', value: '5' },
+    ];
+    const rules = { required: 'input is require.' };
+    if (disabledOption)
+      optionList = [
+        { label: 'select ...', value: '', disabled: true },
+        { label: 'one', value: '1' },
+        { label: 'two', value: '2', disabled: true },
+        { label: 'three', value: '3' },
+        { label: 'four', value: '4', disabled: true },
+        { label: 'five', value: '5' },
+      ];
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="D-6 M-12">
+            <h2>Text Input</h2>
+            <InputField
+              type="text"
+              remark="*"
+              onPropsChange={this.onPropsChange}
+              onKeyCode={this.getKeyCode}
+              value={textInput}
+              rules={rules}
+              key="textInput"
+              name="textInput"
+              label="label Text Input"
+              onChange={this.handleUpdateValue}
+              onBlur={this.handleOnBlur}
+            />
+          </div>
+          <div className="D-6 M-12">
+            <h2>Number Input</h2>
+            <InputField
+              type="number"
+              onPropsChange={this.onPropsChange}
+              onKeyCode={this.getKeyCode}
+              value={numberInput}
+              rules={{ ...rules, number: 'กรุณากรอกตัวเลย' }}
+              key="numberInput"
+              format="0,000.00"
+              name="numberInput"
+              label="label Number Input"
+              onChange={this.handleUpdateValue}
+              onBlur={this.handleOnBlur}
+            />
+          </div>
         </div>
+        <div className="row">
+          <div className="D-6 M-12">
+            <h2>Password</h2>
+            <InputField
+              type="password"
+              placeholder="password ..."
+              onPropsChange={this.onPropsChange}
+              rules={rules}
+              value={password}
+              key="password"
+              name="password"
+              label="Password"
+              onChange={this.handleUpdateValue}
+            />
+          </div>
+          <div className="D-6 M-12">
+            <h2>Select</h2>
+            <InputField
+              type="select"
+              onPropsChange={this.onPropsChange}
+              onKeyCode={this.getKeyCode}
+              rules={rules}
+              value={selectInput}
+              key="selectInput"
+              name="selectInput"
+              label="label Select"
+              options={optionList}
+              onChange={this.handleUpdateValue}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="D-6 M-12">
+            <h2>Textarea</h2>
+            <InputField
+              type="textarea"
+              onPropsChange={this.onPropsChange}
+              onKeyCode={this.getKeyCode}
+              rules={rules}
+              value={textarea}
+              key="textarea"
+              name="textarea"
+              label="label Textarea"
+              rows={3}
+              cols={4}
+              onBlur={this.handleOnBlur}
+              onChange={this.handleUpdateValue}
+            />
+          </div>
+          <div className="D-6 M-12">
+            <h2>Date</h2>
+            <InputField
+              type="date"
+              rules={{
+                ...rules,
+                dateFormat: 'รูบแบบวันที่ไม่ถูกต้อง',
+              }}
+              format="DD/MM/YYYY"
+              value={dateInput}
+              key="dateInput"
+              name="dateInput"
+              label="label dateInput"
+              onBlur={this.handleOnBlur}
+              onChange={this.handleUpdateValue}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="D-6 M-12">
+            <h2>Checkbox</h2>
+            <InputField
+              type="checkbox"
+              onPropsChange={this.onPropsChange}
+              value={checkboxInput}
+              key="checkboxInput"
+              name="checkboxInput"
+              label="label Checkbox"
+              options={optionList}
+              onChange={this.handleUpdateValue}
+            />
+          </div>
+          <div className="D-6 M-12">
+            <h2>Radio</h2>
+            <InputField
+              type="radio"
+              onPropsChange={this.onPropsChange}
+              value={radioInput}
+              key="radioInput"
+              name="radioInput"
+              label="label radio"
+              options={optionList}
+              onChange={this.handleUpdateValue}
+            />
+          </div>
+        </div>
+        <button onClick={() => this.clearForms()}>Clear Forms</button>
       </div>
     );
   }
