@@ -2,7 +2,8 @@
 ## Usage
 Installation using npm:
 ```
-npm install react-input-forms --save
+npm install react-input-forms moment react-datetime --save
+yarn add react-input-forms moment react-datetime --S
 ```
 
 Live demo: [react-input-forms](https://mosliger.github.io/react-input-forms/build/)

@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -49,7 +51,7 @@ var PasswordInput = function (_React$PureComponent) {
           handleKeyCode = _this$props.handleKeyCode,
           handleBlur = _this$props.handleBlur;
 
-      var input = _react2.default.createElement('input', {
+      var input = _react2.default.createElement('input', _extends({}, inputProps, {
         ref: function ref(input) {
           if (input != null && focus) {
             input.focus();
@@ -71,7 +73,7 @@ var PasswordInput = function (_React$PureComponent) {
         onBlur: function onBlur(e) {
           return handleBlur(e.target.value);
         }
-      });
+      }));
       return _this.props.customElement(input, label, errorMessage);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -89,7 +91,9 @@ var PasswordInput = function (_React$PureComponent) {
           name = _props.name,
           errorMessage = _props.errorMessage,
           inputProps = _props.inputProps,
+          className = _props.className,
           tabIndex = _props.tabIndex,
+          labelProps = _props.labelProps,
           handleChange = _props.handleChange,
           handleKeyCode = _props.handleKeyCode,
           handleBlur = _props.handleBlur;
@@ -112,10 +116,10 @@ var PasswordInput = function (_React$PureComponent) {
 
       return _react2.default.createElement(
         'div',
-        { className: inputProps.className ? inputProps.className : 'field-group' },
+        { className: className },
         _react2.default.createElement(
           'label',
-          { htmlFor: label },
+          _extends({}, labelProps, { htmlFor: label }),
           label,
           ' ',
           !(0, _global.isEmpey)(remark) && _react2.default.createElement(
@@ -127,7 +131,7 @@ var PasswordInput = function (_React$PureComponent) {
         _react2.default.createElement(
           'div',
           { className: classInput },
-          _react2.default.createElement('input', {
+          _react2.default.createElement('input', _extends({}, inputProps, {
             ref: function ref(input) {
               if (input != null && focus) {
                 input.focus();
@@ -149,7 +153,7 @@ var PasswordInput = function (_React$PureComponent) {
             onBlur: function onBlur(e) {
               return handleBlur(e.target.value);
             }
-          }),
+          })),
           renderErrorMessage
         ),
         this.props.children
@@ -167,6 +171,7 @@ PasswordInput.propTypes = {
   placeholder: _react.PropTypes.string,
   children: _react.PropTypes.node,
   type: _react.PropTypes.string.isRequired,
+  className: _react.PropTypes.string,
   name: _react.PropTypes.string.isRequired,
   inputProps: _react.PropTypes.object,
   labelProps: _react.PropTypes.object,
@@ -187,6 +192,7 @@ PasswordInput.defaultProps = {
   value: '',
   inputProps: {},
   labelProps: {},
+  className: 'field-group',
   disabled: false,
   focus: false,
   placeholder: '',

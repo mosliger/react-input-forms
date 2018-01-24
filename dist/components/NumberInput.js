@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -86,7 +88,7 @@ var NumberInput = function (_React$PureComponent) {
           handleKeyCode = _this$props2.handleKeyCode,
           handleBlur = _this$props2.handleBlur;
 
-      var input = _react2.default.createElement('input', {
+      var input = _react2.default.createElement('input', _extends({}, inputProps, {
         ref: function ref(input) {
           if (input != null && focus) {
             input.focus();
@@ -108,7 +110,7 @@ var NumberInput = function (_React$PureComponent) {
         onBlur: function onBlur(e) {
           return _this.handleOnBlur(e.target.value);
         }
-      });
+      }));
       return _this.props.customElement(input, label, errorMessage);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -138,9 +140,11 @@ var NumberInput = function (_React$PureComponent) {
           placeholder = _props2.placeholder,
           name = _props2.name,
           format = _props2.format,
+          className = _props2.className,
           tabIndex = _props2.tabIndex,
           errorMessage = _props2.errorMessage,
           inputProps = _props2.inputProps,
+          labelProps = _props2.labelProps,
           handleChange = _props2.handleChange,
           handleKeyCode = _props2.handleKeyCode;
 
@@ -162,10 +166,10 @@ var NumberInput = function (_React$PureComponent) {
 
       return _react2.default.createElement(
         'div',
-        { className: inputProps.className ? inputProps.className : 'field-group' },
+        { className: className },
         _react2.default.createElement(
           'label',
-          { htmlFor: label },
+          _extends({}, labelProps, { htmlFor: label }),
           label,
           ' ',
           !(0, _global.isEmpey)(remark) && _react2.default.createElement(
@@ -177,7 +181,7 @@ var NumberInput = function (_React$PureComponent) {
         _react2.default.createElement(
           'div',
           { className: classInput },
-          _react2.default.createElement('input', {
+          _react2.default.createElement('input', _extends({}, inputProps, {
             ref: function ref(input) {
               if (input != null && focus) {
                 input.focus();
@@ -199,7 +203,7 @@ var NumberInput = function (_React$PureComponent) {
             onBlur: function onBlur(e) {
               return _this2.handleOnBlur(e.target.value);
             }
-          }),
+          })),
           renderErrorMessage
         ),
         this.props.children
@@ -213,6 +217,7 @@ var NumberInput = function (_React$PureComponent) {
 NumberInput.propTypes = {
   value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
   format: _react.PropTypes.string,
+  className: _react.PropTypes.string,
   label: _react.PropTypes.string,
   placeholder: _react.PropTypes.string,
   type: _react.PropTypes.string.isRequired,
@@ -233,6 +238,7 @@ NumberInput.defaultProps = {
   format: '',
   tabIndex: 0,
   label: '',
+  className: 'field-group',
   value: '',
   inputProps: {},
   labelProps: {},

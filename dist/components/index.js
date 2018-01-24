@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PasswordInput = exports.RadioInput = exports.CheckboxInput = exports.TextInput = exports.TextareaInput = exports.SelectInput = exports.NumberInput = undefined;
+exports.DateInput = exports.PasswordInput = exports.RadioInput = exports.CheckboxInput = exports.TextInput = exports.TextareaInput = exports.SelectInput = exports.NumberInput = undefined;
 
 var _NumberInput2 = require('./NumberInput');
 
@@ -33,6 +33,10 @@ var _PasswordInput2 = require('./PasswordInput');
 
 var _PasswordInput3 = _interopRequireDefault(_PasswordInput2);
 
+var _DateInput2 = require('./DateInput');
+
+var _DateInput3 = _interopRequireDefault(_DateInput2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.NumberInput = _NumberInput3.default;
@@ -42,3 +46,4 @@ exports.TextInput = _TextInput3.default;
 exports.CheckboxInput = _CheckboxInput3.default;
 exports.RadioInput = _RadioInput3.default;
 exports.PasswordInput = _PasswordInput3.default;
+exports.DateInput = _DateInput3.default;

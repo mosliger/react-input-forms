@@ -1,6 +1,6 @@
 {
   "name": "react-input-forms",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "",
   "main": "./dist/index.js",
   "repository": {
@@ -45,12 +45,12 @@
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-server": "^2.4.2",
+    "node-sass": "^4.5.3"
   },
   "dependencies": {
-    "moment": "^2.20.1",
-    "node-sass": "^4.5.3",
     "npm": "^4.6.1",
+    "moment": "^2.20.1",
     "react": "^15.4.2",
     "react-datetime": "^2.11.1",
     "react-dom": "^15.4.2"
