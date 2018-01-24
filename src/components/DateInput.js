@@ -42,34 +42,47 @@ export default class DateInput extends React.PureComponent {
 
   state = {
     open: false,
+    hoverDate: false,
+    focusState: false,
   };
 
   handleFocus = () => {
-    this.setState({ open: true });
+    this.setState({ open: true, focusState: true });
   };
 
   handleInputChange = value => {
     const { handleChange } = this.props;
-
     handleChange(value);
   };
 
   handleBlurInput = value => {
     const { handleBlur } = this.props;
-    setTimeout(() => {
-      this.setState({ open: false });
-    }, 100);
+    this.setState({ focusState: false });
     if (handleBlur) handleBlur(value);
+    this.handleCloseDate();
+  };
+
+  handleCloseDate = () => {
+    const { hoverDate } = this.state;
+    if (!hoverDate) this.setState({ open: false, focusState: false, hoverDate: false });
   };
 
   handleSelectDate = value => {
     const { handleChange, format } = this.props;
-    this.setState({ open: false });
     handleChange(value.format(format));
+    this.handleCloseDate();
+  };
+
+  handleClickDate = () => {
+    this.setState({ focusState: true });
+  };
+
+  handleHoverDate = status => {
+    this.setState({ hoverDate: status });
   };
 
   render() {
-    const { open } = this.state;
+    const { open, focusState } = this.state;
     const {
       label,
       className,
@@ -93,6 +106,7 @@ export default class DateInput extends React.PureComponent {
       classInput = 'wrap-form-input error';
       renderErrorMessage = <div className="validation-label">{errorMessage}</div>;
     }
+
     return (
       <div className={className}>
         <label {...labelProps} htmlFor={label}>
@@ -102,7 +116,7 @@ export default class DateInput extends React.PureComponent {
           <input
             {...inputProps}
             ref={input => {
-              if (input != null && focus) {
+              if (input != null && (focus || focusState)) {
                 input.focus();
               }
             }}
@@ -119,14 +133,20 @@ export default class DateInput extends React.PureComponent {
             onFocus={this.handleFocus}
           />
           {renderErrorMessage}
-          <DateTime
-            dateFormat={format}
-            value={value}
-            timeFormat={false}
-            open={open}
-            input={false}
-            onChange={this.handleSelectDate}
-          />
+          <span
+            onClick={this.handleClickDate}
+            onMouseOver={() => this.handleHoverDate(true)}
+            onMouseOut={() => this.handleHoverDate(false)}
+          >
+            <DateTime
+              dateFormat={format}
+              value={value}
+              timeFormat={false}
+              open={open}
+              input={false}
+              onChange={this.handleSelectDate}
+            />
+          </span>
         </div>
 
         {this.props.children}

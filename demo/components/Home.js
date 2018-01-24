@@ -242,7 +242,7 @@ export default class Home extends Component {
               onChange={this.handleUpdateValue}
             />
           </div>
-          <div className="D-2 M-12">
+          <div className="D-6 M-12">
             <h2>Date</h2>
             <InputField
               type="date"
