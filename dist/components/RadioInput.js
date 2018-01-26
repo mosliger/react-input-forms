@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _global = require('../helpers/global');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -167,21 +171,21 @@ var RadioInput = function (_React$PureComponent) {
 }(_react2.default.PureComponent);
 
 RadioInput.propTypes = {
-  value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string, _react.PropTypes.object]),
-  label: _react.PropTypes.string,
-  type: _react.PropTypes.string.isRequired,
-  name: _react.PropTypes.string.isRequired,
-  options: _react.PropTypes.array,
-  inputProps: _react.PropTypes.object,
-  labelProps: _react.PropTypes.object,
-  disabled: _react.PropTypes.bool,
-  className: _react.PropTypes.string,
-  focus: _react.PropTypes.bool,
-  errorMessage: _react.PropTypes.string,
-  remark: _react.PropTypes.string,
-  handleChange: _react.PropTypes.func,
-  handleBlur: _react.PropTypes.func,
-  handleKeyCode: _react.PropTypes.func
+  value: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string, _propTypes2.default.object]),
+  label: _propTypes2.default.string,
+  type: _propTypes2.default.string.isRequired,
+  name: _propTypes2.default.string.isRequired,
+  options: _propTypes2.default.array,
+  inputProps: _propTypes2.default.object,
+  labelProps: _propTypes2.default.object,
+  disabled: _propTypes2.default.bool,
+  className: _propTypes2.default.string,
+  focus: _propTypes2.default.bool,
+  errorMessage: _propTypes2.default.string,
+  remark: _propTypes2.default.string,
+  handleChange: _propTypes2.default.func,
+  handleBlur: _propTypes2.default.func,
+  handleKeyCode: _propTypes2.default.func
 };
 RadioInput.defaultProps = {
   name: 'input',

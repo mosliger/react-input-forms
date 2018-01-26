@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types'
 import { isEmpey, pick } from '../helpers/global';
 
 export default class TextInput extends React.PureComponent {

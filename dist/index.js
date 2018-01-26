@@ -14,6 +14,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _global = require('./helpers/global');
 
 var _components = require('./components');
@@ -274,29 +278,29 @@ var Index = function (_React$Component) {
 }(_react2.default.Component);
 
 Index.propTypes = (_Index$propTypes = {
-  value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string, _react.PropTypes.object, _react.PropTypes.bool, _react.PropTypes.array]),
-  format: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.string]),
+  value: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string, _propTypes2.default.object, _propTypes2.default.bool, _propTypes2.default.array]),
+  format: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.string]),
 
-  rows: _react.PropTypes.number,
-  cols: _react.PropTypes.number,
-  tabIndex: _react.PropTypes.number,
-  maxLength: _react.PropTypes.number,
+  rows: _propTypes2.default.number,
+  cols: _propTypes2.default.number,
+  tabIndex: _propTypes2.default.number,
+  maxLength: _propTypes2.default.number,
 
-  label: _react.PropTypes.string,
-  placeholder: _react.PropTypes.string,
-  type: _react.PropTypes.string.isRequired,
-  name: _react.PropTypes.string.isRequired,
-  errorMessage: _react.PropTypes.string,
+  label: _propTypes2.default.string,
+  placeholder: _propTypes2.default.string,
+  type: _propTypes2.default.string.isRequired,
+  name: _propTypes2.default.string.isRequired,
+  errorMessage: _propTypes2.default.string,
 
-  children: _react.PropTypes.string,
-  remark: _react.PropTypes.string,
+  children: _propTypes2.default.string,
+  remark: _propTypes2.default.string,
 
-  options: _react.PropTypes.array,
+  options: _propTypes2.default.array,
 
-  inputProps: _react.PropTypes.object,
-  labelProps: _react.PropTypes.object,
-  rules: _react.PropTypes.object
-}, _defineProperty(_Index$propTypes, 'children', _react.PropTypes.node), _defineProperty(_Index$propTypes, 'disabled', _react.PropTypes.bool), _defineProperty(_Index$propTypes, 'focus', _react.PropTypes.bool), _defineProperty(_Index$propTypes, 'onChange', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onBlur', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onKeyCode', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'onPropsChange', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'handleVerify', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'renderComponent', _react.PropTypes.func), _defineProperty(_Index$propTypes, 'customElement', _react.PropTypes.func), _Index$propTypes);
+  inputProps: _propTypes2.default.object,
+  labelProps: _propTypes2.default.object,
+  rules: _propTypes2.default.object
+}, _defineProperty(_Index$propTypes, 'children', _propTypes2.default.node), _defineProperty(_Index$propTypes, 'disabled', _propTypes2.default.bool), _defineProperty(_Index$propTypes, 'focus', _propTypes2.default.bool), _defineProperty(_Index$propTypes, 'onChange', _propTypes2.default.func), _defineProperty(_Index$propTypes, 'onBlur', _propTypes2.default.func), _defineProperty(_Index$propTypes, 'onKeyCode', _propTypes2.default.func), _defineProperty(_Index$propTypes, 'onPropsChange', _propTypes2.default.func), _defineProperty(_Index$propTypes, 'handleVerify', _propTypes2.default.func), _defineProperty(_Index$propTypes, 'renderComponent', _propTypes2.default.func), _defineProperty(_Index$propTypes, 'customElement', _propTypes2.default.func), _Index$propTypes);
 Index.defaultProps = {
   name: 'input',
   label: '',
