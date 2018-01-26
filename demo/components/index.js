@@ -159,7 +159,7 @@ export default class Home extends Component {
         <p><br /></p>
         <div className='row'>
           <div className='D-6 M-12'>
-            <InputField />
+            <InputField onBlur={(value, name) => console.log('bour >>', value, name)} />
           </div>
         </div>
         <div className="row">

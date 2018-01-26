@@ -2,31 +2,28 @@
 ## Usage
 Installation using npm:
 ```
+npm install react-input-forms --save
+yarn add react-input-forms --S
+```
+user input type date
+```
 npm install react-input-forms moment react-datetime --save
 yarn add react-input-forms moment react-datetime --S
 ```
 
-Live demo: [react-input-forms](https://mosliger.github.io/react-input-forms/build/)
 
-css [css](https://mosliger.github.io/react-input-forms/build/react-input.css)
+### Document
+[react-input-forms](https://mosliger.github.io/react-input-forms/build/)
 
-sass [sass](https://mosliger.github.io/react-input-forms/build/sass.rar)
+### stylesheet
+[sass](https://github.com/mosliger/react-input-forms/tree/master/style/components)
 
 
 ```
 import InputField from 'react-input-forms';
-....
-handleOnBlur = (value, name) => {
-  this.setState({ textInput: value })
-}
 ...
-const { textInput } = this.state;
-....
 <InputField
   type="text"
-  value={textInput}
-  name="textInput"
-  label="label Text Input"
-  onBlur={this.handleOnBlur}
+  label="label"
 />
 ```

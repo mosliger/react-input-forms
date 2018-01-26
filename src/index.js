@@ -161,7 +161,7 @@ export default class Index extends React.Component {
           return {
             value: value,
             errorMessage: errorMessage,
-            editValue: false,
+            editValue: !this.props.value,
           }
         });
         onBlur(value, name, errorMessage);
