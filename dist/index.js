@@ -100,7 +100,7 @@ var Index = function (_React$Component) {
             return {
               value: value,
               errorMessage: errorMessage,
-              editValue: false
+              editValue: !_this.props.value
             };
           });
           onBlur(value, name, errorMessage);
