@@ -62,7 +62,7 @@ export default class Index extends React.Component {
   static defaultProps = {
     name: 'input',
     label: '',
-    value: '',
+    value: undefined,
     disabled: false,
     focus: false,
     placeholder: '',
@@ -143,7 +143,7 @@ export default class Index extends React.Component {
         return {
           value: value,
           errorMessage: errorMessage,
-          editValue: !onChange,
+          editValue: !this.props.value,
         }
       });
       if (onChange) onChange(value, name, errorMessage);

@@ -156,6 +156,12 @@ export default class Home extends Component {
       ];
     return (
       <div className="container">
+        <p><br /></p>
+        <div className='row'>
+          <div className='D-6 M-12'>
+            <InputField onChange={(value, name) => console.log('test >>', value, name)} />
+          </div>
+        </div>
         <div className="row">
           <div className="D-6 M-12">
             <h2>Text Input</h2>
