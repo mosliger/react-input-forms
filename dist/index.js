@@ -80,7 +80,7 @@ var Index = function (_React$Component) {
           return {
             value: value,
             errorMessage: errorMessage,
-            editValue: !onChange
+            editValue: !_this.props.value
           };
         });
         if (onChange) onChange(value, name, errorMessage);
@@ -304,7 +304,7 @@ Index.propTypes = (_Index$propTypes = {
 Index.defaultProps = {
   name: 'input',
   label: '',
-  value: '',
+  value: undefined,
   disabled: false,
   focus: false,
   placeholder: '',

@@ -159,7 +159,7 @@ export default class Home extends Component {
         <p><br /></p>
         <div className='row'>
           <div className='D-6 M-12'>
-            <InputField onChange={(value, name) => console.log('test >>', value, name)} />
+            <InputField />
           </div>
         </div>
         <div className="row">
